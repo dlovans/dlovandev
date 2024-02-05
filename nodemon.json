@@ -1,6 +1,6 @@
 {
-  "watch": "/src",
-  "ext": "ts",
+  "watch": "src",
+  "ext": "js",
   "restartable": "rs",
-  "exec": "ts-node ./src/server.ts"
+  "exc": "npm run dev"
 }
