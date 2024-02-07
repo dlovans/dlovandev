@@ -1,4 +1,4 @@
-# <ds-about>;
+# &lt;ds-about&gt;
 
 `ds-about` is a web component that provides a short about description.
 
