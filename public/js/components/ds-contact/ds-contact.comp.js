@@ -67,6 +67,8 @@ customElements.define('ds-contact',
      * @param {object} eventObj - The event object.
      */
     async #formSubmission (eventObj) {
+      // Prevent default behavior and disable submit button
+      // upon form submission.
       eventObj.preventDefault()
       this.#submitBtn.setAttribute('disabled', '')
     }
