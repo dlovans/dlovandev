@@ -72,5 +72,16 @@ customElements.define('ds-contact',
       eventObj.preventDefault()
       this.#submitBtn.setAttribute('disabled', '')
     }
+
+    /**
+     * Basic validation. Checks if input fields are empty.
+     *
+     * @returns {boolean} - Returns true if no input fields are empty.
+     */
+    #clientValidateFormData () {
+      if (!this.#nameInput.value || !this.#emailInput.value || !this.#textareaInput.value) return false
+      
+      return true
+    }
   }
 )
