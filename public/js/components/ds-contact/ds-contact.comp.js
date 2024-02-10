@@ -42,5 +42,15 @@ customElements.define('ds-contact',
       // Register event handlers.
       this.#form.addEventListener('submit', (event) => this.#formSubmission(event))
     }
+
+    /**
+     * Handles form submission.
+     *
+     * @param {object} eventObj - The event object.
+     */
+        async #formSubmission (eventObj) {
+          eventObj.preventDefault()
+          this.#submitBtn.setAttribute('disabled', '')
+        }    
   }
 )
