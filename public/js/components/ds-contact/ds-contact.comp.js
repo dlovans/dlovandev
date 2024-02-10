@@ -76,6 +76,7 @@ customElements.define('ds-contact',
       // send data to server.
       if (!this.#clientValidateFormData()) {
         this.#cancelSubmission()
+        return
       } else {
         await this.#sendFormData()
       }
