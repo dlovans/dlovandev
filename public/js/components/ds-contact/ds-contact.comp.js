@@ -24,6 +24,21 @@ customElements.define('ds-contact',
      */
     #form
 
+    /**
+     * The name input field.
+     */
+    #nameInput
+
+    /**
+     * The email input field.
+     */
+    #emailInput
+
+    /**
+     * The textarea input field.
+     */
+    #textareaInput
+
     // Initializes new instance.
     constructor () {
       super()
@@ -35,9 +50,12 @@ customElements.define('ds-contact',
         .append(styleTemplate.content.cloneNode(true))
         .append(markupTemplate.content.cloneNode(true))
       
-      // Get references to submit button and form.
+      // Get references to inputs, form and submit button.
       this.#submitBtn = this.shadowRoot.querySelector('#submit')
       this.#form = this.shadowRoot.querySelector('form')
+      this.#nameInput = this.shadowRoot.querySelector('#flname')
+      this.#emailInput = this.shadowRoot.querySelector('#email')
+      this.#textareaInput = this.shadowRoot.querySelector('#message')
 
       // Register event handlers.
       this.#form.addEventListener('submit', (event) => this.#formSubmission(event))
