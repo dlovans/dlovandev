@@ -75,8 +75,8 @@ customElements.define('ds-contact',
       // Validate form data. Cancel form submission on failure, else
       // send data to server.
       if (!this.#clientValidateFormData()) {
-        this.#cancelSubmission()
-        return
+        this.#submitBtn.removeAttribute('disabled')
+        this.#provideErrorIndicator()
       } else {
         await this.#sendFormData()
       }
