@@ -98,26 +98,23 @@ customElements.define('ds-contact',
      * Provides an error indicator to user.
      */
     #provideErrorIndicator () {
-      if (!this.#nameInput.value) {
-        this.#nameInput.classList.add('error')
-        this.#nameInput.focus()
-      }
+      const inputFields = [
+        { input: this.#nameInput },
+        { input: this.#emailInput },
+        { input: this.#textareaInput }
+      ]
 
-      if (!this.#emailInput.value) {
-        this.#emailInput.classList.add('error')
+      let focusIsSet = false
 
-        if (!this.#nameInput.classList.contains('error')) {
-          this.#emailInput.focus()
+      inputFields.forEach( input => {
+        if (!input.value) {
+          input.classList.add('error')
+          if (!focusIsSet) {
+            input.focus()
+            focusIsSet = true
+          }
         }
-      }
-
-      if (!this.#textareaInput.value) {
-        this.#textareaInput.classList.add('error')
-
-        if (!this.#nameInput.classList.contains('error') || !this.#emailInput.classList.contains('error')) {
-          this.#textareaInput.focus()
-        }
-      }
+      })
     }
 
     /**
