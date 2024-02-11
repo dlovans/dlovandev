@@ -92,5 +92,32 @@ customElements.define('ds-contact',
       
       return true
     }
+
+
+    /**
+     * Provides an error indicator to user.
+     */
+    #provideErrorIndicator () {
+      if (!this.#nameInput.value) {
+        this.#nameInput.classList.add('error')
+        this.#nameInput.focus()
+      }
+
+      if (!this.#emailInput.value) {
+        this.#emailInput.classList.add('error')
+
+        if (!this.#nameInput.classList.contains('error')) {
+          this.#emailInput.focus()
+        }
+      }
+
+      if (!this.#textareaInput.value) {
+        this.#textareaInput.classList.add('error')
+
+        if (!this.#nameInput.classList.contains('error') || !this.#emailInput.classList.contains('error')) {
+          this.#textareaInput.focus()
+        }
+      }
+    }
   }
 )
