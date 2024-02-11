@@ -136,7 +136,7 @@ customElements.define('ds-contact',
 
       // Provide feedback on the status of the message.
       if (parsedJSON.messageSent) {
-        this.#thankyouMessage()
+        this.#successMessage()
       } else {
         this.#failureMessage()
       }
