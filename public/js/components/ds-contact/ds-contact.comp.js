@@ -119,5 +119,30 @@ customElements.define('ds-contact',
         }
       }
     }
+
+    /**
+     * Sends form data to the server. If successful, provides a thank you message.
+     * On failure, provides appropriate message.
+     */
+    async #sendFormData () {
+      const formData = new FormData(this.#form)
+      const response = await fetch ('./verify-message', {
+        method: "POST",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: formData
+      })
+
+      const parsedJSON = await response.json()
+
+      // Provide feedback on the status of the message.
+      if (parsedJSON.messageSent) {
+        this.#thankyouMessage()
+      } else {
+        this.#failureMessage()
+      }
+    }
   }
 )
