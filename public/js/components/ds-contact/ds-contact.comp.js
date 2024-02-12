@@ -186,5 +186,43 @@ customElements.define('ds-contact',
         input.classList.toggle('warning')
       }
     }
+
+    /**
+     * Provides direct feedback to input value changes by changing border color.
+     *
+     * @param {*} eventObj - The event object attached to the dispatched event.
+     */
+    #greenIndicatorFields (eventObj) {
+      eventObj.stopPropagation()
+
+      /**
+       * Removes orange and green borders on empty 
+       * input fields (after typing and then backspacing).
+       * Adds error class (red border).
+       */
+      function changeBorderOnEmptyInput () {
+        eventObj.currentTarget.classList.remove('warning')
+        eventObj.currentTarget.classList.remove('success')
+        eventObj.currentTarget.classList.add('error')
+      }
+
+      /**
+       * Removes orange and red borders in filled input fields.
+       * Adds success class (green border).
+       */
+      function changeBorderOnFilledInput () {
+        eventObj.currentTarget.classList.remove('warning')
+        eventObj.currentTarget.classList.remove('error')
+        eventObj.currentTarget.classList.add('success')
+      }
+
+      if (eventObj.currentTarget.tagName === 'INPUT' || eventObj.currentTarget.tagName === 'TEXTAREA') {
+        if (!eventObj.currentTarget.value) {
+          changeBorderOnEmptyInput()
+        } else {
+          changeBorderOnFilledInput()
+        }
+      }
+    }
   }
 )
