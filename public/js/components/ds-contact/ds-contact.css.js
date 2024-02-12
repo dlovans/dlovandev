@@ -15,6 +15,25 @@ template.innerHTML = `
     box-sizing: inherit;
   }
 
+  .status-message {
+    height: 0;
+    background-color: transparent;
+    border-radius: 10px;
+    transition: all .5s ease;
+  }
+
+  .display-message {
+    height: 50px
+  }
+
+  .success-status-message {
+    background-color: green;
+  }
+  
+  .error-status-message {
+    background-color: red;
+  }
+
   .warning {
     border: 1px solid orange;
   }
@@ -25,15 +44,6 @@ template.innerHTML = `
 
   .error {
     border: 1px solid red;
-  }
-
-  .status-message {
-    height: 0;
-    transition: height .5s ease;
-  }
-
-  .display-message {
-    height: 50px
   }
 </style>
 `

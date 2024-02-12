@@ -49,6 +49,11 @@ customElements.define('ds-contact',
      */
     #statusMessageElement
 
+    /**
+     * The timeout function.
+     */
+    #delayMessageReset
+
     // Initializes new instance.
     constructor () {
       super()
@@ -157,17 +162,27 @@ customElements.define('ds-contact',
      * @param {boolean} status - Status of the message.
      */
     #statusMessage (status) {
-      if (status) {
-        this.#statusMessageElement.textContent = 'Success! I\'ll be in touch soon.'
-      } else {
-        this.#statusMessageElement.textContent = 'Fill out all fields.'
+      if (this.#statusMessageElement.textContent) {
+        clearTimeout(this.#delayMessageReset)
+        this.#statusMessageElement.classList.remove('success-status-message')
+        this.#statusMessageElement.classList.remove('error-status-message')
       }
 
-      this.#statusMessageElement.classList.toggle('display-message')
+      if (status) {
+        this.#statusMessageElement.textContent = 'Success! I\'ll be in touch soon.'
+        this.#statusMessageElement.classList.add('success-status-message')
+      } else {
+        this.#statusMessageElement.textContent = 'Fill out all fields.'
+        this.#statusMessageElement.classList.add('error-status-message')
+      }
 
-      setTimeout(() => {
+      this.#statusMessageElement.classList.add('display-message')
+
+      this.#delayMessageReset = setTimeout(() => {
         this.#statusMessageElement.textContent = ''
-        this.#statusMessageElement.classList.toggle('display-message')
+        this.#statusMessageElement.classList.remove('success-status-message')
+        this.#statusMessageElement.classList.remove('error-status-message')
+        this.#statusMessageElement.classList.remove('display-message')
       }, 4000)
     }
 
