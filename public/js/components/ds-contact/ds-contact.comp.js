@@ -72,6 +72,7 @@ customElements.define('ds-contact',
       // Register event handlers.
       this.#form.addEventListener('submit', (event) => this.#formSubmission(event))
       this.#form.addEventListener('click', (event) => this.#indicateFields(event))
+      this.#form.addEventListener('input', (event) => this.#greenIndicatorFields(event))
     }
 
     /**
