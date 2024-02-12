@@ -141,5 +141,25 @@ customElements.define('ds-contact',
         this.#failureMessage()
       }
     }
+
+    /**
+     * Provides feedback to the end user.
+     *
+     * @param {boolean} status - Status of the message.
+     */
+    #statusMessage (status) {
+      if (status) {
+        this.#statusMessageElement.textContent = 'Success! I\'ll be in touch soon.'
+      } else {
+        this.#statusMessageElement.textContent = 'Fill out all fields.'
+      }
+
+      this.#statusMessageElement.classList.toggle('display-message')
+
+      setTimeout(() => {
+        this.#statusMessageElement.textContent = ''
+        this.#statusMessageElement.classList.toggle('increase-height')
+      }, 4000)
+    }
   }
 )
