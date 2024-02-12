@@ -16,6 +16,7 @@ template.innerHTML = `
     <label for="message">Message:</label>
     <textarea name="message" id="message" wrap="hard"></textarea>
   </div>
+  <p class="status-message"></p>
   <input type="submit" id="submit">
 </form>
 `
