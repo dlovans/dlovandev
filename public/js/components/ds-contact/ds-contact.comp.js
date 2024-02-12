@@ -84,7 +84,12 @@ customElements.define('ds-contact',
         this.#submitBtn.removeAttribute('disabled')
         this.#provideErrorIndicator()
       } else {
-        await this.#sendFormData()
+        const parsedJSON = await this.#sendFormData()
+
+      // Provide feedback on the status of the message.
+      if (Object.keys(parsedJSON).length !== 0) {
+        this.#statusMessage(parsedJSON.status)
+      }
       }
     }
 
