@@ -121,6 +121,7 @@ customElements.define('ds-contact',
 
       this.#inputFields.forEach( input => {
         if (!input.value) {
+          input.classList.remove('warning')
           input.classList.add('error')
           if (!focusIsSet) {
             input.focus()
