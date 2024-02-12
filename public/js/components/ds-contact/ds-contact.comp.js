@@ -40,6 +40,11 @@ customElements.define('ds-contact',
     #textareaInput
 
     /**
+     * An array of references to all input fields.
+     */
+    #inputFields
+
+    /**
      * Status message displayed after form data has been processed.
      */
     #statusMessageElement
@@ -62,6 +67,7 @@ customElements.define('ds-contact',
       this.#emailInput = this.shadowRoot.querySelector('#email')
       this.#textareaInput = this.shadowRoot.querySelector('#message')
       this.#statusMessageElement = this.shadowRoot.querySelector('.status-message')
+      this.#inputFields = [this.#nameInput, this.#emailInput, this.#textareaInput]
 
       // Register event handlers.
       this.#form.addEventListener('submit', (event) => this.#formSubmission(event))
@@ -109,15 +115,9 @@ customElements.define('ds-contact',
      * Provides an error indicator to user.
      */
     #provideErrorIndicator () {
-      const inputFields = [
-        { input: this.#nameInput },
-        { input: this.#emailInput },
-        { input: this.#textareaInput }
-      ]
-
       let focusIsSet = false
 
-      inputFields.forEach( input => {
+      this.#inputFields.forEach( input => {
         if (!input.value) {
           input.classList.add('error')
           if (!focusIsSet) {
@@ -172,8 +172,7 @@ customElements.define('ds-contact',
      * Event handler indicating fields to be filled out. Utilizes bubbling.
      */
     #indicateFields () {
-      const inputs = [this.#nameInput, this.#emailInput, this.#textareaInput]
-      for (const input of inputs) {
+      for (const input of this.#inputFields) {
         if (input.classList.contains('success') || input.classList.contains('error')) {
           return
         }
