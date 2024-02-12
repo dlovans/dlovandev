@@ -126,6 +126,8 @@ customElements.define('ds-contact',
     /**
      * Sends form data to the server. If successful, provides a thank you message.
      * On failure, provides appropriate message.
+     *
+     * @return {object} - Parsed JSON response.
      */
     async #sendFormData () {
       const formData = new FormData(this.#form)
@@ -138,14 +140,7 @@ customElements.define('ds-contact',
         body: formData
       })
 
-      const parsedJSON = await response.json()
-
-      // Provide feedback on the status of the message.
-      if (parsedJSON.messageSent) {
-        this.#successMessage()
-      } else {
-        this.#failureMessage()
-      }
+      return await response.json()
     }
 
     /**
