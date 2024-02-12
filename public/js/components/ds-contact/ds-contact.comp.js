@@ -61,9 +61,8 @@ customElements.define('ds-contact',
       // Attach shadow DOM to this custom element,
       // and append templates to its shadow root.
       this.attachShadow({ mode: 'open' })
-      this.shadowRoot
-        .append(styleTemplate.content.cloneNode(true))
-        .append(markupTemplate.content.cloneNode(true))
+      this.shadowRoot.append(styleTemplate.content.cloneNode(true))
+        this.shadowRoot.append(markupTemplate.content.cloneNode(true))
       
       // Get references to inputs, form and submit button.
       this.#submitBtn = this.shadowRoot.querySelector('#submit')
