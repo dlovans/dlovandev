@@ -179,7 +179,7 @@ customElements.define('ds-contact',
         }
       }
 
-      for (const input of inputs) {
+      for (const input of this.#inputFields) {
         input.classList.toggle('warning')
       }
     }
