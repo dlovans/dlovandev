@@ -20,19 +20,19 @@ The `paragraphs` attribute represents the main text of the ds-about component. U
 
 ## Usage
 
-To use this web component, import the module, then use JavaScript DOM methods.
+1. To use this web component, import the module, then use JavaScript DOM methods:
 
 ```javascript
 import './ds-about.comp.js'
 ```
 
-or load the module and use the component declaratively in HTML.
+2. Or load the module and use the component declaratively in HTML:
 
 ```html
 <script type="module" src="../components/ds-about/ds-about.comp.js"></script>
 ```
 
-Continue in HTML
+Continue in HTML:
 
 ```html
 <ds-about></ds-about>
