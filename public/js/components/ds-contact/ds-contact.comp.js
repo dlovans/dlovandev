@@ -164,7 +164,7 @@ customElements.define('ds-contact',
 
       setTimeout(() => {
         this.#statusMessageElement.textContent = ''
-        this.#statusMessageElement.classList.toggle('increase-height')
+        this.#statusMessageElement.classList.toggle('display-message')
       }, 4000)
     }
   }
