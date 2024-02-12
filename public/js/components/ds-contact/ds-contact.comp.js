@@ -167,5 +167,21 @@ customElements.define('ds-contact',
         this.#statusMessageElement.classList.toggle('display-message')
       }, 4000)
     }
+
+    /**
+     * Event handler indicating fields to be filled out. Utilizes bubbling.
+     */
+    #indicateFields () {
+      const inputs = [this.#nameInput, this.#emailInput, this.#textareaInput]
+      for (const input of inputs) {
+        if (input.classList.contains('success') || input.classList.contains('error')) {
+          return
+        }
+      }
+
+      for (const input of inputs) {
+        input.classList.toggle('warning')
+      }
+    }
   }
 )
