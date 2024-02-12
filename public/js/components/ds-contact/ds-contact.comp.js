@@ -39,6 +39,11 @@ customElements.define('ds-contact',
      */
     #textareaInput
 
+    /**
+     * Status message displayed after form data has been processed.
+     */
+    #statusMessageElement
+
     // Initializes new instance.
     constructor () {
       super()
@@ -56,6 +61,7 @@ customElements.define('ds-contact',
       this.#nameInput = this.shadowRoot.querySelector('#flname')
       this.#emailInput = this.shadowRoot.querySelector('#email')
       this.#textareaInput = this.shadowRoot.querySelector('#message')
+      this.#statusMessageElement = this.shadowRoot.querySelector('.status-message')
 
       // Register event handlers.
       this.#form.addEventListener('submit', (event) => this.#formSubmission(event))
