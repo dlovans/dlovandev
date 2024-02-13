@@ -100,7 +100,7 @@ customElements.define('ds-contact',
 
       // Provide feedback on the status of the message.
       if (Object.keys(parsedJSON).length !== 0) {
-        this.#statusMessage(parsedJSON.status)
+        this.#statusMessage(parsedJSON.messageStatus)
       }
       }
     }
@@ -143,7 +143,7 @@ customElements.define('ds-contact',
      */
     async #sendFormData () {
       const formData = new FormData(this.#form)
-      const response = await fetch ('./verify-message', {
+      const response = await fetch ('./smtp', {
         method: "POST",
         credentials: "same-origin",
         headers: {
