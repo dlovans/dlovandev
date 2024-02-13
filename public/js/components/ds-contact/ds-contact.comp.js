@@ -238,5 +238,15 @@ customElements.define('ds-contact',
         }
       }
     }
+
+    /**
+     * Resets the form on success.
+     */
+    #resetForm () {
+      this.#nameInput.value = ''
+      this.#emailInput.value = ''
+      this.#textareaInput.value = ''
+      this.#submitBtn.removeAttribute('disabled')
+    }
   }
 )
