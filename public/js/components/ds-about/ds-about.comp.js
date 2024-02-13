@@ -96,7 +96,6 @@ class extends HTMLElement {
     }
     // Create p elements and append to shadow root.
     const arrayOfParagraphs = this.#paragraphs.trim().split('\n')
-    console.log(arrayOfParagraphs)
     for (const paragraph of arrayOfParagraphs) {
       const paragraphElement = document.createElement('p')
       paragraphElement.classList.add('about-text')
