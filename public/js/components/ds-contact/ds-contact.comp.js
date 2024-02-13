@@ -97,6 +97,7 @@ customElements.define('ds-contact',
         this.#provideErrorIndicator()
       } else {
         const parsedJSON = await this.#sendFormData()
+        this.#resetForm()
 
       // Provide feedback on the status of the message.
       if (Object.keys(parsedJSON).length !== 0) {
@@ -215,9 +216,9 @@ customElements.define('ds-contact',
        * Adds error class (red border).
        */
       function changeBorderOnEmptyInput () {
-        eventObj.currentTarget.classList.remove('warning')
-        eventObj.currentTarget.classList.remove('success')
-        eventObj.currentTarget.classList.add('error')
+        eventObj.target.classList.remove('warning')
+        eventObj.target.classList.remove('success')
+        eventObj.target.classList.add('error')
       }
 
       /**
@@ -225,13 +226,13 @@ customElements.define('ds-contact',
        * Adds success class (green border).
        */
       function changeBorderOnFilledInput () {
-        eventObj.currentTarget.classList.remove('warning')
-        eventObj.currentTarget.classList.remove('error')
-        eventObj.currentTarget.classList.add('success')
+        eventObj.target.classList.remove('warning')
+        eventObj.target.classList.remove('error')
+        eventObj.target.classList.add('success')
       }
 
-      if (eventObj.currentTarget.tagName === 'INPUT' || eventObj.currentTarget.tagName === 'TEXTAREA') {
-        if (!eventObj.currentTarget.value) {
+      if (eventObj.target.tagName === 'INPUT' || eventObj.target.tagName === 'TEXTAREA') {
+        if (!eventObj.target.value) {
           changeBorderOnEmptyInput()
         } else {
           changeBorderOnFilledInput()
