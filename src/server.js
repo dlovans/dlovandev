@@ -11,9 +11,9 @@ const directoryPath = dirname(fileURLToPath(import.meta.url))
 
 // Serve static files.
 app.use(express.static(join(directoryPath, '..', 'public')))
-// Parse requests of the content-type application/x-www-form-urlencoded.
+// Parse requests of the content-type application/json.
 // Populates the request object with a body object (req.body).
-app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
 
 // Register routes.
 app.use('/', router)
