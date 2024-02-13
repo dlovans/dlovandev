@@ -101,7 +101,7 @@ customElements.define('ds-contact',
 
       // Provide feedback on the status of the message.
       if (Object.keys(parsedJSON).length !== 0) {
-        this.#statusMessage(parsedJSON.messageStatus)
+        this.#statusMessage(parsedJSON)
       }
       }
     }
@@ -143,14 +143,18 @@ customElements.define('ds-contact',
      * @return {object} - Parsed JSON response.
      */
     async #sendFormData () {
-      const formData = new FormData(this.#form)
+      const formData = {
+        flname: this.#nameInput.value,
+        email: this.#emailInput.value,
+        message: this.#textareaInput.value
+      }
       const response = await fetch ('./smtp', {
         method: "POST",
         credentials: "same-origin",
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
+          "Content-Type": "application/json"
         },
-        body: formData
+        body: JSON.stringify(formData)
       })
 
       return await response.json()
@@ -168,11 +172,10 @@ customElements.define('ds-contact',
         this.#statusMessageElement.classList.remove('error-status-message')
       }
 
-      if (status) {
-        this.#statusMessageElement.textContent = 'Success! I\'ll be in touch soon.'
+      this.#statusMessageElement.textContent = status.message
+      if (status.messageStatus) {
         this.#statusMessageElement.classList.add('success-status-message')
       } else {
-        this.#statusMessageElement.textContent = 'Fill out all fields.'
         this.#statusMessageElement.classList.add('error-status-message')
       }
 
@@ -244,9 +247,12 @@ customElements.define('ds-contact',
      * Resets the form on success.
      */
     #resetForm () {
-      this.#nameInput.value = ''
-      this.#emailInput.value = ''
-      this.#textareaInput.value = ''
+      for (const input of this.#inputFields) {
+        input.value = ''
+        input.classList.remove('warning')
+        input.classList.remove('error')
+        input.classList.remove('success')
+      }
       this.#submitBtn.removeAttribute('disabled')
     }
   }
