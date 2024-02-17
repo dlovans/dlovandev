@@ -85,12 +85,12 @@ export class MailController {
         from: email.trim(),
         to: process.env.USER,
         subject: `${flname.trim()} requests audience`,
-        html: markupContent
+        html: req.sanitizedMarkup
       })
+      res.json({ "messageStatus": true, "message": "Thanks! I'll be in touch soon." })
     } catch (error) {
-      error.status = 500
-      error.message = 'Error: failed to send message over SMTP.'
-      next(error)
+      console.error(error)
+      res.json({ "messageStatus": false, "message": "Failed to send message."})
     }
   }
 }
