@@ -4,6 +4,7 @@
  */
 
 import nodemailer from 'nodemailer'
+import sanitize from 'sanitize-html'
 
 /**
  * Encapsulates a controller.
@@ -31,6 +32,33 @@ export class MailController {
     }
   }
 
+ /**
+  * Generates markup content and sanitizes it.
+  *
+  * @param {object} req - Express request object.
+  * @param {object} res - Express response object.
+  * @param {Function} next - Express next middleware function.
+  */
+  sanitizeMarkup (req, res, next) {
+    const { flname, email, message } = req.body
+    // The HTML content.
+    let markupContent = `
+      <html>
+      <head>
+        <title>Message from ${flname.trim()}</title>
+      </head>
+      <body>
+        <h1>${flname.trim()}:</h1>
+        <p>${message}</p>
+      </body>
+    </html>
+    `
+  
+    // Sanitize the markup content and append result to request object.
+    req.sanitizedMarkup = sanitize(markupContent)
+    next()
+  }
+
   /**
    * Sends the mail to admin.
    *
@@ -51,19 +79,6 @@ export class MailController {
           pass: process.env.PASS
         }
       })
-
-      // The HTML content.
-      const markupContent = `
-        <html>
-        <head>
-          <title>Message from ${flname.trim()}</title>
-        </head>
-        <body>
-          <h1>${flname.trim()}:</h1>
-          <p>${message}</p>
-        </body>
-      </html>
-      `
 
       // Send the message over SMTP.
       await transporter.sendMail({
