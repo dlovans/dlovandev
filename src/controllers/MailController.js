@@ -5,6 +5,7 @@
 
 import nodemailer from 'nodemailer'
 import sanitize from 'sanitize-html'
+import { google } from 'googleapis'
 
 /**
  * Encapsulates a controller.
@@ -69,25 +70,56 @@ export class MailController {
   async sendMail (req, res, next) {
     try {
       const { flname, email, message } = req.body
+      const OAuth2 = google.auth.OAuth2
+
+      // Create OAuth2 object.
+      const oauth2Client = new OAuth2(
+        process.env.OAUTH_CLIENT_ID,
+        process.env.OAUTH_CLIENT_SECRET,
+        "https://developers.google.com/oauthplayground"
+      )
+
+
+      oauth2Client.setCredentials({
+        refresh_token: process.env.REFRESH_TOKEN,
+      })
+
+      const accessToken = await new Promise((resolve, reject) => {
+        oauth2Client.getAccessToken((err, token) => {
+          if (err) {
+            reject(err)
+          }
+          resolve(token)
+        })
+      })
 
       // Create a nodemailer transport object using SMTP.
       const transporter = nodemailer.createTransport({
         service: process.env.EMAIL_SERVICE_PROVIDER,
-        secure: true,
         auth: {
+          type: 'OAuth2',
           user: process.env.USER,
-          pass: process.env.PASS
+          accessToken,
+          clientId: process.env.OAUTH_CLIENT_ID,
+          clientSecret: process.env.OAUTH_CLIENT_SECRET,
+          refreshToken: process.env.REFRESH_TOKEN
+        },
+        tls: {
+          rejectUnauthorized: false
         }
       })
 
-      // Send the message over SMTP.
-      await transporter.sendMail({
+      const mailOptions = {
         from: email.trim(),
         to: process.env.USER,
         subject: `${flname.trim()} requests audience`,
-        html: req.sanitizedMarkup
-      })
+        html: req.sanitizedMarkup,
+      }
+
+      // Send the message over SMTP.
+      await transporter.sendMail(mailOptions)
       res.json({ "messageStatus": true, "message": "Thanks! I'll be in touch soon." })
+
     } catch (error) {
       console.error(error)
       res.json({ "messageStatus": false, "message": "Failed to send message."})
