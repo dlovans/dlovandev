@@ -9,4 +9,4 @@ import { MailController } from '../controllers/MailController.js'
 const controller = new MailController()
 export const router = express.Router()
 
-router.post('/', async (req, res, next) => { controller.validateData(req, res, next )})
+router.post('/', controller.validateData, controller.sanitizeMarkup, async (req, res, next) => { await controller.sendMail(req, res, next )})
