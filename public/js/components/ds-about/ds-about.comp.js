@@ -50,9 +50,9 @@ class extends HTMLElement {
   /**
    * Invoked when attributes of custom element changes.
    *
-   * @param {*} name 
-   * @param {*} oldValue 
-   * @param {*} newValue 
+   * @param {string} name - Name of the changed attribute.
+   * @param {string} oldValue - Attribute value before the change.
+   * @param {string} newValue - Attribute value after the change.
    */
   attributeChangedCallback (name, oldValue, newValue) {
     if (name === 'title' && oldValue !== newValue) {
