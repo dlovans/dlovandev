@@ -58,4 +58,25 @@ class extends HTMLElement {
     }
   }
 
+  /**
+   * Creates image tags and appends them to the shadow root.
+   *
+   * @param {string} stringOfAttrValues - The attribute value.
+   */
+  #createImageTags (stringOfAttrValues) {
+    // Remove all image tags.
+    const allImageTags = this.shadowRoot.querySelectorAll('img')
+    allImageTags.forEach(imageTag => {
+      imageTag.remove()
+    })
+
+    // Create new image tags.
+    const arrayOfAttrValues = stringOfAttrValues.split(' ')
+    for (const imgSource of arrayOfAttrValues) {
+      const img = document.createElement('img')
+      img.src = imgSource
+      img.classList.add('lang-image')
+      this.shadowRoot.append(img)
+    }
+  }
 })
