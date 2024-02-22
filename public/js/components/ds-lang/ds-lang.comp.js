@@ -8,6 +8,7 @@ import { template as styleTemplate } from './ds-lang.css.js'
 customElements.define('ds-lang',
   /**
    * Anonymous class representing the ds-langs custom element.
+   * @extends HTMLElement
    */
   class extends HTMLElement {
     /**
