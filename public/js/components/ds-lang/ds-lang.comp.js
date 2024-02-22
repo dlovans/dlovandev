@@ -3,9 +3,9 @@
  * @module ds-langs
  */
 
-import { template as styleTemplate } from './ds-langs.css.js'
+import { template as styleTemplate } from './ds-lang.css.js'
 
-customElements.define('ds-langs',
+customElements.define('ds-lang',
   /**
    * Anonymous class representing the ds-langs custom element.
    */
@@ -19,6 +19,7 @@ customElements.define('ds-langs',
      * Initializes new instance.
      */
     constructor () {
+      super()
       // Attach shadow DOM tree to this custom element, and
       // append templates to its shadow root.
       this.attachShadow({ mode: 'open' })
@@ -67,11 +68,11 @@ customElements.define('ds-langs',
       // If img object exists, mutate the src attribute.
       const imageObject = this.shadowRoot.querySelector('img')
       if (imageObject) {
-        img.src = relativeSource
+        imageObject.src = relativeSource
       } else {
         // Create new image tag.
         const img = document.createElement('img')
-        img.src = imgSource
+        img.src = relativeSource
         img.classList.add('lang-comp')
         this.shadowRoot.append(img)
       }
