@@ -10,7 +10,7 @@ template.innerHTML = `
     padding: 10px;
     gap: 5px;
   }
-  .lang-image {
+  .lang-comp {
     width: 40px;
     height: 40px;
   }
