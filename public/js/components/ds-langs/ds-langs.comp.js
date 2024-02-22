@@ -11,9 +11,9 @@ customElements.define('ds-langs',
  */
 class extends HTMLElement {
   /**
-   * An array of relative sources to all programming language images.
+   * Relative source to the image.
    */
-  #imgSources
+  #imgSource
 
   /**
    * Initializes new instance.
@@ -25,14 +25,14 @@ class extends HTMLElement {
     this.shadowRoot.append(styleTemplate.content.cloneNode(true))
 
     // Initialize imgSources field.
-    this.#imgSources = this.getAttribute('langs')
+    this.#imgSource = this.getAttribute('lang-img')
   }
 
   /**
    * Invoked after the custom element is inserted into the DOM.
    */
   connectedCallback () {
-    this.#createImageTags(this.#imgSources)
+    this.#createImageTag(this.#imgSource)
   }
 
   /**
@@ -41,7 +41,7 @@ class extends HTMLElement {
    * @returns {String[]} - An array of attributes.
    */
   static get observedAttributes () {
-    return ['langs']
+    return ['lang-img']
   }
 
   /**
@@ -52,31 +52,29 @@ class extends HTMLElement {
    * @param {string} newValue - Attribute value after the change.
    */
   attributeChangedCallback (name, oldValue, newValue) {
-    if (name === 'langs' && oldValue !== newValue) {
-      this.#imgSources = newValue
-      this.#createImageTags(this.#imgSources)
+    if (name === 'lang-img' && oldValue !== newValue) {
+      this.#imgSource = newValue
+      this.#createImageTag(this.#imgSource)
     }
   }
 
   /**
-   * Creates image tags and appends them to the shadow root.
+   * Creates image tag and appends it to the shadow root.
    *
-   * @param {string} stringOfAttrValues - The attribute value.
+   * @param {string} relativeSource - The relative path to the image source.
    */
-  #createImageTags (stringOfAttrValues) {
-    // Remove all image tags.
-    const allImageTags = this.shadowRoot.querySelectorAll('img')
-    allImageTags.forEach(imageTag => {
-      imageTag.remove()
-    })
-
-    // Create new image tags.
-    const arrayOfAttrValues = stringOfAttrValues.split(' ')
-    for (const imgSource of arrayOfAttrValues) {
+  #createImageTag (relativeSource) {
+    // If img object exists, mutate the src attribute.
+    const imageObject = this.shadowRoot.querySelector('img')
+    if (imageObject) {
+      img.src = relativeSource
+    } else {
+      // Create new image tag.
       const img = document.createElement('img')
       img.src = imgSource
-      img.classList.add('lang-image')
+      img.classList.add('lang-comp')
       this.shadowRoot.append(img)
     }
   }
-})
+}
+)
