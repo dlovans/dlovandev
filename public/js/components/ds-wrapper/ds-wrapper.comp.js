@@ -38,8 +38,17 @@ customElements.define('ds-wrapper',
      */
     attributeChangedCallback (name, oldValue, newValue) {
       if (name === 'isRow' && oldValue !== newValue) {
-        this.#updateFlexUI()
+        this.#updateFlexUI(newValue)
       }
+    }
+
+    /**
+     * Updates the flex direction of this wrapper.
+     *
+     * @param {boolean} isRow - Specifies flex direction: true for rows.
+     */
+    #updateFlexUI (isRow) {
+    isRow ? this.classList.remove('flex-column'):this.classList.add('flex-column')
     }
   }
 )
