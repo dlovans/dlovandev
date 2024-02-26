@@ -4,18 +4,18 @@
 
 ## Attributes
 
-### `title`
-The `title` attribute represents the title of the ds-about component, a heading. String attribute.
+### `about-title`
+The `about-title` attribute represents the title of the ds-about component, a heading. String attribute.
 
-### `paragraphs`
-The `paragraphs` attribute represents the main text of the ds-about component. Use `&#10;` as delimeter to separate into paragraph elements. String attribute.
+### `about-paragraphs`
+The `about-paragraphs` attribute represents the main text of the ds-about component. Use `&#10;` as delimeter to separate into paragraph elements. String attribute.
 
 ## Example
 
 ```html
 <ds-about></ds-about>
 
-<ds-about title="Dev" paragraphs="Hello world.&#10;Hello universe!"></ds-about>
+<ds-about about-title="Dev" about-paragraphs="Hello world.&#10;Hello universe!"></ds-about>
 ```
 
 ## Usage

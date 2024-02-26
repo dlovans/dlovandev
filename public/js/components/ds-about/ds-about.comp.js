@@ -44,7 +44,7 @@ class extends HTMLElement {
    * @returns {String[]} - An array of attributes.
    */
   static get observedAttributes () {
-    return ['title', 'paragraphs']
+    return ['about-title', 'about-paragraphs']
   }
 
   /**
@@ -55,11 +55,11 @@ class extends HTMLElement {
    * @param {string} newValue - Attribute value after the change.
    */
   attributeChangedCallback (name, oldValue, newValue) {
-    if (name === 'title' && oldValue !== newValue) {
+    if (name === 'about-title' && oldValue !== newValue) {
       this.#title = newValue
     }
 
-    if (name === 'paragraphs' && oldValue !== newValue) {
+    if (name === 'about-paragraphs' && oldValue !== newValue) {
       this.#paragraphs = newValue
     }
 
@@ -71,7 +71,7 @@ class extends HTMLElement {
    * Invoked after the custom element is inserted into the DOM.
    */
   connectedCallback () {
-    if (!this.hasAttribute('paragraphs') && !this.hasAttribute('title')) {
+    if (!this.hasAttribute('about-paragraphs') && !this.hasAttribute('about-title')) {
       this.#render()
     }
   }
