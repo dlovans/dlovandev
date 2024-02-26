@@ -43,7 +43,7 @@ customElements.define('ds-lang',
      * @returns {String[]} - An array of attributes.
      */
     static get observedAttributes () {
-      return ['lang-img']
+      return ['lang-language']
     }
 
     /**
