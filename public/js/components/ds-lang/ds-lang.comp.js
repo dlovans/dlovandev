@@ -54,7 +54,7 @@ customElements.define('ds-lang',
      * @param {string} newValue - Attribute value after the change.
      */
     attributeChangedCallback (name, oldValue, newValue) {
-      if (name === 'lang-img' && oldValue !== newValue) {
+      if (name === 'lang-language' && oldValue !== newValue) {
         this.#imgSource = newValue
         this.#createImageTag(this.#imgSource)
       }

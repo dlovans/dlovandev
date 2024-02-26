@@ -26,7 +26,7 @@ customElements.define('ds-wrapper',
      * @returns {String[]} - An array of attributes.
      */
     static get observedAttributes () {
-      return ['isRow']
+      return ['wrapper-is-row']
     }
 
     /**
@@ -37,7 +37,7 @@ customElements.define('ds-wrapper',
      * @param {boolean} newValue - Attribute value after the change.
      */
     attributeChangedCallback (name, oldValue, newValue) {
-      if (name === 'isRow' && oldValue !== newValue) {
+      if (name === 'wrapper-is-row' && oldValue !== newValue) {
         this.#updateFlexUI(newValue)
       }
     }
