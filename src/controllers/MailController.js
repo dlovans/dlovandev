@@ -19,13 +19,13 @@ export class MailController {
    * @param {Function} next - Express next middleware function.
    * @see {@link https://regexr.com/3e48o} - Regular expression pattern for email.
    */
-  validateData (req, res, next) {
+  validateData(req, res, next) {
     const { flname, email, message } = req.body
     if (flname && email && message) {
       // Validate email with regular expression.
       const re = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
       if (!re.test(email.trim())) {
-        res.status(400).json({ "messageStatus": false, "message": "Invalid email."})
+        res.status(400).json({ "messageStatus": false, "message": "Invalid email." })
       }
       next()
     } else {
@@ -33,14 +33,14 @@ export class MailController {
     }
   }
 
- /**
-  * Generates markup content and sanitizes it.
-  *
-  * @param {object} req - Express request object.
-  * @param {object} res - Express response object.
-  * @param {Function} next - Express next middleware function.
-  */
-  sanitizeMarkup (req, res, next) {
+  /**
+   * Generates markup content and sanitizes it.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   * @param {Function} next - Express next middleware function.
+   */
+  sanitizeMarkup(req, res, next) {
     const { flname, email, message } = req.body
     // The HTML content.
     let markupContent = `
@@ -54,7 +54,7 @@ export class MailController {
       </body>
     </html>
     `
-  
+
     // Sanitize the markup content and append result to request object.
     req.sanitizedMarkup = sanitize(markupContent)
     next()
@@ -67,51 +67,24 @@ export class MailController {
    * @param {object} res - Express response object.
    * @param {Function} next - Express next middleware function.
    */
-  async sendMail (req, res, next) {
+  async sendMail(req, res, next) {
     try {
       const { flname, email, message } = req.body
-      const OAuth2 = google.auth.OAuth2
-
-      // Create OAuth2 object.
-      const oauth2Client = new OAuth2(
-        process.env.OAUTH_CLIENT_ID,
-        process.env.OAUTH_CLIENT_SECRET,
-        "https://developers.google.com/oauthplayground"
-      )
-
-
-      oauth2Client.setCredentials({
-        refresh_token: process.env.REFRESH_TOKEN,
-      })
-
-      const accessToken = await new Promise((resolve, reject) => {
-        oauth2Client.getAccessToken((err, token) => {
-          if (err) {
-            reject(err)
-          }
-          resolve(token)
-        })
-      })
 
       // Create a nodemailer transport object using SMTP.
       const transporter = nodemailer.createTransport({
-        service: process.env.EMAIL_SERVICE_PROVIDER,
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false,
         auth: {
-          type: 'OAuth2',
           user: process.env.USER,
-          accessToken,
-          clientId: process.env.OAUTH_CLIENT_ID,
-          clientSecret: process.env.OAUTH_CLIENT_SECRET,
-          refreshToken: process.env.REFRESH_TOKEN
-        },
-        tls: {
-          rejectUnauthorized: false
+          pass: process.env.PASS
         }
       })
 
       const mailOptions = {
-        from: email.trim(),
-        to: process.env.USER,
+        from: process.env.USER,
+        to: "medes_117@live.se",
         subject: `${flname.trim()} requests audience`,
         html: req.sanitizedMarkup,
       }
@@ -122,7 +95,7 @@ export class MailController {
 
     } catch (error) {
       console.error(error)
-      res.json({ "messageStatus": false, "message": "Failed to send message."})
+      res.json({ "messageStatus": false, "message": "Failed to send message." })
     }
   }
 }
