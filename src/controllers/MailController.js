@@ -83,8 +83,9 @@ export class MailController {
       })
 
       const mailOptions = {
-        from: process.env.USER,
-        to: "medes_117@live.se",
+        from: email.trim(),
+        to: process.env.USER,
+        replyTo: email.trim(),
         subject: `${flname.trim()} requests audience`,
         html: req.sanitizedMarkup,
       }
