@@ -73,8 +73,8 @@ export class MailController {
 
       // Create a nodemailer transport object using SMTP.
       const transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 587,
+        host: process.env.HOST,
+        port: process.env.SMTP_HOST,
         secure: false,
         auth: {
           user: process.env.USER,
