@@ -10,9 +10,14 @@ template.innerHTML = `
     padding: 10px;
     gap: 5px;
   }
-  .lang-comp {
-    width: 40px;
-    height: 40px;
+
+  .edit-svg {
+    height: 100%;
+    width: 100%;
+  }
+
+  .hide {
+    display: none;
   }
 </style>
 `
