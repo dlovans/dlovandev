@@ -4,16 +4,19 @@
 
 ## Attributes
 
-### `lang-img`
-The `lang-img` represents the relative path of image source (public/img). String attribute. Required.
+### `lang-language`
+The `lang-language` represents the relative path of SVG file source (public/img). String attribute. Required.
 
-### `prog-name`
-The `prog-name` represents the name of the programming language/tool in the logo. String attribute. Required.
+### `lang-height`
+The `lang-height` represents the height, in pixels, of the SVG div wrapper. String attibute. Optional, defaults to 50.
+
+### `lang-width`
+The `lang-width` represents the width, in pixels, of the SVG div wrapper. String attibute. Optional, defaults to 50.
 
 ## Example
 
 ```html
-<ds-lang lang-img="./img/swift.svg" prog-name="Swift"></ds-lang>
+<ds-lang lang-language="./img/swift.svg" lang-height="60" lang-width="60"></ds-lang>
 ```
 
 ## Usage
@@ -33,7 +36,7 @@ import './ds-lang.comp.js'
 Continue in HTML:
 
 ```html
-<ds-lang lang-img="./img/machinecode.svg" prog-name="Machine"></ds-lang>
+<ds-lang lang-language="./img/machinecode.svg" lang-height="60" lang-width="60"></ds-lang>
 ```
 
 ## Styling
