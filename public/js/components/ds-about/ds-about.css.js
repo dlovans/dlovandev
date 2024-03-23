@@ -4,10 +4,6 @@ export const template = document.createElement('template')
 // Add styling for component.
 template.innerHTML = `
 <style>
-  :host {
-    padding: 10px;
-  }
-
   .about-title {
     font-size: 1.5rem;
   }
