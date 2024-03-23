@@ -3,6 +3,9 @@
  * @module ds-wrapper
  */
 
+import { template as styleTemplate } from './ds-wrapper.css.js'
+import { template as markupTemplate } from './ds-wrapper.html.js'
+
 /**
  * Define custom element ds-wrapper.
  */
@@ -12,12 +15,23 @@ customElements.define('ds-wrapper',
    */
   class extends HTMLElement {
     /**
+     * Determines if wrapper flex direction is row or column. Boolean value.
+     */
+    #directionIsRow
+
+
+    /**
      * Creates an instance of this class.
      */
-    constructor () {
+    constructor() {
       // Invoke superclass' constructor.
       super()
       this.attachShadow({ mode: 'open' })
+      this.shadowRoot.append(styleTemplate.content.cloneNode(true))
+      this.shadowRoot.append(markupTemplate.content.cloneNode(true))
+
+      // Default values.
+      this.#directionIsRow = this.getAttribute('wrapper-is-row') || true
     }
 
     /**
@@ -25,7 +39,7 @@ customElements.define('ds-wrapper',
      * 
      * @returns {String[]} - An array of attributes.
      */
-    static get observedAttributes () {
+    static get observedAttributes() {
       return ['wrapper-is-row']
     }
 
@@ -36,10 +50,15 @@ customElements.define('ds-wrapper',
      * @param {boolean} oldValue - Attribute value before the change.
      * @param {boolean} newValue - Attribute value after the change.
      */
-    attributeChangedCallback (name, oldValue, newValue) {
+    attributeChangedCallback(name, oldValue, newValue) {
       if (name === 'wrapper-is-row' && oldValue !== newValue) {
-        this.#updateFlexUI(newValue)
+        this.#directionIsRow = newValue
+        this.#updateFlexUI(this.#directionIsRow)
       }
+    }
+
+    connectedCallback() {
+      this.#updateFlexUI(this.#directionIsRow)
     }
 
     /**
@@ -47,8 +66,13 @@ customElements.define('ds-wrapper',
      *
      * @param {boolean} isRow - Specifies flex direction: true for rows.
      */
-    #updateFlexUI (isRow) {
-    isRow ? this.classList.remove('flex-column'):this.classList.add('flex-column')
+    #updateFlexUI(isRow) {
+      if (isRow) {
+        this.classList.remove('direction-is-column')
+      } else {
+        this.classList.add('direction-is-column')
+      }
+      // isRow ? this.classList.remove('direction-is-column') : this.classList.add('direction-is-column')
     }
   }
 )
