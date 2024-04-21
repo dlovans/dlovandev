@@ -27,6 +27,11 @@ customElements.define('ds-lang',
     #divWidth
 
     /**
+     * SVG height and width.
+     */
+    #svgDimensions
+
+    /**
      * Initializes new instance.
      */
     constructor() {
@@ -41,6 +46,7 @@ customElements.define('ds-lang',
       // Default values.
       this.#divHeight = 50
       this.#divWidth = 50
+      this.#svgDimensions = 50
     }
 
     /**
@@ -56,7 +62,7 @@ customElements.define('ds-lang',
      * @returns {String[]} - An array of attributes.
      */
     static get observedAttributes() {
-      return ['lang-language', 'lang-height', 'lang-width']
+      return ['lang-language', 'lang-height', 'lang-width', 'svg-dimensions']
     }
 
     /**
@@ -79,6 +85,11 @@ customElements.define('ds-lang',
 
       if (name === 'lang-width' && oldValue !== newValue) {
         this.#divWidth = newValue
+        await this.#insertSVGFile(this.#svgSource)
+      }
+
+      if (name === 'svg-dimensions' && oldValue !== newValue) {
+        this.#svgDimensions = newValue
         await this.#insertSVGFile(this.#svgSource)
       }
     }
@@ -105,12 +116,16 @@ customElements.define('ds-lang',
 
         // Create a div wrapper to be able to render the SVG tag.
         const newDiv = document.createElement('div')
+        newDiv.classList.add('center-div-content')
         newDiv.style.height = `${this.#divHeight}px`
         newDiv.style.width = `${this.#divWidth}px`
+
         newDiv.innerHTML = svgContent
+
+        const renderedSvg = newDiv.querySelector('svg')
+        renderedSvg.setAttribute('height', `${this.#svgDimensions}px`)
+        renderedSvg.setAttribute('width', `${this.#svgDimensions}px`)
         this.shadowRoot.append(newDiv)
-        const renderedSvg = this.shadowRoot.querySelector('svg')
-        renderedSvg.classList.add('edit-svg')
       } catch (error) {
         console.error(error.message)
         this.classList.add('hide')
