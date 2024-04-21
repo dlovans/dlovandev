@@ -11,13 +11,14 @@ template.innerHTML = `
     gap: 5px;
   }
 
-  .edit-svg {
-    height: 100%;
-    width: 100%;
-  }
-
   .hide {
     display: none;
+  }
+
+  .center-div-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 </style>
 `
