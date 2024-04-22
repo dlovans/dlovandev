@@ -4,8 +4,15 @@ export const template = document.createElement('template')
 // Add styling for component.
 template.innerHTML = `
 <style>
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
   .about-title {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 
   .about-text {

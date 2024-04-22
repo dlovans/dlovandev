@@ -6,8 +6,10 @@ template.innerHTML = `
 <style>
   :host {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    overflow: hidden;
+    justify-content: center;
+    border-radius: 15px;
+    background-color: #242f36;
   }
 
   :host(.direction-is-column) {

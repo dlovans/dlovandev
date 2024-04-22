@@ -6,9 +6,9 @@ template.innerHTML = `
 <style>
   :host {
     box-sizing: border-box;
-    padding: 10px;
     display: flex;
     flex-direction: column;
+    background-color: #242f36;
   }
 
   * {
