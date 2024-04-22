@@ -4,7 +4,7 @@ export const template = document.createElement('template')
 template.innerHTML = `
 <style>
   :host {
-    display: flex;
+    justify-self: center;
   }
 
   .hide {

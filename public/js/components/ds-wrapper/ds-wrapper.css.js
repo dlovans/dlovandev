@@ -7,7 +7,6 @@ template.innerHTML = `
   :host {
     display: flex;
     overflow: hidden;
-    justify-content: center;
     border-radius: 15px;
     background-color: #242f36;
   }
