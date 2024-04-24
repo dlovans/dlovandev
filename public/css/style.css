@@ -30,7 +30,7 @@ main {
   grid-template-columns: minmax(40px, auto) repeat(5, 1fr) minmax(40px, auto);
   grid-template-areas:
     ". . . . . . ."
-    ". hero hero hero text text ."
+    ". hero hero hero titles titles ."
     ". hero hero hero portrait name ."
     ". hero hero hero portrait location ."
     ". hero hero hero portrait contact ."
@@ -78,10 +78,21 @@ ds-about {
 }
 
 ds-text {
-  grid-area: text;
   border-radius: 15px;
   background-color: var(--primary-color);
   padding-left: 20px;
+}
+
+#developer-titles {
+  grid-area: titles;
+}
+
+#developer-name {
+  grid-area: name;
+}
+
+#developer-location {
+  grid-area: location;
 }
 
 ds-contact {
