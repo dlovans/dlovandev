@@ -3,6 +3,12 @@ export const template = document.createElement('template')
 
 template.innerHTML = `
 <style>
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
   :host {
     justify-self: center;
   }

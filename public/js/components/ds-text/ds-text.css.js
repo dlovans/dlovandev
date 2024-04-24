@@ -6,6 +6,8 @@ template.innerHTML = `
   <style>
     * {
       box-sizing: border-box;
+      padding: 0;
+      margin: 0;
     }
 
     :host {
@@ -16,6 +18,7 @@ template.innerHTML = `
     h2 {
       font-size: 1.2rem;
       white-space: nowrap;
+      overflow: hidden;
     }
   </style>
 `

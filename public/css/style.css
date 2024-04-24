@@ -30,7 +30,7 @@ main {
   grid-template-columns: minmax(40px, auto) repeat(5, 1fr) minmax(40px, auto);
   grid-template-areas:
     ". . . . . . ."
-    ". hero hero hero title title ."
+    ". hero hero hero text text ."
     ". hero hero hero portrait name ."
     ". hero hero hero portrait location ."
     ". hero hero hero portrait contact ."
@@ -57,28 +57,31 @@ ds-about {
 
 #langs {
   grid-area: langs;
-
-}
-
-#tools {
-  grid-area: tools;
-}
-
-ds-title {
-  grid-area: title;
-  border-radius: 15px;
-  background-color: var(--primary-color);
-  padding-left: 20px;
-}
-
-.center-content {
   display: grid;
   grid-template-columns: repeat(auto-fill, 50px);
   grid-auto-rows: 40px;
   gap: 10px;
   width: 100%;
   justify-content: center;
-  margin: 8px 5px 8px 5px;
+  padding: 8px 5px;
+}
+
+#tools {
+  grid-area: tools;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 50px);
+  grid-auto-rows: 40px;
+  gap: 10px;
+  width: 100%;
+  justify-content: center;
+  padding: 8px 5px;
+}
+
+ds-text {
+  grid-area: text;
+  border-radius: 15px;
+  background-color: var(--primary-color);
+  padding-left: 20px;
 }
 
 ds-contact {
