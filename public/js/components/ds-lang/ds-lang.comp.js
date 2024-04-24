@@ -64,6 +64,7 @@ customElements.define('ds-lang',
       await this.#insertSVGFile(this.#svgSource)
       this.#setBgColor(this.#bgColor)
       this.#setDivDimensions(this.#divDimensions)
+      this.#setDivDimensions(this.#divDimensions)
     }
 
     /**
@@ -131,7 +132,7 @@ customElements.define('ds-lang',
     }
 
     #setBgColor(backgroundColor) {
-      this.#divContainer.style.backgroundColor = this.#bgColor
+      this.#divContainer.style.backgroundColor = backgroundColor
     }
 
     #setDivDimensions(dimensions) {
