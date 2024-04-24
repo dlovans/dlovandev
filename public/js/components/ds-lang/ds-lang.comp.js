@@ -138,10 +138,13 @@ customElements.define('ds-lang',
 
     /**
      * Sets the dimensions of the SVG.
+     * 
+     * @param {String} dimensions - The dimensions of the referenced SVG.
      */
     #setSvgDimensions(dimensions) {
-      this.#svgObj?.setAttribute('height', `${dimensions}px`)
-      this.#svgObj?.setAttribute('width', `${dimensions}px`)
+      const dimensionsFloat = parseFloat(dimensions)
+      this.#svgObj?.setAttribute('height', `${dimensionsFloat}px`)
+      this.#svgObj?.setAttribute('width', `${dimensionsFloat}px`)
     }
 
     /**
