@@ -83,6 +83,7 @@ customElements.define('ds-text',
 
       if (name === 'svg-src' && newValue !== oldValue && typeof newValue === 'string') {
         this.#svgSource = newValue
+        this.#renderSVG(this.#svgSource)
       }
     }
 
@@ -93,6 +94,15 @@ customElements.define('ds-text',
      */
     #render(textString) {
       this.#headerObj.innerHTML = textString
+    }
+
+    /**
+     * Renders the SVG file.
+     *
+     * @param {String} svgPath - Relative path to the SVG file.
+     */
+    #renderSVG(svgPath) {
+      this.#slotObj.innerHTML = this.#svgSource
     }
   }
 )
