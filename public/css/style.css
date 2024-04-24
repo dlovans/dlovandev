@@ -25,7 +25,6 @@ body {
 
 /* Replace with composing component. */
 main {
-  background-color: var(--secondary-color);
   display: grid;
   grid-template-rows: minmax(40px, auto) repeat(9, 1fr) minmax(40px, auto);
   grid-template-columns: minmax(40px, auto) repeat(5, 1fr) minmax(40px, auto);
@@ -65,12 +64,14 @@ ds-about {
   grid-area: tools;
 }
 
-.center-content {
-  /* display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center; */
+ds-title {
+  grid-area: title;
+  border-radius: 15px;
+  background-color: var(--primary-color);
+  padding-left: 20px;
+}
 
+.center-content {
   display: grid;
   grid-template-columns: repeat(auto-fill, 50px);
   grid-auto-rows: 40px;
@@ -106,12 +107,6 @@ ds-contact {
 #name {
   grid-area: name;
   background-color: blue;
-  border-radius: 15px;
-}
-
-#title {
-  grid-area: title;
-  background-color: green;
   border-radius: 15px;
 }
 
