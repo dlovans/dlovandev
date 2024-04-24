@@ -1,4 +1,4 @@
-# &lt;ds-lang&gt;
+ # &lt;ds-lang&gt;
 
 `ds-lang` is a web component that displays the logo of a programming language/tool.
 
@@ -7,11 +7,14 @@
 ### `lang-language`
 The `lang-language` represents the relative path of SVG file source (public/img). String attribute. Required.
 
-### `lang-height`
-The `lang-height` represents the height, in pixels, of the SVG div wrapper. String attibute. Optional, defaults to 50.
+### `div-dimensions`
+The `div-dimensions` represents the width and height, in pixels, of the SVG div wrapper. String attibute. Optional, defaults to 50.
 
-### `lang-width`
-The `lang-width` represents the width, in pixels, of the SVG div wrapper. String attibute. Optional, defaults to 50.
+### `svg-dimensions`
+The `svg-dimensions` represents the width and height, in pixels, of the SVG. String attibute. Optional, defaults to 50.
+
+### `bg-color`
+The `bg-color` represents the background color of the child div wrapper. String attibute. Optional, defaults to '#36454f'.
 
 ## Example
 
@@ -36,7 +39,12 @@ import './ds-lang.comp.js'
 Continue in HTML:
 
 ```html
-<ds-lang lang-language="./img/machinecode.svg" lang-height="60" lang-width="60"></ds-lang>
+<ds-lang 
+  lang-language="./img/machinecode.svg" 
+  div-dimensions="40" 
+  svg-dimensions="30"
+  bg-color="transparent">
+</ds-lang>
 ```
 
 ## Styling
