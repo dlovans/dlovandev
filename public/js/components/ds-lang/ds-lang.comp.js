@@ -3,6 +3,7 @@
  * @module ds-langs
  */
 
+import { template as markupTemplate } from './ds-lang.html.js'
 import { template as styleTemplate } from './ds-lang.css.js'
 
 customElements.define('ds-lang',
@@ -17,14 +18,9 @@ customElements.define('ds-lang',
     #svgSource
 
     /**
-     * Height of div wrapper.
+     * Height and width of div wrapper.
      */
-    #divHeight
-
-    /**
-     * Width of div wrapper.
-     */
-    #divWidth
+    #divDimensions
 
     /**
      * SVG height and width.
@@ -49,13 +45,13 @@ customElements.define('ds-lang',
       // Attach shadow DOM tree to this custom element, and
       // append templates to its shadow root.
       this.attachShadow({ mode: 'open' })
+      this.shadowRoot.append(markupTemplate.content.cloneNode(true))
       this.shadowRoot.append(styleTemplate.content.cloneNode(true))
 
       // Initialize svgSource field. Defaults to Swift SVG.
       this.#svgSource = this.getAttribute('lang-language') || '../../img/icons8-swift.svg'
       // Default values and references.
-      this.#divHeight = 50
-      this.#divWidth = 50
+      this.#divDimensions = 50
       this.#svgDimensions = 50
       this.#bgColor = '#36454f'
       this.#divContainer = this.shadowRoot.querySelector('div')
@@ -66,6 +62,8 @@ customElements.define('ds-lang',
      */
     async connectedCallback() {
       await this.#insertSVGFile(this.#svgSource)
+      this.#setBgColor(this.#bgColor)
+      this.#setDivDimensions(this.#divDimensions)
     }
 
     /**
@@ -74,7 +72,7 @@ customElements.define('ds-lang',
      * @returns {String[]} - An array of attributes.
      */
     static get observedAttributes() {
-      return ['lang-language', 'lang-height', 'lang-width', 'svg-dimensions', 'bg-color']
+      return ['lang-language', 'div-dimensions', 'svg-dimensions', 'bg-color']
     }
 
     /**
@@ -90,13 +88,8 @@ customElements.define('ds-lang',
         await this.#insertSVGFile(this.#svgSource)
       }
 
-      if (name === 'lang-height' && oldValue !== newValue) {
-        this.#divHeight = newValue
-        await this.#insertSVGFile(this.#svgSource)
-      }
-
-      if (name === 'lang-width' && oldValue !== newValue) {
-        this.#divWidth = newValue
+      if (name === 'div-dimensions' && oldValue !== newValue) {
+        this.#divDimensions = newValue
         await this.#insertSVGFile(this.#svgSource)
       }
 
@@ -105,8 +98,9 @@ customElements.define('ds-lang',
         await this.#insertSVGFile(this.#svgSource)
       }
 
-      if (name === 'bgColor' && oldValue !== newValue) {
+      if (name === 'bg-color' && oldValue !== newValue) {
         this.#bgColor = newValue
+        this.#setBgColor(this.#bgColor)
       }
     }
 
@@ -124,28 +118,25 @@ customElements.define('ds-lang',
           throw new Error('Check SVG file source!')
         }
         const svgContent = await response.text()
-        const divWrapper = this.shadowRoot.querySelector('div')
-        if (divWrapper) {
-          this.shadowRoot.querySelector('div').remove()
-        }
 
+        this.#divContainer.innerHTML = svgContent
 
-        // Create a div wrapper to be able to render the SVG tag.
-        const newDiv = document.createElement('div')
-        newDiv.classList.add('center-div-content')
-        newDiv.style.height = `${this.#divHeight}px`
-        newDiv.style.width = `${this.#divWidth}px`
-
-        newDiv.innerHTML = svgContent
-
-        const renderedSvg = newDiv.querySelector('svg')
+        const renderedSvg = this.#divContainer.querySelector('svg')
         renderedSvg.setAttribute('height', `${this.#svgDimensions}px`)
         renderedSvg.setAttribute('width', `${this.#svgDimensions}px`)
-        this.shadowRoot.append(newDiv)
       } catch (error) {
         console.error(error.message)
         this.classList.add('hide')
       }
+    }
+
+    #setBgColor(backgroundColor) {
+      this.#divContainer.style.backgroundColor = this.#bgColor
+    }
+
+    #setDivDimensions(dimensions) {
+      this.#divContainer.style.height = `${dimensions}px`
+      this.#divContainer.style.width = `${dimensions}px`
     }
   }
 )
