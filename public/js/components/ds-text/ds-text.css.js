@@ -16,7 +16,7 @@ template.innerHTML = `
     }
 
     h2 {
-      font-size: 1.2rem;
+      font-size: 1rem;
       white-space: nowrap;
       overflow: hidden;
     }
