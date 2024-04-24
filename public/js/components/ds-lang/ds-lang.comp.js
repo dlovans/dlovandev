@@ -38,6 +38,11 @@ customElements.define('ds-lang',
     #divContainer
 
     /**
+     * Reference to the SVG object.
+     */
+    #svgObj
+
+    /**
      * Initializes new instance.
      */
     constructor() {
@@ -62,9 +67,10 @@ customElements.define('ds-lang',
      */
     async connectedCallback() {
       await this.#insertSVGFile(this.#svgSource)
+      this.#setSvgDimensions(this.#svgDimensions)
       this.#setBgColor(this.#bgColor)
       this.#setDivDimensions(this.#divDimensions)
-      this.#setDivDimensions(this.#divDimensions)
+      this.#setSvgDimensions(this.#svgDimensions)
     }
 
     /**
@@ -96,7 +102,7 @@ customElements.define('ds-lang',
 
       if (name === 'svg-dimensions' && oldValue !== newValue) {
         this.#svgDimensions = newValue
-        await this.#insertSVGFile(this.#svgSource)
+        this.#setSvgDimensions(this.#svgDimensions)
       }
 
       if (name === 'bg-color' && oldValue !== newValue) {
@@ -122,19 +128,34 @@ customElements.define('ds-lang',
 
         this.#divContainer.innerHTML = svgContent
 
-        const renderedSvg = this.#divContainer.querySelector('svg')
-        renderedSvg.setAttribute('height', `${this.#svgDimensions}px`)
-        renderedSvg.setAttribute('width', `${this.#svgDimensions}px`)
+        this.#svgObj = this.#divContainer.querySelector('svg')
       } catch (error) {
         console.error(error.message)
         this.classList.add('hide')
       }
     }
 
+    /**
+     * Sets the dimensions of the SVG.
+     */
+    #setSvgDimensions(dimensions) {
+      this.#svgObj?.setAttribute('height', `${dimensions}px`)
+      this.#svgObj?.setAttribute('width', `${dimensions}px`)
+    }
+
+    /**
+     * Sets the background color of the referenced div.
+     *
+     * @param {String} backgroundColor - The background color to be set.
+     */
     #setBgColor(backgroundColor) {
       this.#divContainer.style.backgroundColor = backgroundColor
     }
 
+    /**
+     * 
+     * @param {String} dimensions - The dimensions of the referenced div.
+     */
     #setDivDimensions(dimensions) {
       this.#divContainer.style.height = `${dimensions}px`
       this.#divContainer.style.width = `${dimensions}px`
