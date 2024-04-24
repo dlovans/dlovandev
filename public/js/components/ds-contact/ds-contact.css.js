@@ -4,26 +4,77 @@ export const template = document.createElement('template')
 // Style the component.
 template.innerHTML = `
 <style>
-  :host {
+  * {
     box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  :host {
     display: flex;
     flex-direction: column;
     background-color: #242f36;
+    align-items: center;
+    height: 100%;
   }
 
-  * {
-    box-sizing: inherit;
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin-top: 10px;
+  }
+
+  input {
+    width: 100%;
+    height: 35px;
+    border-radius: 10px;
+    padding: 5px;
+  }
+
+  input, .message-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .wrapper {
+    margin-bottom: 5px;
+  }
+
+  .message-wrapper {
+    width: 100%;
+  }
+
+  .message-wrapper textarea {
+    border-radius: 10px;
+    height: 70px;
+    resize: none;
+    overflow: scroll;
+    padding: 5px;
+  }
+
+  input:focus, .message-wrapper textarea:focus {
+    outline: 0;
+    outline-color: transparent;
+    outline-style: none;
+  }
+
+  #submit {
+    align-self: flex-end;
+    text-align: center;
+  }
+
+  #submit:hover {
+
   }
 
   .status-message {
-    height: 0;
+    height: 50px;
+    margin: 5px 0;
+    padding: 10px;
     background-color: transparent;
     border-radius: 10px;
     transition: all .5s ease;
-  }
-
-  .display-message {
-    height: 50px
   }
 
   .success-status-message {
