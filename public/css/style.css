@@ -31,8 +31,8 @@ main {
   grid-template-areas:
     ". . . . . . ."
     ". hero hero hero titles titles ."
-    ". hero hero hero portrait name ."
-    ". hero hero hero portrait location ."
+    ". hero hero hero portrait nameloc ."
+    ". hero hero hero portrait contact ."
     ". hero hero hero portrait contact ."
     ". langs tools cta portrait contact ."
     ". langs tools cta social contact ."
@@ -78,21 +78,30 @@ ds-about {
 }
 
 ds-text {
-  border-radius: 15px;
   background-color: var(--primary-color);
-  padding-left: 12px;
 }
 
 #developer-titles {
   grid-area: titles;
+  border-radius: 15px;
+  padding-left: 12px;
 }
 
-#developer-name {
-  grid-area: name;
+#wrap-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-color: var(--primary-color);
+  grid-area: nameloc;
+  border-radius: 15px;
 }
 
-#developer-location {
-  grid-area: location;
+#wrap-info ds-text {
+  margin: 10px;
+}
+
+#wrap-info ds-text ds-svg-wrap {
+  margin-right: 5px;
 }
 
 ds-contact {
