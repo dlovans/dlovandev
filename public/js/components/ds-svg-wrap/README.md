@@ -1,11 +1,11 @@
- # &lt;ds-lang&gt;
+ # &lt;ds-svg-wrap&gt;
 
-`ds-lang` is a web component that displays the logo of a programming language/tool.
+`ds-svg-wrap` is a web component that displays a logo in SVG format.
 
 ## Attributes
 
-### `lang-language`
-The `lang-language` represents the relative path of SVG file source (public/img). String attribute. Required.
+### `svg-source`
+The `svg-source` represents the relative path of SVG file source (public/img). String attribute. Optiona, defailt to '../../img/icons8-swift.svg'.
 
 ### `div-dimensions`
 The `div-dimensions` represents the width and height, in pixels, of the SVG div wrapper. String attibute. Optional, defaults to 50.
@@ -19,7 +19,12 @@ The `bg-color` represents the background color of the child div wrapper. String 
 ## Example
 
 ```html
-<ds-lang lang-language="./img/swift.svg" lang-height="60" lang-width="60"></ds-lang>
+<ds-svg-wrap 
+  svg-source="./img/machinecode.svg" 
+  div-dimensions="40" 
+  svg-dimensions="30"
+  bg-color="transparent">
+</ds-svg-wrap>
 ```
 
 ## Usage
@@ -27,24 +32,24 @@ The `bg-color` represents the background color of the child div wrapper. String 
 1. To use this web component, import the module, then use JavaScript DOM methods:
 
 ```javascript
-import './ds-lang.comp.js'
+import './ds-svg-wrap.comp.js'
 ```
 
 2. Or load the module and use the component declaratively in HTML:
 
 ```html
-<script type="module" src="../components/ds-lang/ds-lang.comp.js"></script>
+<script type="module" src="../components/ds-svg-wrap/ds-svg-wrap.comp.js"></script>
 ```
 
 Continue in HTML:
 
 ```html
-<ds-lang 
-  lang-language="./img/machinecode.svg" 
+<ds-svg-wrap 
+  svg-source="./img/machinecode.svg" 
   div-dimensions="40" 
   svg-dimensions="30"
   bg-color="transparent">
-</ds-lang>
+</ds-svg-wrap>
 ```
 
 ## Styling

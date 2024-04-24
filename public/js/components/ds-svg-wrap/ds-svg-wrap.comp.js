@@ -1,14 +1,14 @@
 /**
- * @description This module defines the ds-langs web component.
- * @module ds-langs
+ * @description This module defines the ds-svg-wrap web component.
+ * @module ds-svg-wrap
  */
 
-import { template as markupTemplate } from './ds-lang.html.js'
-import { template as styleTemplate } from './ds-lang.css.js'
+import { template as markupTemplate } from './ds-svg-wrap.html.js'
+import { template as styleTemplate } from './ds-svg-wrap.css.js'
 
-customElements.define('ds-lang',
+customElements.define('ds-svg-wrap',
   /**
-   * Anonymous class representing the ds-langs custom element.
+   * Anonymous class representing the ds-svg-wrap custom element.
    * @extends HTMLElement
    */
   class extends HTMLElement {
@@ -54,7 +54,7 @@ customElements.define('ds-lang',
       this.shadowRoot.append(styleTemplate.content.cloneNode(true))
 
       // Initialize svgSource field. Defaults to Swift SVG.
-      this.#svgSource = this.getAttribute('lang-language') || '../../img/icons8-swift.svg'
+      this.#svgSource = this.getAttribute('svg-source') || '../../img/icons8-swift.svg'
       // Default values and references.
       this.#divDimensions = 50
       this.#svgDimensions = 50
@@ -79,7 +79,7 @@ customElements.define('ds-lang',
      * @returns {String[]} - An array of attributes.
      */
     static get observedAttributes() {
-      return ['lang-language', 'div-dimensions', 'svg-dimensions', 'bg-color']
+      return ['svg-source', 'div-dimensions', 'svg-dimensions', 'bg-color']
     }
 
     /**
@@ -90,7 +90,7 @@ customElements.define('ds-lang',
      * @param {string} newValue - Attribute value after the change.
      */
     async attributeChangedCallback(name, oldValue, newValue) {
-      if (name === 'lang-language' && oldValue !== newValue) {
+      if (name === 'svg-source' && oldValue !== newValue) {
         this.#svgSource = newValue
         await this.#insertSVGFile(this.#svgSource)
       }
@@ -129,7 +129,7 @@ customElements.define('ds-lang',
         this.#divContainer.innerHTML = svgContent
 
         this.#svgObj = this.#divContainer.querySelector('svg')
-        this.#svgObj?.setAttribute('part', 'lang-svg')
+        this.#svgObj?.setAttribute('part', 'ds-svg-wrap-svg')
       } catch (error) {
         console.error(error.message)
         this.classList.add('hide')
