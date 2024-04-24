@@ -32,6 +32,16 @@ customElements.define('ds-lang',
     #svgDimensions
 
     /**
+     * Background color of the div container.
+     */
+    #bgColor
+
+    /**
+     * Reference to the div being rendered.
+     */
+    #divContainer
+
+    /**
      * Initializes new instance.
      */
     constructor() {
@@ -43,10 +53,12 @@ customElements.define('ds-lang',
 
       // Initialize svgSource field. Defaults to Swift SVG.
       this.#svgSource = this.getAttribute('lang-language') || '../../img/icons8-swift.svg'
-      // Default values.
+      // Default values and references.
       this.#divHeight = 50
       this.#divWidth = 50
       this.#svgDimensions = 50
+      this.#bgColor = '#36454f'
+      this.#divContainer = this.shadowRoot.querySelector('div')
     }
 
     /**
@@ -62,7 +74,7 @@ customElements.define('ds-lang',
      * @returns {String[]} - An array of attributes.
      */
     static get observedAttributes() {
-      return ['lang-language', 'lang-height', 'lang-width', 'svg-dimensions']
+      return ['lang-language', 'lang-height', 'lang-width', 'svg-dimensions', 'bg-color']
     }
 
     /**
@@ -91,6 +103,10 @@ customElements.define('ds-lang',
       if (name === 'svg-dimensions' && oldValue !== newValue) {
         this.#svgDimensions = newValue
         await this.#insertSVGFile(this.#svgSource)
+      }
+
+      if (name === 'bgColor' && oldValue !== newValue) {
+        this.#bgColor = newValue
       }
     }
 
