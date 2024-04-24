@@ -1,24 +1,27 @@
 /**
- * @description Defines the ds-title web component.
- * @module ds-title
+ * @description Defines the ds-text web component.
+ * @module ds-text
  */
 
 
-import { template as markupTemplate } from './ds-title.html.js'
-import { template as styleTemplate } from './ds-title.css.js'
+import { template as markupTemplate } from './ds-text.html.js'
+import { template as styleTemplate } from './ds-text.css.js'
 
 
-customElements.define('ds-title',
+customElements.define('ds-text',
   /**
-   * Anonymous class representing the ds-title custom element.
+   * Anonymous class representing the ds-text custom element.
    * @extends HTMLElement
    */
   class extends HTMLElement {
     /**
-     * The title(s) of the user.
+     * The text to be rendered.
      */
-    #titles
+    #text
 
+    /**
+     * Reference to the h2 object.
+     */
     #headerObj
 
     /**
@@ -34,7 +37,7 @@ customElements.define('ds-title',
       this.shadowRoot.append(styleTemplate.content.cloneNode(true))
 
       // Assign default value.
-      this.#titles = 'iOS | Android | Fullstack Web Developer'
+      this.#text = 'Native iOS & Android Developer | Fullstack Web Developer'
       this.#headerObj = this.shadowRoot.querySelector('h2')
     }
 
@@ -42,7 +45,7 @@ customElements.define('ds-title',
      * Invoked after the custom element is inserted into DOM.
      */
     connectedCallback() {
-      this.#render(this.#titles)
+      this.#render(this.#text)
     }
 
     /**
@@ -51,7 +54,7 @@ customElements.define('ds-title',
      * @returns {String[]} - A singleton.
      */
     static get observedAttributes() {
-      return ['titles']
+      return ['text']
     }
 
     /**
@@ -62,19 +65,19 @@ customElements.define('ds-title',
      * @param {string} newValue - Attribute value after the change.
      */
     attributeChangedCallback(name, oldValue, newValue) {
-      if (name === 'titles' && newValue !== oldValue && typeof newValue === 'string') {
-        this.#titles = newValue
-        this.#render(this.#titles)
+      if (name === 'text' && newValue !== oldValue && typeof newValue === 'string') {
+        this.#text = newValue
+        this.#render(this.#text)
       }
     }
 
     /**
      * Renders the child element of this custom element.
      * 
-     * @param {String} titlesString - The title string.
+     * @param {String} textString - The text string.
      */
-    #render(titlesString) {
-      this.#headerObj.innerHTML = titlesString
+    #render(textString) {
+      this.#headerObj.innerHTML = textString
     }
   }
 )
