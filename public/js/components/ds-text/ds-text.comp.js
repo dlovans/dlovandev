@@ -25,16 +25,6 @@ customElements.define('ds-text',
     #headerObj
 
     /**
-     * Reference to the slot object.
-     */
-    #slotObj
-
-    /**
-     * SVG source.
-     */
-    #svgSource
-
-    /**
      * Initializes new instance.
      */
     constructor() {
@@ -49,7 +39,6 @@ customElements.define('ds-text',
       // Assign default value and references.
       this.#text = 'Native iOS & Android Developer | Fullstack Web Developer'
       this.#headerObj = this.shadowRoot.querySelector('h2')
-      this.#slotObj = this.shadowRoot.querySelector('slot')
     }
 
     /**
@@ -80,11 +69,6 @@ customElements.define('ds-text',
         this.#text = newValue
         this.#render(this.#text)
       }
-
-      if (name === 'svg-src' && newValue !== oldValue && typeof newValue === 'string') {
-        this.#svgSource = newValue
-        this.#renderSVG(this.#svgSource)
-      }
     }
 
     /**
@@ -94,15 +78,6 @@ customElements.define('ds-text',
      */
     #render(textString) {
       this.#headerObj.innerHTML = textString
-    }
-
-    /**
-     * Renders the SVG file.
-     *
-     * @param {String} svgPath - Relative path to the SVG file.
-     */
-    #renderSVG(svgPath) {
-      this.#slotObj.innerHTML = this.#svgSource
     }
   }
 )
