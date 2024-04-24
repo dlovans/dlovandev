@@ -129,6 +129,7 @@ customElements.define('ds-lang',
         this.#divContainer.innerHTML = svgContent
 
         this.#svgObj = this.#divContainer.querySelector('svg')
+        this.#svgObj?.setAttribute('part', 'lang-svg')
       } catch (error) {
         console.error(error.message)
         this.classList.add('hide')
