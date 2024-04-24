@@ -25,6 +25,11 @@ customElements.define('ds-text',
     #headerObj
 
     /**
+     * Reference to the slot object.
+     */
+    #slotObj
+
+    /**
      * Initializes new instance.
      */
     constructor() {
@@ -36,9 +41,10 @@ customElements.define('ds-text',
       this.shadowRoot.append(markupTemplate.content.cloneNode(true))
       this.shadowRoot.append(styleTemplate.content.cloneNode(true))
 
-      // Assign default value.
+      // Assign default value and references.
       this.#text = 'Native iOS & Android Developer | Fullstack Web Developer'
       this.#headerObj = this.shadowRoot.querySelector('h2')
+      this.#slotObj = this.shadowRoot.querySelector('slot')
     }
 
     /**
@@ -51,10 +57,10 @@ customElements.define('ds-text',
     /**
      * Observes specified attributes for changes.
      * 
-     * @returns {String[]} - A singleton.
+     * @returns {String[]} - An array of attributes to be observed.
      */
     static get observedAttributes() {
-      return ['text']
+      return ['text', 'slot']
     }
 
     /**
