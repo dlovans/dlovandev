@@ -30,6 +30,11 @@ customElements.define('ds-text',
     #slotObj
 
     /**
+     * SVG source.
+     */
+    #svgSource
+
+    /**
      * Initializes new instance.
      */
     constructor() {
@@ -60,7 +65,7 @@ customElements.define('ds-text',
      * @returns {String[]} - An array of attributes to be observed.
      */
     static get observedAttributes() {
-      return ['text', 'slot']
+      return ['text', 'svg-src']
     }
 
     /**
@@ -74,6 +79,10 @@ customElements.define('ds-text',
       if (name === 'text' && newValue !== oldValue && typeof newValue === 'string') {
         this.#text = newValue
         this.#render(this.#text)
+      }
+
+      if (name === 'svg-src' && newValue !== oldValue && typeof newValue === 'string') {
+        this.#svgSource = newValue
       }
     }
 
