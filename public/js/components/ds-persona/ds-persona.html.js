@@ -5,10 +5,12 @@ template.innerHTML = `
   <div id="persona-top-bar">
     <h3></h3>
     <div id="resume-icon" part="resume-icon">
-      <slot>
+      
+      <a href="" download>
+        <slot>
 
-      </slot>
-      <a href="" download>Download Resume</a>
+        </slot>
+        Download Resume</a>
     </div>
   </div>
   <div id="persona">

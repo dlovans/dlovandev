@@ -28,7 +28,17 @@ template.innerHTML = `
   }
 
   #resume-icon a {
+    display: flex;
+    align-items: center;
     margin-left: 10px;
+    text-decoration: none;
+    color: #FFF;
+    transition: all 0.5s ease;
+  }
+
+  #resume-icon a:hover {
+    color: green;
+    transform: scale(0.9)
   }
 
   .about-title {
