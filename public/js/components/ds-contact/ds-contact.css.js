@@ -43,6 +43,7 @@ template.innerHTML = `
 
   .message-wrapper {
     width: 100%;
+    margin-bottom: 0;
   }
 
   .message-wrapper textarea {
@@ -60,20 +61,34 @@ template.innerHTML = `
   }
 
   #submit {
-    align-self: flex-end;
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 35px;
+    border-radius: 10px;
+    padding: 5px;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    transform: scale(1);
+    border: 3px solid transparent;
+    transition: all 0.5s ease;
   }
 
   #submit:hover {
-
+    transform: scale(0.95);
+    border-color: green;
+    cursor: pointer;
   }
 
   .status-message {
-    height: 50px;
-    margin: 5px 0;
+    height: 40px;
+    margin: 10px 0;
     padding: 10px;
     background-color: transparent;
     border-radius: 10px;
+    display: flex;
+    align-items: center;
     transition: all .5s ease;
   }
 
@@ -86,15 +101,15 @@ template.innerHTML = `
   }
 
   .warning {
-    border: 1px solid orange;
+    border: 3px solid orange;
   }
 
   .success {
-    border: 1px solid green;
+    border: 3px solid green;
   }
 
   .error {
-    border: 1px solid red;
+    border: 3px solid red;
   }
 </style>
 `
