@@ -72,5 +72,12 @@ customElements.define('ds-persona',
       }
     }
 
-
+    /**
+     * Triggers a rerender of the h3.
+     *
+     * @param {String} title - The heading value.
+     */
+    #updateHeading(title) {
+      this.#refHeading.innerHTML = title
+    }
   })
