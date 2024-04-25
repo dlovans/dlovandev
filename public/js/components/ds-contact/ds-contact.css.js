@@ -22,8 +22,12 @@ template.innerHTML = `
     display: flex;
     flex-direction: column;
     width: 90%;
-    margin-top: 10px;
+    margin: 5px 0;
   }
+
+  h3 {
+    text-align: center;
+    }
 
   input {
     width: 100%;

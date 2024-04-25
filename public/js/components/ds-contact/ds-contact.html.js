@@ -4,6 +4,7 @@ export const template = document.createElement('template')
 // Populate template object.
 template.innerHTML = `
 <form method="POST" action="./smtp">
+  <h3>Got an idea?</h3>
   <div class="name-wrapper wrapper" part="name-wrapper">
     <label for="flname">Name:</label>
     <input name="flname" type="text" id="flname">
