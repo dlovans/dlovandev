@@ -77,6 +77,23 @@ ds-about {
   padding: 8px 5px;
 }
 
+#social {
+  grid-area: social;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  width: 100%;
+  /* padding: 0 10px; */
+  gap: 10%;
+  justify-content: center;
+}
+
+#social a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: min-content;
+}
+
 ds-text {
   background-color: var(--primary-color);
 }
@@ -136,12 +153,6 @@ ds-contact {
 #location {
   grid-area: location;
   background-color: pink;
-  border-radius: 15px;
-}
-
-#social {
-  grid-area: social;
-  background-color: purple;
   border-radius: 15px;
 }
 
