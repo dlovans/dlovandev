@@ -44,6 +44,18 @@ customElements.define('ds-persona',
       // Initalize reference values.
       this.#refHeading = this.shadowRoot.querySelector('h3')
       this.#refDiv = this.shadowRoot.querySelector('#persona')
+
+      // Default values.
+      this.#personaTitle = 'Resume'
+      this.#paragraphs = 'change later'
+    }
+
+    /**
+     * Invoked after this custom element has been inserted in the DOM.
+     */
+    connectedCallback() {
+      this.#updateHeading(this.#personaTitle)
+      this.#updateParagraphs(this.#paragraphs)
     }
 
     /**
