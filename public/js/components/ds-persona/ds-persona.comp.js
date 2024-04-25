@@ -80,4 +80,24 @@ customElements.define('ds-persona',
     #updateHeading(title) {
       this.#refHeading.innerHTML = title
     }
+
+    /**
+     * Rerenders the referenced div which contains the text.
+     *
+     * @param {String} paragraphs - A string of the text to be rendered.
+     */
+    #updateParagraphs(paragraphs) {
+      const arrayOfParagraphs = paragraphs.trim().split('\n')
+
+      this.#refDiv.innerHTML = ''
+
+
+      for (const paragraph of arrayOfParagraphs) {
+        const paragraphObj = document.createElement('p')
+        paragraphObj.classList.add('ds-persona-paragraph')
+        paragraphObj.textContent = paragraph
+
+        this.#refDiv.append(paragraphObj)
+      }
+    }
   })
