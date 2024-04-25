@@ -34,6 +34,16 @@ customElements.define('ds-persona',
      */
     #refDiv
 
+    /**
+     * Path to the document to be downloaded.
+     */
+    #refDoc
+
+    /**
+     * Reference to the a tag.
+     */
+    #refHref
+
     // Initalizes a new instance.
     constructor() {
       super()
@@ -44,10 +54,12 @@ customElements.define('ds-persona',
       // Initalize reference values.
       this.#refHeading = this.shadowRoot.querySelector('h3')
       this.#refDiv = this.shadowRoot.querySelector('#persona')
+      this.#refHref = this.shadowRoot.querySelector('a')
 
       // Default values.
       this.#personaTitle = 'Resume'
       this.#paragraphs = 'change later'
+      this.#refDoc = '../../document/resume.docx'
     }
 
     /**
@@ -56,6 +68,7 @@ customElements.define('ds-persona',
     connectedCallback() {
       this.#updateHeading(this.#personaTitle)
       this.#updateParagraphs(this.#paragraphs)
+      this.#updateDocument(this.#refDoc)
     }
 
     /**
@@ -64,7 +77,7 @@ customElements.define('ds-persona',
      * @returns {String[]} An array of attributes to be observed.
      */
     static get observedAttributes() {
-      return ['ds-heading', 'ds-paragraphs']
+      return ['ds-heading', 'ds-paragraphs', 'ds-document']
     }
 
     /**
@@ -81,6 +94,11 @@ customElements.define('ds-persona',
 
       if (name === 'ds-paragraphs' && oldValue !== newValue) {
         this.#paragraphs = newValue
+      }
+
+      if (name === 'ds-document' && oldValue !== newValue) {
+        this.#refDoc = newValue
+        this.#updateDocument(this.#refDoc)
       }
     }
 
@@ -111,5 +129,14 @@ customElements.define('ds-persona',
 
         this.#refDiv.append(paragraphObj)
       }
+    }
+
+    /**
+     * Updates the document that can be downloaded.
+     *
+     * @param {string} document - Relative path to the document.
+     */
+    #updateDocument(document) {
+      this.#refHref.href = document
     }
   })
