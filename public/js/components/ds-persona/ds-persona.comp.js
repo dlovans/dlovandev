@@ -24,12 +24,26 @@ customElements.define('ds-persona',
      */
     #paragraphs
 
+    /**
+     * Reference to the h3 heading.
+     */
+    #refHeading
+
+    /**
+     * Reference to the parapgrah div wrapper.
+     */
+    #refDiv
+
     // Initalizes a new instance.
     constructor() {
       super()
       this.attachShadow({ mode: 'open' })
       this.shadowRoot.append(markupTemplate.content.cloneNode(true))
       this.shadowRoot.append(styleTemplate.content.cloneNode(true))
+
+      // Initalize reference values.
+      this.#refHeading = this.shadowRoot.querySelector('h3')
+      this.#refDiv = this.shadowRoot.querySelector('#persona')
     }
 
     /**
