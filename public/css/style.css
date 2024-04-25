@@ -36,9 +36,9 @@ main {
     ". hero hero hero portrait contact ."
     ". langs tools cta portrait contact ."
     ". langs tools cta social contact ."
-    ". portfolio portfolio portfolio about about ."
-    ". portfolio portfolio portfolio about about ."
-    ". portfolio portfolio portfolio about about ."
+    ". portfolio portfolio portfolio persona persona ."
+    ". portfolio portfolio portfolio persona persona ."
+    ". portfolio portfolio portfolio persona persona ."
     ". . . . . . ."
   ;
   gap: 30px;
@@ -46,13 +46,11 @@ main {
 }
 
 
-ds-about {
-  grid-area: about;
+ds-persona {
+  grid-area: persona;
   background-color: var(--primary-color);
-  display: block;
-  scroll-behavior: smooth;
-  overflow-y: scroll;
   border-radius: 15px;
+  padding: 10px 15px;
 }
 
 #langs {
@@ -81,7 +79,7 @@ ds-about {
 }
 
 #tools ds-svg-wrap {
-  place-self: start;
+  place-self: center;
 }
 
 #social {

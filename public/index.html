@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dlovan Dev</title>
   <link rel="stylesheet" href="./css/style.css">
-  <script type="module" src="./js/components/ds-about/ds-about.comp.js"></script>
+  <script type="module" src="./js/components/ds-persona/ds-persona.comp.js"></script>
   <script type="module" src="./js/components/ds-contact/ds-contact.comp.js"></script>
   <script type="module" src="./js/components/ds-svg-wrap/ds-svg-wrap.comp.js"></script>
   <script type="module" src="./js/components/ds-wrapper/ds-wrapper.comp.js"></script>
@@ -16,7 +16,9 @@
 
 <body>
   <main class="content">
-    <ds-about></ds-about>
+    <ds-persona>
+      <ds-svg-wrap svg-source="./img/download-document-svgrepo-com.svg" bg-color="transparent" div-dimensions="30" svg-dimensions="25"></ds-svg-wrap>
+    </ds-persona>
     <ds-wrapper wrapper-is-row="true" id="langs">
       <ds-svg-wrap svg-source="./img/icons8-swift.svg" div-dimensions="40"></ds-svg-wrap>
       <ds-svg-wrap svg-source="./img/icons8-swiftui.svg" div-dimensions="40"></ds-svg-wrap>
