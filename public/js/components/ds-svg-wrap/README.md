@@ -5,7 +5,7 @@
 ## Attributes
 
 ### `svg-source`
-The `svg-source` represents the relative path of SVG file source (public/img). String attribute. Optiona, defailt to '../../img/icons8-swift.svg'.
+The `svg-source` represents the relative path of SVG file source (public/img). String attribute. Optional, defaults to '../../img/icons8-swift.svg'.
 
 ### `div-dimensions`
 The `div-dimensions` represents the width and height, in pixels, of the SVG div wrapper. String attibute. Optional, defaults to 50.

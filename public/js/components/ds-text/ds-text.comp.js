@@ -54,7 +54,7 @@ customElements.define('ds-text',
      * @returns {String[]} - An array of attributes to be observed.
      */
     static get observedAttributes() {
-      return ['text', 'svg-src']
+      return ['ds-text']
     }
 
     /**
@@ -65,7 +65,7 @@ customElements.define('ds-text',
      * @param {string} newValue - Attribute value after the change.
      */
     attributeChangedCallback(name, oldValue, newValue) {
-      if (name === 'text' && newValue !== oldValue && typeof newValue === 'string') {
+      if (name === 'ds-text' && newValue !== oldValue && typeof newValue === 'string') {
         this.#text = newValue
         this.#render(this.#text)
       }
