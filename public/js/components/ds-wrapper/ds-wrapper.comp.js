@@ -38,5 +38,34 @@ customElements.define('ds-wrapper',
       this.#expandableModal = false
       this.#expandableHintWrapper = this.shadowRoot.querySelector('.expand-icon-wrapper')
     }
+
+    /**
+     * Invoked after the custom element has been inserted into the DOM.
+     */
+    connectedCallback() {
+      this.#toggleExpandIconWrapper(this.#expandableModal)
+    }
+
+    /**
+     * Observes the specified attributes for changes.
+     * 
+     * @returns {String[]} - An array of attributes to be observed.
+     */
+    static get observedAttributes() {
+      return ['ds-expandable']
+    }
+
+    /**
+     * 
+     * @param {String} name - The name of the attribute. 
+     * @param {Boolean} oldValue - The attribute value before the change.
+     * @param {Boolean} newValue - The attribute value after the change.
+     */
+    attributeChangedCallback(name, oldValue, newValue) {
+      if (name === 'ds-expandable' && oldValue !== newValue) {
+        this.#expandableModal = newValue
+        this.#toggleExpandIconWrapper(this.#expandableModal)
+      }
+    }
   }
 )
