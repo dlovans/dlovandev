@@ -12,6 +12,7 @@
   <script type="module" src="./js/components/ds-wrapper/ds-wrapper.comp.js"></script>
   <script type="module" src="./js/components/ds-contact/ds-contact.comp.js"></script>
   <script type="module" src="./js/components/ds-text/ds-text.comp.js"></script>
+  <script type="module" src="./js/components/ds-trait/ds-trait.comp.js"></script>
 </head>
 
 <body>
@@ -54,10 +55,10 @@
       <ds-svg-wrap svg-source="./img/code-svgrepo-com.svg" div-dimensions="40" svg-dimensions="30" bg-color="transparent"></ds-svg-wrap>
     </ds-text>
     <div id="wrap-info">
-      <ds-text id="developer-name" text="Dlovan Sharif">
+      <ds-text id="developer-name" ds-text="Dlovan Sharif">
         <ds-svg-wrap svg-source="./img/user-identity-svgrepo-com.svg" div-dimensions="20" svg-dimensions="20" bg-color="transparent"></ds-svg-wrap>
       </ds-text>
-      <ds-text id="developer-location" text="Stockholm, Sweden">
+      <ds-text id="developer-location" ds-text="Stockholm, Sweden">
         <ds-svg-wrap svg-source="./img/location-pin-svgrepo-com.svg" div-dimensions="20" svg-dimensions="25" bg-color="transparent"></ds-svg-wrap>
       </ds-text>
     </div>
@@ -76,6 +77,8 @@
         <ds-svg-wrap svg-source="./img/devto.svg" div-dimensions="40" svg-dimensions="30"></ds-svg-wrap>
       </a>
     </ds-wrapper>
+
+    <ds-trait></ds-trait>
 
     <div id="portfolio"></div>
     <div id="hero"></div>
