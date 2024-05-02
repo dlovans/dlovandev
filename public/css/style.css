@@ -138,8 +138,6 @@ ds-trait {
 
 }
 
-ds-trait::part(trait) {}
-
 ds-trait::part(trait1) {
   font-size: 1.8rem;
   color: #ffcc9d;
