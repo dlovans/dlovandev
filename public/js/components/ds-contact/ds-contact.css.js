@@ -16,6 +16,7 @@ template.innerHTML = `
     background-color: #242f36;
     align-items: center;
     height: 100%;
+    overflow: hidden;
   }
 
   form {
@@ -86,7 +87,7 @@ template.innerHTML = `
   }
 
   .status-message {
-    height: 40px;
+    height: 30px;
     margin: 10px 0;
     padding: 10px;
     background-color: transparent;
