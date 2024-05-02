@@ -34,14 +34,14 @@ main {
     ". hero hero hero portrait nameloc ."
     ". hero hero hero portrait contact ."
     ". hero hero hero portrait contact ."
-    ". langs tools cta portrait contact ."
-    ". langs tools cta social contact ."
+    ". langs tools trait portrait contact ."
+    ". langs tools trait social contact ."
     ". portfolio portfolio portfolio persona persona ."
     ". portfolio portfolio portfolio persona persona ."
     ". portfolio portfolio portfolio persona persona ."
     ". . . . . . ."
   ;
-  gap: 30px;
+  gap: 20px;
   height: 100%;
 }
 
@@ -55,21 +55,21 @@ ds-persona {
 
 #grid-langs {
   grid-area: langs;
-  padding: 10px 10px 15px 10px;
 }
 
 #grid-tools {
   grid-area: tools;
-  padding: 10px 10px 15px 10px;
 }
 
-#langs, #tools {
+#langs,
+#tools {
   display: grid;
   grid-template-columns: repeat(5, auto);
   gap: 3%;
   width: 100%;
   height: min-content;
   overflow: hidden;
+  padding: 10px;
 }
 
 #social {
@@ -120,6 +120,48 @@ ds-contact {
   border-radius: 15px;
 }
 
+ds-trait {
+  grid-area: trait;
+  background-color: var(--primary-color);
+  padding: 10px;
+  display: grid;
+  grid-template-rows: 1fr min-content 1fr 1fr;
+  z-index: 5;
+  box-shadow:
+    0 0 0.2rem #FFF,
+    0 0 0.2rem #FFF,
+    0 0 1.5rem #005075,
+    0 0 0.6rem #005075,
+    0 0 3rem #005075,
+    inset 0 0 2.5rem #005075  
+  ;
+
+}
+
+ds-trait::part(trait) {}
+
+ds-trait::part(trait1) {
+  font-size: 1.8rem;
+  color: #ffcc9d;
+}
+
+ds-trait::part(trait2) {
+  font-size: 1.5rem;
+  color: #607D8B;
+}
+
+ds-trait::part(trait3) {
+  font-size: 2.2rem;
+  color: #F9A825;
+}
+
+ds-trait::part(trait4) {
+  font-size: 1.4rem;
+  color: #795548;
+}
+
+
+
 #portrait {
   grid-area: portrait;
   background-color: aqua;
@@ -135,18 +177,6 @@ ds-contact {
 #hero {
   grid-area: hero;
   background-color: orange;
-  border-radius: 15px;
-}
-
-#name {
-  grid-area: name;
-  background-color: blue;
-  border-radius: 15px;
-}
-
-#location {
-  grid-area: location;
-  background-color: pink;
   border-radius: 15px;
 }
 
