@@ -43,6 +43,11 @@ customElements.define('ds-svg-wrap',
     #svgObj
 
     /**
+     * Description of SVG.
+     */
+    #description
+
+    /**
      * Initializes new instance.
      */
     constructor() {
@@ -60,6 +65,7 @@ customElements.define('ds-svg-wrap',
       this.#svgDimensions = 50
       this.#bgColor = '#36454f'
       this.#divContainer = this.shadowRoot.querySelector('div')
+      this.#description = 'Being swiftly with Swift is a core principle.'
     }
 
     /**
@@ -79,7 +85,7 @@ customElements.define('ds-svg-wrap',
      * @returns {String[]} - An array of attributes.
      */
     static get observedAttributes() {
-      return ['svg-source', 'div-dimensions', 'svg-dimensions', 'bg-color']
+      return ['svg-source', 'div-dimensions', 'svg-dimensions', 'bg-color', 'ds-description']
     }
 
     /**
@@ -108,6 +114,10 @@ customElements.define('ds-svg-wrap',
       if (name === 'bg-color' && oldValue !== newValue) {
         this.#bgColor = newValue
         this.#setBgColor(this.#bgColor)
+      }
+
+      if (name === 'ds-description' && oldValue !== newValue) {
+        this.#description = newValue
       }
     }
 

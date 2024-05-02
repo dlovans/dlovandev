@@ -16,6 +16,9 @@ The `svg-dimensions` represents the width and height, in pixels, of the SVG. Str
 ### `bg-color`
 The `bg-color` represents the background color of the child div wrapper. String attibute. Optional, defaults to '#36454f'.
 
+### `ds-description`
+The `ds-description` represents the description of the SVG. String attribute. Optional, defaults to 'Being swiftly with Swift is a core principle.'.
+
 ## Example
 
 ```html
@@ -23,7 +26,9 @@ The `bg-color` represents the background color of the child div wrapper. String 
   svg-source="./img/machinecode.svg" 
   div-dimensions="40" 
   svg-dimensions="30"
-  bg-color="transparent">
+  bg-color="transparent"
+  ds-description="Describe your experience with this programming language/tool."
+>
 </ds-svg-wrap>
 ```
 
@@ -48,7 +53,9 @@ Continue in HTML:
   svg-source="./img/machinecode.svg" 
   div-dimensions="40" 
   svg-dimensions="30"
-  bg-color="transparent">
+  bg-color="transparent"
+  ds-description="Describe your experience with this programming language/tool."
+  >
 </ds-svg-wrap>
 ```
 
