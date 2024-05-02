@@ -55,15 +55,11 @@ ds-persona {
 
 #grid-langs {
   grid-area: langs;
-  height: 100%;
-  overflow: hidden;
   padding: 10px 10px 15px 10px;
 }
 
 #grid-tools {
   grid-area: tools;
-  height: 100%;
-  overflow: hidden;
   padding: 10px 10px 15px 10px;
 }
 

@@ -12,9 +12,9 @@ template.innerHTML = `
   }
 
   :host {
-    display: flex;
     overflow: hidden;
     border-radius: 15px;
+    height: 100%;
     background-color: #242f36;
   }
 </style>
