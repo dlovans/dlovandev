@@ -53,4 +53,4 @@ Continue in HTML:
 ```
 
 ## Styling
-The component uses the shadow DOM, so it can be styled using CSS variables. Shadow DOM children have part attributes to allow for styling in global CSS files.
+The component uses the shadow DOM, so it can be styled using CSS variables. Shadow DOM children <SVG> have part attributes to allow for responsive styling in global CSS files.
