@@ -57,25 +57,23 @@ ds-persona {
   grid-area: langs;
   height: 100%;
   overflow: hidden;
+  padding: 10px 10px 15px 10px;
 }
 
 #grid-tools {
   grid-area: tools;
   height: 100%;
   overflow: hidden;
+  padding: 10px 10px 15px 10px;
 }
 
 #langs, #tools {
   display: grid;
   grid-template-columns: repeat(5, auto);
-  padding: 10px;
   gap: 3%;
   width: 100%;
   height: min-content;
-}
-
-#tools ds-svg-wrap {
-  place-self: center;
+  overflow: hidden;
 }
 
 #social {
