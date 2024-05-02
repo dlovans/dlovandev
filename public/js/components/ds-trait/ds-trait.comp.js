@@ -4,6 +4,7 @@
  */
 
 import { template as markupTemplate } from './ds-trait.html.js'
+import { template as styleTemplate } from './ds-trait.css.js'
 
 customElements.define('ds-trait',
   /**
@@ -27,9 +28,10 @@ customElements.define('ds-trait',
       // append children to its shadow root.
       this.attachShadow({ mode: 'open' })
       this.shadowRoot.append(markupTemplate.content.cloneNode(true))
+      this.shadowRoot.append(styleTemplate.content.cloneNode(true))
 
       // Assign default values.
-      this.#traits = 'Entrepreneurish&#13;Curiosity&#13;Autonomous&#13;Creativity&#13;Resiliant'
+      this.#traits = 'Entrepreneurish&#13;Autonomous&#13;Creativity&#13;Resiliant'
     }
 
     /**
@@ -71,11 +73,13 @@ customElements.define('ds-trait',
         this.firstChild.remove()
       }
 
+      let traitNumber = 1
       for (const trait of arrayOfTraits) {
         const heading = document.createElement('h4')
         heading.textContent = trait
-        heading.setAttribute('part', 'trait')
-        this.append(heading)
+        heading.setAttribute('part', `trait${traitNumber} trait`)
+        this.shadowRoot.append(heading)
+        ++traitNumber
       }
 
     }
