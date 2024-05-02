@@ -15,6 +15,16 @@ customElements.define('ds-wrapper',
    */
   class extends HTMLElement {
     /**
+     * Denotes if wrapper is expandable or not.
+     */
+    #expandableModal
+
+    /**
+     * Reference to child div object with SVG expand symbol.
+     */
+    #expandableHintWrapper
+
+    /**
      * Creates an instance of this class.
      */
     constructor() {
@@ -23,6 +33,10 @@ customElements.define('ds-wrapper',
       this.attachShadow({ mode: 'open' })
       this.shadowRoot.append(styleTemplate.content.cloneNode(true))
       this.shadowRoot.append(markupTemplate.content.cloneNode(true))
+
+      // Default values and references.
+      this.#expandableModal = false
+      this.#expandableHintWrapper = this.shadowRoot.querySelector('.expand-icon-wrapper')
     }
   }
 )
