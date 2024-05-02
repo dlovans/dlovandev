@@ -19,6 +19,9 @@ The `bg-color` represents the background color of the child div wrapper. String 
 ### `ds-description`
 The `ds-description` represents the description of the SVG. String attribute. Optional, defaults to 'Being swiftly with Swift is a core principle.'.
 
+### `ds-svg-name`
+The `ds-svg-name` represents the descriptive name of the SVG. String attribute. Optional, defaults to 'Swift'.
+
 ## Example
 
 ```html
@@ -28,6 +31,7 @@ The `ds-description` represents the description of the SVG. String attribute. Op
   svg-dimensions="30"
   bg-color="transparent"
   ds-description="Describe your experience with this programming language/tool."
+  ds-svg-name="Machine Code"
 >
 </ds-svg-wrap>
 ```

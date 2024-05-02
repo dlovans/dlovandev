@@ -48,6 +48,11 @@ customElements.define('ds-svg-wrap',
     #description
 
     /**
+     * Descriptive name of the SVG.
+     */
+    #svgName
+
+    /**
      * Initializes new instance.
      */
     constructor() {
@@ -66,6 +71,7 @@ customElements.define('ds-svg-wrap',
       this.#bgColor = '#36454f'
       this.#divContainer = this.shadowRoot.querySelector('div')
       this.#description = 'Being swiftly with Swift is a core principle.'
+      this.#svgName = 'Swift'
     }
 
     /**
@@ -118,6 +124,10 @@ customElements.define('ds-svg-wrap',
 
       if (name === 'ds-description' && oldValue !== newValue) {
         this.#description = newValue
+      }
+
+      if (name === 'ds-svg-name' && oldValue !== newValue) {
+        this.#svgName = newValue
       }
     }
 
