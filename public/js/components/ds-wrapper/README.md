@@ -5,12 +5,12 @@
 ## Attributes
 
 `ds-expandable`
-The `ds-expandable` controls whether an instance of this web component is expandable or not. Boolean attribute. Optional, defaults to false.
+The `ds-expandable` controls whether an instance of this web component is expandable or not. Boolean attribute. Optional, defaults to false. All content inserted into the <slot> must be wrapped in a div if `ds-expandable` is true.
 
 ## Example
 
 ```html
-<ds-wrapper ds-expandable>
+<ds-wrapper>
   <ds-svg-wrap 
     svg-source="./img/machinecode.svg" 
     div-dimensions="40" 
@@ -23,6 +23,27 @@ The `ds-expandable` controls whether an instance of this web component is expand
     svg-dimensions="30"
     bg-color="transparent">
   </ds-svg-wrap>
+</ds-wrapper>
+```
+
+OR
+
+```html
+<ds-wrapper ds-expandable>
+  <div>
+    <ds-svg-wrap 
+      svg-source="./img/machinecode.svg" 
+      div-dimensions="40" 
+      svg-dimensions="30"
+      bg-color="transparent">
+    </ds-svg-wrap>
+    <ds-svg-wrap 
+      svg-source="./img/assemblycode.svg" 
+      div-dimensions="40" 
+      svg-dimensions="30"
+      bg-color="transparent">
+    </ds-svg-wrap>
+  </div>
 </ds-wrapper>
 ```
 
@@ -44,18 +65,20 @@ Continue in HTML:
 
 ```html
 <ds-wrapper ds-expandable>
-  <ds-svg-wrap 
-    svg-source="./img/machinecode.svg" 
-    div-dimensions="40" 
-    svg-dimensions="30"
-    bg-color="transparent">
-  </ds-svg-wrap>
-  <ds-svg-wrap 
-    svg-source="./img/assemblycode.svg" 
-    div-dimensions="40" 
-    svg-dimensions="30"
-    bg-color="transparent">
-  </ds-svg-wrap>
+  <div>
+    <ds-svg-wrap 
+      svg-source="./img/machinecode.svg" 
+      div-dimensions="40" 
+      svg-dimensions="30"
+      bg-color="transparent">
+    </ds-svg-wrap>
+    <ds-svg-wrap 
+      svg-source="./img/assemblycode.svg" 
+      div-dimensions="40" 
+      svg-dimensions="30"
+      bg-color="transparent">
+    </ds-svg-wrap>
+  </div>
 </ds-wrapper>
 ```
 ## Styling
