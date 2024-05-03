@@ -3,7 +3,7 @@ export const template = document.createElement('template')
 
 // Populate template.
 template.innerHTML = `
-<div class="expand-icon-wrapper">
+<div class="expand-icon-wrapper hidden">
 <!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
 <svg width="40px" height="40px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" fill="#147199" stroke="#147199">
 

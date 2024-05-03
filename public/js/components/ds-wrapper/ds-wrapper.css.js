@@ -33,6 +33,10 @@ template.innerHTML = `
     cursor: pointer;
   }
 
+  .hidden {
+    display: none;
+  }
+
   :host(:hover) .expand-icon-wrapper {
     opacity: 1;
   }
