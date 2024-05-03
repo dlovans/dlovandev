@@ -55,10 +55,22 @@ ds-persona {
 
 #grid-langs {
   grid-area: langs;
+  box-shadow:
+    0 0 0.2rem #FFF,
+    0 0 1rem #43A047,
+    0 0 1.5rem #43A047,
+    0 0 2.8rem #43A047,
+    inset 0 0 2.8rem #43A047;
 }
 
 #grid-tools {
   grid-area: tools;
+  box-shadow:
+    0 0 0.2rem #FFF,
+    0 0 1rem #3949AB,
+    0 0 1.5rem #3949AB,
+    0 0 2.8rem #3949AB,
+    inset 0 0 2.5rem #3949AB;
 }
 
 #langs,
@@ -129,13 +141,10 @@ ds-trait {
   z-index: 5;
   box-shadow:
     0 0 0.2rem #FFF,
-    0 0 0.2rem #FFF,
-    0 0 1.5rem #005075,
-    0 0 0.6rem #005075,
-    0 0 3rem #005075,
-    inset 0 0 2.5rem #005075  
-  ;
-
+    0 0 1rem #F4511E,
+    0 0 1.5rem #F4511E,
+    0 0 2.5rem #F4511E,
+    inset 0 0 2.8rem #F4511E
 }
 
 ds-trait::part(trait1) {
@@ -155,7 +164,7 @@ ds-trait::part(trait3) {
 
 ds-trait::part(trait4) {
   font-size: 1.4rem;
-  color: #795548;
+  color: #9c9c9c;
 }
 
 
