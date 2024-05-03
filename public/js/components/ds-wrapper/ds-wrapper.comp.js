@@ -37,6 +37,9 @@ customElements.define('ds-wrapper',
       // Default values and references.
       this.#expandableModal = false
       this.#expandableHintWrapper = this.shadowRoot.querySelector('.expand-icon-wrapper')
+
+      // Register event handler for click event.
+      this.addEventListener('click', () => this.#dispatchExpandEvent())
     }
 
     /**
@@ -125,7 +128,7 @@ customElements.define('ds-wrapper',
 
           detailCollection.append = childObjectDetail
         }
-        
+
         // Include composed property to allow propagation out of shadow DOM.
         const expandEvent = new CustomEvent('ds-expand', {
           detail: {
