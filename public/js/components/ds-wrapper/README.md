@@ -2,10 +2,15 @@
 
 `ds-wrapper` is a web component that wraps content in a container.
 
+## Attributes
+
+`ds-expandable`
+The `ds-expandable` controls whether an instance of this web component is expandable or not. Boolean attribute. Optional, defaults to false.
+
 ## Example
 
 ```html
-<ds-wrapper>
+<ds-wrapper ds-expandable>
   <ds-svg-wrap 
     svg-source="./img/machinecode.svg" 
     div-dimensions="40" 
@@ -38,7 +43,7 @@ import './ds-wrapper.comp.js'
 Continue in HTML:
 
 ```html
-<ds-wrapper>
+<ds-wrapper ds-expandable>
   <ds-svg-wrap 
     svg-source="./img/machinecode.svg" 
     div-dimensions="40" 
