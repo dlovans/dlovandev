@@ -100,5 +100,44 @@ customElements.define('ds-wrapper',
         this.#expandableModal = false
       }
     }
+
+    /**
+     * Dispatches an event with details about the children of this custom element,
+     * if this custom element is expandable.
+     *
+     * @event ds-expand
+     * @fires ds-expand
+     */
+    #dispatchExpandEvent() {
+      // If custom element is expandable, create a custom event and dispatch.
+      if (this.#expandableModal) {
+        const detailCollection = []
+
+        // Convert to true array to loop with for of.
+        const arrayOfSVGWraps = Array.from(this.children[0].children)
+
+        for (const child of arrayOfSVGWraps) {
+          const childObjectDetail = {
+            svgRelativePath: child?.getAttribute('svg-source') || '../../img/icons8-swift.svg',
+            description: child?.getAttribute('ds-description') || 'Being swiftly with Swift is a core principle.',
+            name: child?.getAttribute('ds-svg-name') || 'Swift'
+          }
+
+          detailCollection.append = childObjectDetail
+        }
+        
+        // Include composed property to allow propagation out of shadow DOM.
+        const expandEvent = new CustomEvent('ds-expand', {
+          detail: {
+            information: detailCollection
+          },
+          bubbles: true,
+          composed: true
+        })
+
+        // Dispatch custom event.
+        this.dispatchEvent(expandEvent)
+      }
+    }
   }
 )
