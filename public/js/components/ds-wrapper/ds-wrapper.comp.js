@@ -139,7 +139,7 @@ customElements.define('ds-wrapper',
             name: child?.getAttribute('ds-svg-name') || 'Swift'
           }
 
-          detailCollection.append = childObjectDetail
+          detailCollection.push(childObjectDetail)
         }
 
         // Include composed property to allow propagation out of shadow DOM.
