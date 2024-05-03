@@ -25,6 +25,11 @@ customElements.define('ds-wrapper',
     #expandableHintWrapper
 
     /**
+     * Reference to the slot object.
+     */
+    #slotRef
+
+    /**
      * Creates an instance of this class.
      */
     constructor() {
@@ -37,9 +42,17 @@ customElements.define('ds-wrapper',
       // Default values and references.
       this.#expandableModal = false
       this.#expandableHintWrapper = this.shadowRoot.querySelector('.expand-icon-wrapper')
+      this.#slotRef = this.shadowRoot.querySelector('slot')
 
-      // Register event handler for click event.
+      /**
+       * Register event handlers.
+       */
+      // Register event handler for click events, dispatches custom event.
       this.addEventListener('click', () => this.#dispatchExpandEvent())
+
+      // Register event handler for slot changes, makes sure host only has
+      // 1 child if expandable.
+      this.addEventListener('slotchange', () => this.#slotChecker())
     }
 
     /**
@@ -140,6 +153,21 @@ customElements.define('ds-wrapper',
 
         // Dispatch custom event.
         this.dispatchEvent(expandEvent)
+      }
+    }
+
+    #slotChecker () {
+      if (!this.#expandableModal) return
+
+      if (!slotChildNodes.length || slotChildNodes[0].tagName !== 'DIV') {
+        throw new TypeError('If expandable, insert only 1 element of type div.')
+      }
+
+      const slotChildNodes = this.#slotRef.assignedNodes()
+      if (slotChildNodes.length > 1) {
+        for (let i = 1; i < this.#slotRef.children.length; i++) {
+          slotChildNodes[i].remove()
+        }
       }
     }
   }
