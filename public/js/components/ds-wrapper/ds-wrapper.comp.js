@@ -156,6 +156,13 @@ customElements.define('ds-wrapper',
       }
     }
 
+    /**
+     * Makes sure custom element slot children is a div and is of length 1.
+     *
+     * @throws {TypeError} - Thrown if slot child element is not a div and custom
+     * element is expandable.
+     * @returns {undefined} - If this custom element is not expandable.
+     */
     #slotChecker () {
       if (!this.#expandableModal) return
 
