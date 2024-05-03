@@ -62,9 +62,42 @@ customElements.define('ds-wrapper',
      * @param {Boolean} newValue - The attribute value after the change.
      */
     attributeChangedCallback(name, oldValue, newValue) {
-      if (name === 'ds-expandable' && oldValue !== newValue) {
-        this.#expandableModal = newValue
+      if (name === 'ds-expandable') {
+        this.#hasExpandableAttribute()
         this.#toggleExpandIconWrapper(this.#expandableModal)
+      }
+    }
+
+    /**
+     * Hides or displays expandable UI indicator.
+     *
+     * @param {Boolean} isExpandable - Indicates if ds-wrapper is expandable.
+     */
+    #toggleExpandIconWrapper(isExpandable) {
+      if (isExpandable) {
+        this.#expandableHintWrapper.classList.remove('hidden')
+      } else {
+        this.#expandableHintWrapper.classList.add('hidden')
+      }
+    }
+
+    /**
+     * Checks if ds-expandable attribute exists.
+     * 
+     * @throws {TypeError} - Thrown if attribute exists and is not of type boolean.
+     */
+    #hasExpandableAttribute() {
+      const isExpandable = this.hasAttribute('ds-expandable')
+      const getExpandableValue = this.getAttribute('ds-expandable')
+
+      if (getExpandableValue && typeof (getExpandableValue) !== 'boolean') {
+        throw new TypeError('ds-expandable attribute must be of type boolean.')
+      }
+
+      if (isExpandable) {
+        this.#expandableModal = true
+      } else {
+        this.#expandableModal = false
       }
     }
   }
