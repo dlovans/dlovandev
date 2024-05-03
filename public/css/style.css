@@ -130,6 +130,17 @@ ds-text {
 ds-contact {
   grid-area: contact;
   border-radius: 15px;
+  transition: box-shadow .5s ease-in-out;
+}
+
+ds-contact:hover, ds-contact:focus {
+  box-shadow:
+    0 0 0.2rem #FFF,
+    0 0 1rem #546E7A,
+    0 0 1.5rem #546E7A,
+    0 0 2.8rem #546E7A,
+    inset 0 0 2.8rem #546E7A
+  ;
 }
 
 ds-trait {
