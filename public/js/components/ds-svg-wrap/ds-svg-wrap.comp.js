@@ -91,7 +91,7 @@ customElements.define('ds-svg-wrap',
      * @returns {String[]} - An array of attributes.
      */
     static get observedAttributes() {
-      return ['svg-source', 'div-dimensions', 'svg-dimensions', 'bg-color', 'ds-description']
+      return ['svg-source', 'div-dimensions', 'svg-dimensions', 'bg-color', 'ds-description', 'ds-svg-name']
     }
 
     /**
