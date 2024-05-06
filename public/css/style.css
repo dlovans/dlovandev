@@ -1,6 +1,9 @@
-/*
-* Source of color palette: https://colorhunt.co/palette/0306373c0753720455910a67
-*/
+/* Courtesy of Kevil Powell */
+@property --animate-border {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
 
 :root {
   --primary-color: #242f36;
@@ -30,10 +33,10 @@ main {
   grid-template-columns: minmax(40px, auto) repeat(5, 1fr) minmax(40px, auto);
   grid-template-areas:
     ". . . . . . ."
-    ". hero hero hero titles titles ."
-    ". hero hero hero portrait nameloc ."
-    ". hero hero hero portrait contact ."
-    ". hero hero hero portrait contact ."
+    ". slogan slogan slogan titles titles ."
+    ". slogan slogan slogan portrait nameloc ."
+    ". slogan slogan slogan portrait contact ."
+    ". slogan slogan slogan portrait contact ."
     ". langs tools trait portrait contact ."
     ". langs tools trait social contact ."
     ". portfolio portfolio portfolio persona persona ."
@@ -149,13 +152,39 @@ ds-trait {
   padding: 10px;
   display: grid;
   grid-template-rows: 1fr min-content 1fr 1fr;
-  z-index: 5;
-  box-shadow:
+  /* box-shadow:
     0 0 0.2rem #FFF,
     0 0 1rem #F4511E,
     0 0 1.5rem #F4511E,
     0 0 2.8rem #F4511E,
-    inset 0 0 2.8rem #F4511E
+    inset 0 0 2.8rem #F4511E; */
+  position: relative;
+}
+
+@keyframes border-effect {
+  0% { --animate-border: 0deg; }
+  100% { --animate-border: 360deg; }
+}
+
+
+ds-trait::before,
+ds-trait::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  z-index: -1;
+  background: linear-gradient(
+    var(--animate-border),
+    #242f36,
+    #3949AB,
+    #43A047
+  );
+  animation: border-effect 10s linear infinite;
+  border-radius: inherit;
+}
+
+ds-trait::after {
+  filter: blur(1rem);
 }
 
 ds-trait::part(trait1) {
@@ -178,6 +207,14 @@ ds-trait::part(trait4) {
   color: #9c9c9c;
 }
 
+#slogan {
+  grid-area: slogan;
+  background-color: var(--primary-color);
+  border-radius: 15px;
+  padding: 20px;
+  display: grid;
+}
+
 
 
 #portrait {
@@ -189,12 +226,6 @@ ds-trait::part(trait4) {
 #portfolio {
   grid-area: portfolio;
   background-color: red;
-  border-radius: 15px;
-}
-
-#hero {
-  grid-area: hero;
-  background-color: orange;
   border-radius: 15px;
 }
 
