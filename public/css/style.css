@@ -5,6 +5,16 @@
   inherits: false;
 }
 
+@keyframes border-effect {
+  0% {
+    --animate-border: 0deg;
+  }
+
+  100% {
+    --animate-border: 360deg;
+  }
+}
+
 :root {
   --primary-color: #242f36;
   --secondary-color: #0f161a;
@@ -58,22 +68,53 @@ ds-persona {
 
 #grid-langs {
   grid-area: langs;
-  box-shadow:
-    0 0 0.2rem #FFF,
-    0 0 1rem #43A047,
-    0 0 1.5rem #43A047,
-    0 0 2.8rem #43A047,
-    inset 0 0 2.8rem #43A047;
+  position: relative;
+  overflow: unset;
+}
+
+#grid-langs::before,
+#grid-langs::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  background: linear-gradient(var(--animate-border),
+      #A5D6A7,
+      #66BB6A,
+      #43A047,
+      #2E7D32);
+
+  animation: border-effect 10s linear infinite;
+  border-radius: inherit;
+}
+
+#grid-langs::after {
+  filter: blur(1rem);
 }
 
 #grid-tools {
   grid-area: tools;
-  box-shadow:
-    0 0 0.2rem #FFF,
-    0 0 1rem #3949AB,
-    0 0 1.5rem #3949AB,
-    0 0 2.8rem #3949AB,
-    inset 0 0 2.8rem #3949AB;
+  position: relative;
+  overflow: unset;
+}
+
+#grid-tools::before,
+#grid-tools::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  background: linear-gradient(var(--animate-border),
+      #90CAF9,
+      #42A5F5,
+      #1E88E5,
+      #1565C0);
+  animation: border-effect 10s linear infinite;
+  border-radius: inherit;
+}
+
+#grid-tools::after {
+  filter: blur(1rem);
 }
 
 #langs,
@@ -136,14 +177,14 @@ ds-contact {
   transition: box-shadow .5s ease-in-out;
 }
 
-ds-contact:hover, ds-contact:focus {
+ds-contact:hover,
+ds-contact:focus {
   box-shadow:
     0 0 0.2rem #FFF,
     0 0 1rem #546E7A,
     0 0 1.5rem #546E7A,
     0 0 2.8rem #546E7A,
-    inset 0 0 2.8rem #546E7A
-  ;
+    inset 0 0 2.8rem #546E7A;
 }
 
 ds-trait {
@@ -152,18 +193,7 @@ ds-trait {
   padding: 10px;
   display: grid;
   grid-template-rows: 1fr min-content 1fr 1fr;
-  /* box-shadow:
-    0 0 0.2rem #FFF,
-    0 0 1rem #F4511E,
-    0 0 1.5rem #F4511E,
-    0 0 2.8rem #F4511E,
-    inset 0 0 2.8rem #F4511E; */
   position: relative;
-}
-
-@keyframes border-effect {
-  0% { --animate-border: 0deg; }
-  100% { --animate-border: 360deg; }
 }
 
 
@@ -171,14 +201,13 @@ ds-trait::before,
 ds-trait::after {
   content: "";
   position: absolute;
-  inset: -5px;
+  inset: -2px;
   z-index: -1;
-  background: linear-gradient(
-    var(--animate-border),
-    #242f36,
-    #3949AB,
-    #43A047
-  );
+  background: linear-gradient(var(--animate-border),
+      #EF9A9A,
+      #EF5350,
+      #E53935,
+      #C62828);
   animation: border-effect 10s linear infinite;
   border-radius: inherit;
 }
