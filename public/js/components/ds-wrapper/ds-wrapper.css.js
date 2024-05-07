@@ -31,6 +31,7 @@ template.innerHTML = `
     transition: all 400ms ease;
     z-index: 2;
     cursor: pointer;
+    border-radius: inherit;
   }
 
   .hidden {
