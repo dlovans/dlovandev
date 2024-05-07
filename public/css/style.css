@@ -258,22 +258,30 @@ ds-trait::part(trait4) {
 
 ::part(ds-slogan-button) {
   width: 200px;
-  height: 50px;
+  height: 60px;
   border-radius: 15px;
-  margin-left: auto;
+  margin-top: 10px;
   font-size: 1.5rem;
+  color: #FFF;
   position: relative;
-  z-index: 2;
-  background-color: #7986CB;
+  background: linear-gradient(45deg, #ea698b, #c05299, #ac46a1, #973aa8, #6247aa);
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  transition: background 1s ease;
+  transition: box-shadow .3s ease;
+  float: right;
 }
 
 ::part(ds-slogan-button):hover {
-  background-color: #1976D2;
+  box-shadow: 
+  0 0 0.2rem #FFF,
+  0 0 1rem #9d4edd,
+  0 0 1.5rem #9d4edd,
+  0 0 2.8rem #9d4edd,
+  inset 0 0 2.8rem #9d4edd;
+  ;
 }
+
 
 #portrait {
   grid-area: portrait;
