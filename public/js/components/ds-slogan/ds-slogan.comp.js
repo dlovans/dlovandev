@@ -34,7 +34,7 @@ customElements.define('ds-slogan',
      */
     constructor() {
       super()
-      
+
       // Attach shadow DOM to this custom element,
       // and append templates to its shadow root.
       this.attachShadow({ mode: 'open' })
@@ -44,6 +44,9 @@ customElements.define('ds-slogan',
       this.#buttonRef = this.shadowRoot.querySelector('button')
       this.#headingRef = this.shadowRoot.querySelector('h4')
       this.#sloganText = 'Transforming Ideas into Action - Let\'s Make a Change Together!'
+
+      // Register event handler on button.
+      this.#buttonRef.addEventListener('click', () => { this.#dispatchTriggerFocusEvent() })
     }
 
     /**
@@ -73,7 +76,20 @@ customElements.define('ds-slogan',
      * Updates the h4 text content.
      */
     #updateHeading() {
-      this.#headingRef.textContent = this.#sloganText
+      this.#headingRef.removeChild(this.#headingRef.firstChild)
+      this.#headingRef.prepend(document.createTextNode(this.#sloganText))
+    }
+
+    /**
+     * Dispatches event on click. Propagates out of shadow DOM.
+     */
+    #dispatchTriggerFocusEvent() {
+      const triggerFocus = new CustomEvent('ds-trigger-focus', {
+        bubbles: true,
+        composed: true
+      })
+
+      this.dispatchEvent(triggerFocus)
     }
   }
 )
