@@ -260,7 +260,6 @@ ds-trait::part(trait4) {
 ::part(ds-slogan-button) {
   width: 200px;
   height: 60px;
-  border-radius: 15px;
   margin-top: 10px;
   font-size: 1.5rem;
   color: #FFF;
