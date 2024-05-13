@@ -30,6 +30,11 @@ customElements.define('ds-slogan',
     #headingRef
 
     /**
+     * Custom event. Listener in ds-contact component.
+     */
+    #triggerFocus
+
+    /**
      * Creates an instance of this class.
      */
     constructor() {
@@ -41,12 +46,16 @@ customElements.define('ds-slogan',
       this.shadowRoot.append(markupTemplate.content.cloneNode(true))
 
       // Assign default values and references.
-      this.#buttonRef = this.shadowRoot.querySelector('button')
+      this.#buttonRef = this.shadowRoot.querySelector('.contact-btn')
       this.#headingRef = this.shadowRoot.querySelector('h4')
       this.#sloganText = 'Transforming Ideas into Action - Let\'s Make a Change Together!'
 
+      this.#triggerFocus = new CustomEvent('ds-trigger-focus', {
+        bubbles: true,
+        composed: true
+      })
       // Register event handler on button.
-      this.#buttonRef.addEventListener('click', () => { this.#dispatchTriggerFocusEvent() })
+      this.#buttonRef.addEventListener('click', () => this.dispatchEvent(this.#triggerFocus))
     }
 
     /**
@@ -78,18 +87,6 @@ customElements.define('ds-slogan',
     #updateHeading() {
       this.#headingRef.removeChild(this.#headingRef.firstChild)
       this.#headingRef.prepend(document.createTextNode(this.#sloganText))
-    }
-
-    /**
-     * Dispatches event on click. Propagates out of shadow DOM.
-     */
-    #dispatchTriggerFocusEvent() {
-      const triggerFocus = new CustomEvent('ds-trigger-focus', {
-        bubbles: true,
-        composed: true
-      })
-
-      this.dispatchEvent(triggerFocus)
     }
   }
 )
