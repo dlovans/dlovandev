@@ -113,9 +113,7 @@ customElements.define('ds-contact',
      * @returns {boolean} - Returns true if no input fields are empty.
      */
     #clientValidateFormData () {
-      if (!this.#nameInput.value || !this.#emailInput.value || !this.#textareaInput.value) return false
-      
-      return true
+      return !this.#nameInput.value || !this.#emailInput.value || !this.#textareaInput.value
     }
 
 
