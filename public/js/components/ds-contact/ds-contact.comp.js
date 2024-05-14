@@ -77,7 +77,6 @@ customElements.define('ds-contact',
       this.#form.addEventListener('submit', (event) => this.#formSubmission(event))
       this.#form.addEventListener('click', () => this.#indicateFields())
       this.#form.addEventListener('input', (event) => this.#greenIndicatorFields(event))
-      this.addEventListener('ds-trigger-focus', () => this.#setFocus())
     }
 
     /**
