@@ -43,7 +43,7 @@ customElements.define('ds-app',
          */
         #triggerContactFocus() {
             if (this.#contactComponentRef) {
-                this.#contactComponentRef.setAttribute('focus-action', '')
+                this.#contactComponentRef.setAttribute('ds-set-focus', '')
             }
         }
     }
