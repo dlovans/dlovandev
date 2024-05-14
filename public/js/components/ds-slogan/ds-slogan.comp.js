@@ -74,6 +74,13 @@ customElements.define('ds-slogan',
       return ['ds-slogan']
     }
 
+    /**
+     * Invoked when an observed attribute value changes.
+     *
+     * @param {string} name - Name of the attribute changed.
+     * @param {string} oldValue - Attribute value before the change.
+     * @param {string} newValue - Attribute value before the change.
+     */
     attributeChangedCallback(name, oldValue, newValue) {
       if (name === 'ds-slogan' && oldValue !== newValue) {
         this.#sloganText = newValue
