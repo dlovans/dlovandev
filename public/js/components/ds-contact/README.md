@@ -2,6 +2,11 @@
 
 `ds-contact` is a web component that provides a contact form, where data is sent over SMTP on the server.
 
+## Attributes
+
+### `ds-set-focus`
+The `ds-set-focus` represents the trigger for setting focus on an input field encapsulated in the shadow DOM. Not be declared in HTML markup. Controlled by parent component `ds-app`. Boolean attribute.
+
 ## Example
 
 ```html
