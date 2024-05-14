@@ -35,7 +35,16 @@ customElements.define('ds-app',
             this.addEventListener('ds-trigger-focus', () => {
                 this.#triggerContactFocus()
             })
+        }
 
+        /**
+         * Adds a boolean attribute to ds-contact custom element,
+         * triggering a focus action on an input.
+         */
+        #triggerContactFocus() {
+            if (this.#contactComponentRef) {
+                this.#contactComponentRef.setAttribute('focus-action', '')
+            }
         }
     }
 )
