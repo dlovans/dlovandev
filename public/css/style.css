@@ -38,7 +38,7 @@ body {
 }
 
 /* Replace with composing component. */
-main {
+#app {
   display: grid;
   grid-template-rows: minmax(40px, auto) repeat(9, 1fr) minmax(40px, auto);
   grid-template-columns: minmax(40px, auto) repeat(5, 1fr) minmax(40px, auto);
