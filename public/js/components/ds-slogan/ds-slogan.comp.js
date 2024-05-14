@@ -35,6 +35,11 @@ customElements.define('ds-slogan',
     #triggerFocus
 
     /**
+     * Represents the button text.
+     */
+    #buttonText
+
+    /**
      * Creates an instance of this class.
      */
     constructor() {
@@ -49,6 +54,7 @@ customElements.define('ds-slogan',
       this.#buttonRef = this.shadowRoot.querySelector('.contact-btn')
       this.#headingRef = this.shadowRoot.querySelector('h4')
       this.#sloganText = 'Transforming Ideas into Action - Let\'s Make a Change Together!'
+      this.#buttonText = 'Contact Me!'
 
       // Define event once when this custom element is initialized.
       this.#triggerFocus = new CustomEvent('ds-trigger-focus', {
@@ -64,6 +70,7 @@ customElements.define('ds-slogan',
      */
     connectedCallback() {
       this.#updateHeading()
+      this.#updateButton()
     }
 
     /**
@@ -72,7 +79,7 @@ customElements.define('ds-slogan',
      * @returns {String[]} - An array of observed attributes.
      */
     static get observedAttributes() {
-      return ['ds-slogan']
+      return ['ds-slogan', 'ds-button-text']
     }
 
     /**
@@ -87,6 +94,11 @@ customElements.define('ds-slogan',
         this.#sloganText = newValue
         this.#updateHeading()
       }
+
+      if (name === 'ds-button-text' && oldValue !== newValue) {
+        this.#buttonText = newValue
+        this.#updateButton()
+      }
     }
 
     /**
@@ -95,6 +107,10 @@ customElements.define('ds-slogan',
     #updateHeading() {
       this.#headingRef.removeChild(this.#headingRef.firstChild)
       this.#headingRef.prepend(document.createTextNode(this.#sloganText))
+    }
+
+    #updateButton() {
+      this.#buttonRef.textContent = this.#buttonText
     }
   }
 )
