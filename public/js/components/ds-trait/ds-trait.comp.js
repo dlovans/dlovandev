@@ -27,7 +27,6 @@ customElements.define('ds-trait',
       // Attach shadow DOM tree to this custom element, and
       // append children to its shadow root.
       this.attachShadow({ mode: 'open' })
-      this.shadowRoot.append(markupTemplate.content.cloneNode(true))
       this.shadowRoot.append(styleTemplate.content.cloneNode(true))
 
       // Assign default values.
@@ -64,6 +63,11 @@ customElements.define('ds-trait',
       }
     }
 
+    /**
+     * Creates h4 objects for each trait, inserts into shadow DOM.
+     *
+     * @param {string} traits - The traits/qualities of the owner.
+     */
     #render(traits) {
       // Create an array of traits where HTML entity for newline serves as delimiter.
       const arrayOfTraits = traits.split('&#13;')
@@ -73,6 +77,7 @@ customElements.define('ds-trait',
         this.firstChild.remove()
       }
 
+      // Add numbered part attributes for each h4.
       let traitNumber = 1
       for (const trait of arrayOfTraits) {
         const heading = document.createElement('h4')
