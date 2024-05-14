@@ -80,6 +80,28 @@ customElements.define('ds-contact',
     }
 
     /**
+     * Specifies the attributes to be observed.
+     * @returns {string[]}
+     */
+    static get observedAttributes() {
+      return ['ds-set-focus']
+    }
+
+    /**
+     * Invoked when an observed attribute value changes.
+     *
+     * @param {string} name - Name of the attribute changed.
+     * @param {boolean} oldValue - Attribute value before the change.
+     * @param {boolean} newValue - Attribute value before the change.
+     */
+    attributeChangedCallback(name, oldValue, newValue) {
+      if (name === 'ds-set-focus' && this.hasAttribute('ds-set-focus') && oldValue !== newValue) {
+        this.#setFocus()
+        this.removeAttribute('ds-set-focus')
+      }
+    }
+
+    /**
      * Handles form submission.
      *
      * @param {object} eventObj - The event object.
