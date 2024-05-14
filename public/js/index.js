@@ -1,3 +1,5 @@
+import './components/ds-app/ds-app.comp.js'
+
 import './components/ds-slogan/ds-slogan.comp.js'
 import './components/ds-persona/ds-persona.comp.js'
 import './components/ds-text/ds-text.comp.js'
