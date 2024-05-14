@@ -50,6 +50,7 @@ customElements.define('ds-slogan',
       this.#headingRef = this.shadowRoot.querySelector('h4')
       this.#sloganText = 'Transforming Ideas into Action - Let\'s Make a Change Together!'
 
+      // Define event once when this custom element is initialized.
       this.#triggerFocus = new CustomEvent('ds-trigger-focus', {
         bubbles: true,
         composed: true

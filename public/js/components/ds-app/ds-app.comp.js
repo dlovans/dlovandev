@@ -30,7 +30,7 @@ customElements.define('ds-app',
             this.shadowRoot.append(markupTemplate.content.cloneNode(true))
 
             // Get reference.
-            this.#contactComponentRef = this.shadowRoot.querySelector('ds-contact')
+            this.#contactComponentRef = this.querySelector('ds-contact') || this.shadowRoot.querySelector('ds-contact')
             // Register event listener.
             this.addEventListener('ds-trigger-focus', () => {
                 this.#triggerContactFocus()
