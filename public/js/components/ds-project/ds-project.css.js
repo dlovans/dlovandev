@@ -15,11 +15,13 @@ template.innerHTML = `
             justify-content: center;
             overflow: hidden;
             border-radius: 15px;
-            height: 100%;
             background-color: #242f36;
             position: relative;
             height: 90%;
             width: 500px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
         }
         
         
