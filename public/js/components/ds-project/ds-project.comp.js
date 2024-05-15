@@ -44,6 +44,21 @@ customElements.define('ds-project',
         #projectTitleRef
 
         /**
+         * Reference to live app anchor object.
+         */
+        #liveURLATag
+
+        /**
+         * Reference to repository anchor object.
+         */
+        #repoURLATag
+
+        /**
+         * Reference to the div with class expand-to-modal.
+         */
+        #expandToModalBox
+
+        /**
          * Initializes a new instance of this class.
          */
         constructor() {
@@ -63,6 +78,9 @@ customElements.define('ds-project',
             this.#projectScreenshot = './../../../img/projects/aquity-screenshot.png'
 
             this.#projectTitleRef = this.shadowRoot.querySelector('.project-title')
+            this.#liveURLATag = this.shadowRoot.querySelector('a:nth-of-type(1)')
+            this.#repoURLATag = this.shadowRoot.querySelector('a:nth-of-type(2)')
+            this.#expandToModalBox = this.shadowRoot.querySelector('.expand-to-modal')
         }
 
 
