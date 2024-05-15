@@ -64,5 +64,7 @@ customElements.define('ds-project',
 
             this.#projectTitleRef = this.shadowRoot.querySelector('.project-title')
         }
+
+
     }
 )
