@@ -13,6 +13,36 @@ customElements.define('ds-project',
      */
     class extends HTMLElement {
         /**
+         * Title of the project.
+         */
+        #projectTitle
+
+        /**
+         * URL to live app.
+         */
+        #liveURL
+
+        /**
+         * URL to GitHub repository.
+         */
+        #repoURL
+
+        /**
+         * Project description.
+         */
+        #projectDescription
+
+        /**
+         * Project screenshot URL.
+         */
+        #projectScreenshot
+
+        /**
+         * Reference to h3 object.
+         */
+        #projectTitleRef
+
+        /**
          * Initializes a new instance of this class.
          */
         constructor() {
@@ -22,6 +52,15 @@ customElements.define('ds-project',
             // and append templates to its shadow root.
             this.attachShadow({ mode: 'open' })
             this.shadowRoot.append(styleTemplate.content.cloneNode(true))
+
+            // Assign default values and references.
+            this.#projectTitle = 'Aquity'
+            this.#projectDescription = 'undefined not null'
+            this.#liveURL = 'https://aquity.onrender.com/'
+            this.#repoURL = 'https://github.com/dlovans/quant'
+            this.#projectScreenshot = './../../img/projects/aquity-screenshot.jpg'
+
+            this.#projectTitleRef = this.shadowRoot.querySelector('.project-title')
         }
     }
 )
