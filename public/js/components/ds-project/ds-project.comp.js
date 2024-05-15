@@ -83,6 +83,15 @@ customElements.define('ds-project',
             this.#expandToModalBox = this.shadowRoot.querySelector('.expand-to-modal')
         }
 
+        /**
+         * Invoked after the custom element has been inserted into the DOM.
+         */
+        connectedCallback() {
+            this.#setBackgroundImage()
+        }
 
+        #setBackgroundImage() {
+            this.style.background = `url(${this.#projectScreenshot})`
+        }
     }
 )
