@@ -24,4 +24,4 @@ customElements.define('ds-project',
             this.shadowRoot.append(styleTemplate.content.cloneNode(true))
         }
     }
-    )
+)
