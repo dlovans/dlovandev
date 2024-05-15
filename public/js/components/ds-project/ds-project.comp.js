@@ -58,7 +58,7 @@ customElements.define('ds-project',
             this.#projectDescription = 'undefined not null'
             this.#liveURL = 'https://aquity.onrender.com/'
             this.#repoURL = 'https://github.com/dlovans/quant'
-            this.#projectScreenshot = './../../img/projects/aquity-screenshot.jpg'
+            this.#projectScreenshot = './../../../img/projects/aquity-screenshot.png'
 
             this.#projectTitleRef = this.shadowRoot.querySelector('.project-title')
         }

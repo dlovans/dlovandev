@@ -15,10 +15,22 @@ template.innerHTML = `
             border-radius: 15px;
             height: 100%;
             background-color: #242f36;
+            position: relative;
         }
         
-        ::slotted(*) {
-            display: none;
+        
+        .interactive-wrapper {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-content: center;
+            opacity: 0;
+            transition: .3s ease-in;
+        }
+        
+        :host(:hover) .interactive-wrapper {
+            opacity: 1;
         }
     </style>
 `
