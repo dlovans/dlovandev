@@ -11,11 +11,14 @@ template.innerHTML = `
         }
         
         :host {
+            display: block;
             overflow: hidden;
             border-radius: 15px;
             height: 100%;
             background-color: #242f36;
             position: relative;
+            height: 90%;
+            width: 500px;
         }
         
         

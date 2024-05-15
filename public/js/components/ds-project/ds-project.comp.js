@@ -4,6 +4,7 @@
  */
 
 import { template as styleTemplate } from './ds-project.css.js'
+import { template as markupTemplate } from './ds-project.html.js'
 
 // Define custom element.
 customElements.define('ds-project',
@@ -52,6 +53,7 @@ customElements.define('ds-project',
             // and append templates to its shadow root.
             this.attachShadow({ mode: 'open' })
             this.shadowRoot.append(styleTemplate.content.cloneNode(true))
+            this.shadowRoot.append(markupTemplate.content.cloneNode(true))
 
             // Assign default values and references.
             this.#projectTitle = 'Aquity'
