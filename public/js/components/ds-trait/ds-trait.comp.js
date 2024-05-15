@@ -3,7 +3,6 @@
  * @module ds-trait
  */
 
-import { template as markupTemplate } from './ds-trait.html.js'
 import { template as styleTemplate } from './ds-trait.css.js'
 
 customElements.define('ds-trait',

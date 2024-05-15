@@ -10,6 +10,7 @@ The `ds-traits` attribute represents the qualities of the owner. String attribut
 
 ## Example
 
+`Note: "Use & # 1 3;" without spacing as delimiter between each word.`
 ```html
 <ds-trait
     ds-traits="Entrepreneurish&#13;Autonomous&#13;Creativity&#13;Resiliant">
@@ -32,6 +33,7 @@ import './ds-trait.comp.js'
 
 Continue in HTML:
 
+`Note: "Use & # 1 3;" without spacing as delimiter between each word.`
 ```html
 <ds-trait
         ds-traits="Entrepreneurish&#13;Autonomous&#13;Creativity&#13;Resiliant">
