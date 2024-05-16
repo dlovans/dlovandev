@@ -142,5 +142,12 @@ customElements.define('ds-project',
         #setTitle() {
             this.#projectTitleRef.textContent = this.#projectTitle
         }
+
+        /**
+         * Sets the href of the Live anchor tag.
+         */
+        #setLiveURL() {
+            this.#liveURLAnchorRef.href = this.#liveURL
+        }
     }
 )
