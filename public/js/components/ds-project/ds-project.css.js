@@ -24,6 +24,11 @@ template.innerHTML = `
             background-size: cover;
         }
         
+        .project-title {
+            width: 100%;
+            text-align: center;
+        }
+        
         
         .interactive-wrapper {
             position: absolute;

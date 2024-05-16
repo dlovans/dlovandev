@@ -88,6 +88,7 @@ customElements.define('ds-project',
          */
         connectedCallback() {
             this.#setBackgroundImage()
+            this.#setTitle()
         }
 
         /**
@@ -101,7 +102,7 @@ customElements.define('ds-project',
          * Sets the title of this custom element.
          */
         #setTitle() {
-            this.#projectTitleRef = this.#projectTitle
+            this.#projectTitleRef.textContent = this.#projectTitle
         }
     }
 )
