@@ -89,6 +89,8 @@ customElements.define('ds-project',
         connectedCallback() {
             this.#setBackgroundImage()
             this.#setTitle()
+            this.#setLiveURL()
+            this.#setRepoURL()
         }
 
         /**
