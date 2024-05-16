@@ -92,6 +92,44 @@ customElements.define('ds-project',
         }
 
         /**
+         * Specifies the attribute to be observed for changes.
+         *
+         * @returns {string[]} - The attributes to be observed.
+         */
+        static get observedAttributes() {
+            return ['ds-project-title', 'ds-live-url', 'ds-repo-url', 'ds-project-screenshot']
+        }
+
+        /**
+         * Invoked when an observed attribute value changes.
+         *
+         * @param {string} name - The name of the changed attribute.
+         * @param {string} oldValue - Attribute value before change.
+         * @param {string} newValue - Attribute value after change.
+         */
+        attributeChangedCallback(name, oldValue, newValue) {
+            if (name === 'ds-project-title' && oldValue !== newValue) {
+                this.#projectTitle = newValue
+                this.#setTitle()
+            }
+
+            if (name === 'ds-live-url' && oldValue !== newValue) {
+                this.#liveURL = newValue
+                this.#setLiveURL()
+            }
+
+            if (name === 'ds-repo-url' && oldValue !== newValue) {
+                this.#repoURL = newValue
+                this.#setRepoURL()
+            }
+
+            if (name === 'ds-project-screenshot' && oldValue !== newValue) {
+                this.#projectScreenshot = newValue
+                this.#setBackgroundImage()
+            }
+        }
+
+        /**
          * Sets the background image of this custom element.
          */
         #setBackgroundImage() {
