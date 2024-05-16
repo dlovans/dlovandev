@@ -18,7 +18,7 @@ template.innerHTML = `
             background-color: #242f36;
             position: relative;
             height: 90%;
-            width: 300px;
+            width: 40%;
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
@@ -27,6 +27,9 @@ template.innerHTML = `
         .project-title {
             width: 100%;
             text-align: center;
+            background: linear-gradient(45deg, #ea698b, #c05299, #ac46a1, #973aa8, #6247aa);
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
         }
         
         
@@ -37,7 +40,8 @@ template.innerHTML = `
             justify-content: center;
             align-content: center;
             opacity: 0;
-            transition: .3s ease-in;
+            visibility: hidden;
+            transition: .3s ease;
             height: 100%;
         }
         
@@ -48,30 +52,42 @@ template.innerHTML = `
             align-content: center;
             font-size: 1.1rem;
             text-decoration: none;
-            background-color: beige;
+            background: linear-gradient(45deg, #ea698b, #c05299, #ac46a1, #973aa8, #6247aa);
             border-radius: 15px;
-            margin: 10px 0;
-            padding: 5px 30px;
-            position: relative;
+            margin: 5px 0;
+            padding: 10px 30px;
+            color: #FFF;
         }
         
         .interactive-wrapper svg {
             width: 20px;
             height: 20px;
-            display: flex;
             align-self: center;
         }
         
-        .interactive-wrapper a svg:nth-of-type(1),
-        .expand-to-modal svg {
-            margin-left: 5px;
+        .svg-left {
+            margin-right: 5px;
         }
         
-        .interactive-wrapper a svg:nth-of-type(2) {
-            margin-left: auto;
+        .svg-right {
+            margin-left: 15px;
         }
         
         :host(:hover) .interactive-wrapper {
+            visibility: unset;
+            opacity: 1;
+        }
+        
+        .transparent-bg {
+            position: absolute;
+            opacity: 0;
+            background-color: #ffffffbe;
+            transition: .3s linear;
+            width: 100%;
+            height: 100%;
+        }
+        
+        :host(:hover) .transparent-bg {
             opacity: 1;
         }
     </style>
