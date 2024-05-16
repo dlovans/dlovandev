@@ -90,6 +90,9 @@ customElements.define('ds-project',
             this.#setBackgroundImage()
         }
 
+        /**
+         * Sets the background image of this custom element.
+         */
         #setBackgroundImage() {
             this.style.backgroundImage = `url(${this.#projectScreenshot})`
         }
