@@ -149,5 +149,12 @@ customElements.define('ds-project',
         #setLiveURL() {
             this.#liveURLAnchorRef.href = this.#liveURL
         }
+
+        /**
+         * Sets the href of the Repo anchor tag.
+         */
+        #setRepoURL() {
+            this.#repoURLAnchorRef.href = this.#repoURL
+        }
     }
 )
