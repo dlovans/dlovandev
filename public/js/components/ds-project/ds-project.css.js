@@ -18,7 +18,7 @@ template.innerHTML = `
             background-color: #242f36;
             position: relative;
             height: 90%;
-            width: 500px;
+            width: 300px;
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
