@@ -15,12 +15,6 @@ customElements.define('ds-wrapper',
    */
   class extends HTMLElement {
     /**
-     * Specifies the type of modal, to determine CSS layout.
-     * @type { 'projects' | 'technologies' | undefined }
-     */
-    #modalType
-
-    /**
      * Denotes if wrapper is expandable or not.
      */
     #expandableModal
@@ -46,7 +40,6 @@ customElements.define('ds-wrapper',
       this.shadowRoot.append(markupTemplate.content.cloneNode(true))
 
       // Default values and references.
-      this.#modalType = undefined
       this.#expandableModal = false
       this.#expandableHintWrapper = this.shadowRoot.querySelector('.expand-icon-wrapper')
       this.#slotRef = this.shadowRoot.querySelector('slot')
@@ -56,10 +49,6 @@ customElements.define('ds-wrapper',
        */
       // Register event handler for click events, dispatches custom event.
       this.#expandableHintWrapper.addEventListener('click', () => this.#dispatchExpandEvent())
-
-      // Register event handler for slot changes, makes sure host only has
-      // 1 child if expandable.
-      this.addEventListener('slotchange', () => this.#slotChecker())
     }
 
     /**
@@ -88,14 +77,6 @@ customElements.define('ds-wrapper',
       if (name === 'ds-expandable') {
         this.#hasExpandableAttribute()
         this.#toggleExpandIconWrapper(this.#expandableModal)
-      }
-
-      if (name === 'ds-modal-type' && oldValue !== newValue) {
-        if (newValue === 'projects' || newValue === 'technologies') {
-          this.#modalType = newValue
-        } else {
-          this.#modalType = undefined
-        }
       }
     }
 
@@ -129,18 +110,18 @@ customElements.define('ds-wrapper',
 
     /**
      * Dispatches an event with details about the children of this custom element,
-     * if this custom element is expandable and modal type is 'technologies'.
+     * if this custom element is expandable.
      *
      * @event ds-expand
      * @fires ds-expand
      */
     #dispatchExpandEvent() {
       // If custom element is expandable, create a custom event and dispatch.
-      if (this.#expandableModal && this.#modalType ==='technologies') {
+      if (this.#expandableModal) {
         const detailCollection = []
 
         // Convert to true array to loop with for of.
-        const arrayOfSVGWraps = Array.from(this.children[0].children)
+        const arrayOfSVGWraps = Array.from(this.children)
 
         for (const child of arrayOfSVGWraps) {
           const childObjectDetail = {
@@ -155,7 +136,6 @@ customElements.define('ds-wrapper',
         // Include composed property to allow propagation out of shadow DOM.
         const expandEvent = new CustomEvent('ds-expand', {
           detail: {
-            type: this.#modalType,
             information: detailCollection
           },
           bubbles: true,
@@ -164,28 +144,6 @@ customElements.define('ds-wrapper',
 
         // Dispatch custom event.
         this.dispatchEvent(expandEvent)
-      }
-    }
-
-    /**
-     * Makes sure custom element slot children is a div and is of length 1.
-     *
-     * @throws {TypeError} - Thrown if slot child element is not a div and custom
-     * element is expandable.
-     * @returns {undefined} - If this custom element is not expandable.
-     */
-    #slotChecker () {
-      if (!this.#expandableModal) return
-
-      if (!slotChildNodes.length || slotChildNodes[0].tagName !== 'DIV') {
-        throw new TypeError('If expandable, insert only 1 element of type div.')
-      }
-
-      const slotChildNodes = this.#slotRef.assignedNodes()
-      if (slotChildNodes.length > 1) {
-        for (let i = 1; i < this.#slotRef.children.length; i++) {
-          slotChildNodes[i].remove()
-        }
       }
     }
   }
