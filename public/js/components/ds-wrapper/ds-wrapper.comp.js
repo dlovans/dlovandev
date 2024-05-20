@@ -15,6 +15,12 @@ customElements.define('ds-wrapper',
    */
   class extends HTMLElement {
     /**
+     * Specifies the type of modal, to determine CSS layout.
+     * @type { 'projects' | 'technologies' | undefined }
+     */
+    #modalType
+
+    /**
      * Denotes if wrapper is expandable or not.
      */
     #expandableModal
@@ -40,6 +46,7 @@ customElements.define('ds-wrapper',
       this.shadowRoot.append(markupTemplate.content.cloneNode(true))
 
       // Default values and references.
+      this.#modalType = undefined
       this.#expandableModal = false
       this.#expandableHintWrapper = this.shadowRoot.querySelector('.expand-icon-wrapper')
       this.#slotRef = this.shadowRoot.querySelector('slot')
@@ -48,7 +55,7 @@ customElements.define('ds-wrapper',
        * Register event handlers.
        */
       // Register event handler for click events, dispatches custom event.
-      this.addEventListener('click', () => this.#dispatchExpandEvent())
+      this.#expandableHintWrapper.addEventListener('click', () => this.#dispatchExpandEvent())
 
       // Register event handler for slot changes, makes sure host only has
       // 1 child if expandable.
@@ -68,19 +75,27 @@ customElements.define('ds-wrapper',
      * @returns {String[]} - An array of attributes to be observed.
      */
     static get observedAttributes() {
-      return ['ds-expandable']
+      return ['ds-expandable', 'ds-modal-type']
     }
 
     /**
      * 
      * @param {String} name - The name of the attribute. 
-     * @param {Boolean} oldValue - The attribute value before the change.
-     * @param {Boolean} newValue - The attribute value after the change.
+     * @param {String | Boolean} oldValue - The attribute value before the change.
+     * @param {String | Boolean} newValue - The attribute value after the change.
      */
     attributeChangedCallback(name, oldValue, newValue) {
       if (name === 'ds-expandable') {
         this.#hasExpandableAttribute()
         this.#toggleExpandIconWrapper(this.#expandableModal)
+      }
+
+      if (name === 'ds-modal-type' && oldValue !== newValue) {
+        if (newValue === 'projects' || newValue === 'technologies') {
+          this.#modalType = newValue
+        } else {
+          this.#modalType = undefined
+        }
       }
     }
 
@@ -109,24 +124,19 @@ customElements.define('ds-wrapper',
       if (getExpandableValue && typeof (getExpandableValue) !== 'boolean') {
         throw new TypeError('ds-expandable attribute must be of type boolean.')
       }
-
-      if (isExpandable) {
-        this.#expandableModal = true
-      } else {
-        this.#expandableModal = false
-      }
+      this.#expandableModal = isExpandable
     }
 
     /**
      * Dispatches an event with details about the children of this custom element,
-     * if this custom element is expandable.
+     * if this custom element is expandable and modal type is 'technologies'.
      *
      * @event ds-expand
      * @fires ds-expand
      */
     #dispatchExpandEvent() {
       // If custom element is expandable, create a custom event and dispatch.
-      if (this.#expandableModal) {
+      if (this.#expandableModal && this.#modalType ==='technologies') {
         const detailCollection = []
 
         // Convert to true array to loop with for of.
@@ -134,7 +144,7 @@ customElements.define('ds-wrapper',
 
         for (const child of arrayOfSVGWraps) {
           const childObjectDetail = {
-            svgRelativePath: child?.getAttribute('svg-source') || '../../img/icons8-swift.svg',
+            svgRelativePath: child?.getAttribute('svg-source') || '../../img/Swift_logo_color.svg',
             description: child?.getAttribute('ds-description') || 'Being swiftly with Swift is a core principle.',
             name: child?.getAttribute('ds-svg-name') || 'Swift'
           }
@@ -145,6 +155,7 @@ customElements.define('ds-wrapper',
         // Include composed property to allow propagation out of shadow DOM.
         const expandEvent = new CustomEvent('ds-expand', {
           detail: {
+            type: this.#modalType,
             information: detailCollection
           },
           bubbles: true,
