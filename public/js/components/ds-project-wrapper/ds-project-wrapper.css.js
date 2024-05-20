@@ -12,10 +12,13 @@ template.innerHTML = `
     
         :host {
             box-sizing: border-box;
-            padding: 0;
             margin: 0;
             display: flex;
+            align-items: center;
             overflow: hidden;
+            gap: 3%;
+            height: 100%;
+            padding: 0 10px;
         }
     </style>
 `
