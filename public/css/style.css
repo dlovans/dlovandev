@@ -71,6 +71,13 @@ ds-persona {
   grid-area: langs;
   position: relative;
   overflow: unset;
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  grid-auto-rows: min-content;
+  row-gap: 5%;
+  width: 100%;
+  padding: 10px;
+  height: 100%;
 }
 
 #grid-langs::before,
@@ -97,6 +104,13 @@ ds-persona {
   grid-area: tools;
   position: relative;
   overflow: unset;
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  grid-auto-rows: min-content;
+  row-gap: 5%;
+  width: 100%;
+  padding: 10px;
+  height: 100%;
 }
 
 #grid-tools::before,
