@@ -35,6 +35,9 @@ customElements.define('ds-app',
             this.addEventListener('ds-trigger-focus', () => {
                 this.#triggerContactFocus()
             })
+            this.addEventListener('ds-expand', (event) => {
+                console.log(event.detail)
+            })
         }
 
         /**
