@@ -12,13 +12,14 @@ template.innerHTML = `
         
         :host {
             display: flex;
+            flex-shrink: 0;
             justify-content: center;
             overflow: hidden;
             border-radius: 15px;
             background-color: #242f36;
             position: relative;
             height: 80%;
-            width: 40%;
+            width: 350px;
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
@@ -83,6 +84,7 @@ template.innerHTML = `
             opacity: 0;
             background-color: #ffffffbe;
             transition: .3s linear;
+            border-radius: inherit;
             width: 100%;
             height: 100%;
         }

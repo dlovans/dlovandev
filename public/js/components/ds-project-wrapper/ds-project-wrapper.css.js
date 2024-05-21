@@ -14,6 +14,7 @@ template.innerHTML = `
             display: flex;
             align-items: center;
             overflow: hidden;
+            scroll-behavior: smooth;
             gap: 3%;
             height: 100%;
         }
