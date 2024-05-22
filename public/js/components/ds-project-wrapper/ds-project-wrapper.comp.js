@@ -25,6 +25,13 @@ customElements.define('ds-project-wrapper',
         }
 
         /**
+         * Invoked after this custom element has been inserted into the DOM.
+         */
+        connectedCallback() {
+            this.#setUniqueKeyOnChildren()
+        }
+
+        /**
          * Sets a unique key attribute for each child object of this custom element.
          */
         #setUniqueKeyOnChildren() {
