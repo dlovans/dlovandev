@@ -13,6 +13,26 @@ customElements.define('ds-project-wrapper',
      * @extends HTMLElement
      */
     class extends HTMLElement {
+        /**
+         * Reference to left arrow button.
+         */
+        #prevArrowRef
+
+        /**
+         * Reference to right arrow button.
+         */
+        #nextArrowRef
+
+        /**
+         * Reference to a ds-project child.
+         */
+        #projectRef
+
+        /**
+         * Reference to all ds-project children.
+         */
+        #allProjectsRef
+
         // Initializes an instance of this class.
         constructor() {
             super()
@@ -22,6 +42,13 @@ customElements.define('ds-project-wrapper',
             this.attachShadow({ mode: 'open' })
             this.shadowRoot.append(styleTemplate.content.cloneNode(true))
             this.shadowRoot.append(markupTemplate.content.cloneNode(true))
+
+            // Initialize fields with default values.
+            this.#prevArrowRef = this.shadowRoot.querySelector('.prev-scroll')
+            this.#nextArrowRef = this.shadowRoot.querySelector('.next-scroll')
+            this.#projectRef = this.querySelector('ds-project')
+            this.#allProjectsRef = this.querySelectorAll('ds-project')
+
         }
 
         /**
