@@ -23,5 +23,16 @@ customElements.define('ds-project-wrapper',
             this.shadowRoot.append(styleTemplate.content.cloneNode(true))
             this.shadowRoot.append(markupTemplate.content.cloneNode(true))
         }
+
+        /**
+         * Sets a unique key attribute for each child object of this custom element.
+         */
+        #setUniqueKeyOnChildren() {
+            let numberedKey = 1
+            for (const child of this.shadowRoot.children) {
+                child.setAttribute('data-key', `${numberedKey}`)
+                ++numberedKey
+            }
+        }
     }
     )
