@@ -92,5 +92,9 @@ template.innerHTML = `
         :host(:hover) .transparent-bg {
             opacity: 1;
         }
+        
+        .expand-to-modal {
+            cursor: pointer;
+        }
     </style>
 `
