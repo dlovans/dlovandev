@@ -36,7 +36,7 @@ customElements.define('ds-project-wrapper',
          */
         #setUniqueKeyOnChildren() {
             let numberedKey = 1
-            for (const child of this.shadowRoot.children) {
+            for (const child of this.children) {
                 child.setAttribute('data-key', `${numberedKey}`)
                 ++numberedKey
             }
