@@ -307,7 +307,7 @@ ds-trait::part(trait4) {
   grid-area: portfolio;
   background-color: var(--primary-color);
   border-radius: 15px;
-  padding: 0 20px;
+  padding: 0 60px;
 }
 
 #cta {
