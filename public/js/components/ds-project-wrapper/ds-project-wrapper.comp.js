@@ -36,8 +36,8 @@ customElements.define('ds-project-wrapper',
          */
         #setUniqueKeyOnChildren() {
             let numberedKey = 1
-            for (const child of this.children) {
-                child.setAttribute('data-key', `${numberedKey}`)
+            for (const regularDOMChild of this.children) {
+                regularDOMChild.setAttribute('data-key', `${numberedKey}`)
                 ++numberedKey
             }
         }
