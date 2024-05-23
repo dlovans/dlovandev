@@ -81,6 +81,9 @@ customElements.define('ds-project',
             this.#liveURLAnchorRef = this.shadowRoot.querySelector('a:nth-of-type(1)')
             this.#repoURLAnchorRef = this.shadowRoot.querySelector('a:nth-of-type(2)')
             this.#expandToModalBoxRef = this.shadowRoot.querySelector('.expand-to-modal')
+
+            // Register event handler.
+            this.#expandToModalBoxRef.addEventListener('click', () => this.#dispatchProjectInfo())
         }
 
         /**
