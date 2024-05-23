@@ -83,7 +83,7 @@ customElements.define('ds-project',
             this.#expandToModalBoxRef = this.shadowRoot.querySelector('.expand-to-modal')
 
             // Register event handler.
-            this.#expandToModalBoxRef.addEventListener('click', () => this.#dispatchProjectInfo())
+            this.#expandToModalBoxRef.addEventListener('click', () => this.#dispatchProjectInfoEvent())
         }
 
         /**
@@ -176,9 +176,9 @@ customElements.define('ds-project',
         /**
          * Dispatches custom event with details about the project.
          *
-         * @fires ds-project-info
+         * @event ds-project-info
          */
-        #dispatchProjectInfo() {
+        #dispatchProjectInfoEvent() {
             const eventObject = new CustomEvent('ds-project-info', {
                 detail: {
                     projectKey: this.getAttribute('data-key'),

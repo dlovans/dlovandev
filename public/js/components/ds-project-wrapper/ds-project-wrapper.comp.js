@@ -73,8 +73,11 @@ customElements.define('ds-project-wrapper',
         }
 
         /**
+         * Collects details about each ds-project child,
+         * then dispatches a custom event.
          *
-         * @param eventObj
+         * @event ds-expand-projects
+         * @param {object} eventObj - The event object fired by the clicked ds-project.
          */
         #dispatchAllProjectsEvent(eventObj) {
             const projectInfoCollection = []
