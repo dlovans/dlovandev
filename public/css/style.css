@@ -296,22 +296,48 @@ ds-trait::part(trait4) {
   ;
 }
 
-
-#portrait {
-  grid-area: portrait;
-  background-color: aqua;
-  border-radius: 15px;
-}
-
 #portfolio {
   grid-area: portfolio;
   background-color: var(--primary-color);
   border-radius: 15px;
-  padding: 0 60px;
+  padding: 10px 10px 0 10px;
+}
+
+
+ds-project-wrapper {
+}
+
+ds-project-wrapper::-webkit-scrollbar {
+  height: .8rem;
+}
+
+ds-project-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+ds-project-wrapper:hover::-webkit-scrollbar-track {
+  background: #B3E5FC;
+}
+
+ds-project-wrapper::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 10px;
+}
+
+ds-project-wrapper:hover::-webkit-scrollbar-thumb {
+  background: #0288D1;
+  border: 4px solid #4FC3F7;
 }
 
 #cta {
   grid-area: cta;
   background-color: bisque;
+  border-radius: 15px;
+}
+
+#portrait {
+  grid-area: portrait;
+  background-color: aqua;
   border-radius: 15px;
 }
