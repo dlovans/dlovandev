@@ -158,5 +158,7 @@ customElements.define('ds-project',
         #setRepoURL() {
             this.#repoURLAnchorRef.href = this.#repoURL
         }
+
+        #dispatch
     }
 )
