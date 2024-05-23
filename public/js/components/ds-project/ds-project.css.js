@@ -18,7 +18,7 @@ template.innerHTML = `
             border-radius: 15px;
             background-color: #242f36;
             position: relative;
-            height: 80%;
+            height: 90%;
             width: 350px;
             background-repeat: no-repeat;
             background-position: center;
