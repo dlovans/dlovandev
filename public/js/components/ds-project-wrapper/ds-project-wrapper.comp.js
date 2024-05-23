@@ -67,5 +67,29 @@ customElements.define('ds-project-wrapper',
                 ++numberedKey
             }
         }
+
+        /**
+         *
+         * @param eventObj
+         */
+        #dispatchAllProjectsEvent(eventObj) {
+            const projectInfoCollection = []
+
+            // Get project info through ds-project getter method.
+            for (const projectChild of Array.from(this.#allProjectsRef)) {
+                const projectInfo = projectChild.projectInfo
+                if (eventObj.detail.clicked && eventObj.detail.projectKey === projectInfo.projectKey) {
+                    projectInfo.clicked = true
+                } else {
+                    projectInfo.clicked = false
+                }
+                projectInfoCollection.push(projectInfo)
+            }
+            this.dispatchEvent(new CustomEvent('ds-expand-projects', {
+                detail: projectInfoCollection,
+                bubbles: true,
+                composed: true
+            }))
+        }
     }
     )
