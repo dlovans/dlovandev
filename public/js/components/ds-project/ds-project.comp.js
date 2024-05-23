@@ -162,6 +162,17 @@ customElements.define('ds-project',
             this.#repoURLAnchorRef.href = this.#repoURL
         }
 
+       get projectInfo() {
+            return {
+                projectTitle: this.#projectTitle,
+                liveURL: this.#liveURL,
+                repoURL: this.#repoURL,
+                projectDescription: this.#projectDescription,
+                projectScreenshot: this.#projectScreenshot,
+                projectKey: this.getAttribute('data-key'),
+            }
+       }
+
         /**
          * Dispatches custom event with details about the project.
          *
@@ -170,12 +181,8 @@ customElements.define('ds-project',
         #dispatchProjectInfo() {
             const eventObject = new CustomEvent('ds-project-info', {
                 detail: {
-                    projectTitle: this.#projectTitle,
-                    liveURL: this.#liveURL,
-                    repoURL: this.#repoURL,
-                    projectDescription: this.#projectDescription,
-                    projectScreenshot: this.#projectScreenshot,
-                    projectKey: this.getAttribute('data-key')
+                    projectKey: this.getAttribute('data-key'),
+                    clicked: true,
                 },
                 bubbles: true,
                 composed: true
