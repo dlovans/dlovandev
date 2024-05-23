@@ -54,6 +54,7 @@ customElements.define('ds-project-wrapper',
          * Invoked after this custom element has been inserted into the DOM.
          */
         connectedCallback() {
+            this.#removeNonProjectElements()
             this.#setUniqueKeyOnChildren()
         }
 
@@ -90,6 +91,17 @@ customElements.define('ds-project-wrapper',
                 bubbles: true,
                 composed: true
             }))
+        }
+
+        /**
+         * Removes light DOM children that are not of type ds-project.
+         */
+        #removeNonProjectElements() {
+            for (const child of Array.from(this.children)) {
+                if (child.tagName !== 'DS-PROJECT') {
+                    child.remove()
+                }
+            }
         }
     }
     )
