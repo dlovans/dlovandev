@@ -38,6 +38,9 @@ customElements.define('ds-app',
             this.addEventListener('ds-expand-techs', (event) => {
                 console.log(event.detail)
             })
+            this.addEventListener('ds-expand-projects', (event) => {
+                console.log(event.detail)
+            })
         }
 
         /**
