@@ -48,6 +48,9 @@ customElements.define('ds-project-wrapper',
             this.#nextArrowRef = this.shadowRoot.querySelector('.next-scroll')
             this.#projectRef = this.querySelector('ds-project')
             this.#allProjectsRef = this.querySelectorAll('ds-project')
+
+            // Register event handler.
+            this.addEventListener('ds-project-info', (event) => this.#dispatchAllProjectsEvent(event))
         }
 
         /**
