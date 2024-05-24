@@ -73,18 +73,18 @@ export class MailController {
 
       // Create a nodemailer transport object using SMTP.
       const transporter = nodemailer.createTransport({
-        host: process.env.HOST,
-        port: process.env.SMTP_HOST,
+        host: process.env.SMTP_HOST,
+        port: process.env.SMTP_PORT,
         secure: false,
         auth: {
-          user: process.env.USER,
-          pass: process.env.PASS
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASS
         }
       })
 
       const mailOptions = {
         from: email.trim(),
-        to: process.env.USER,
+        to: process.env.SMTP_USER,
         replyTo: email.trim(),
         subject: `${flname.trim()} requests audience`,
         html: req.sanitizedMarkup,
