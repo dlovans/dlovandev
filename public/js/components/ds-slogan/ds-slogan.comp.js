@@ -109,6 +109,9 @@ customElements.define('ds-slogan',
       this.#headingRef.prepend(document.createTextNode(this.#sloganText))
     }
 
+    /**
+     * Updates the text content of the referenced button.
+     */
     #updateButton() {
       this.#buttonRef.textContent = this.#buttonText
     }

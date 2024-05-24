@@ -5,12 +5,16 @@
 ## Attributes
 
 ### `ds-traits`
-The `ds-traits` attribute represents the qualities of the owner. String attribute. Optional. Default to "Entrepreneurish&#13;Autonomous&#13;Creativity&#13;Resiliant". Use `&#13` as a delimiter.
+The `ds-traits` attribute represents the qualities of the owner.
+- **Attribute Type:** `string`
+- **Optional:** `true`
+- **Defaults to:** `Entrepreneurish&#13;Autonomous&#13;Creativity&#13;Resiliant`
+- **Note:** Use `&#13;` as delimiter/newline <strong>between</strong> each word.
 
 
 ## Example
 
-`Note: "Use & # 1 3;" without spacing as delimiter between each word.`
+`Note: "&#13;" is not visible in Markdown Preview.`
 ```html
 <ds-trait
     ds-traits="Entrepreneurish&#13;Autonomous&#13;Creativity&#13;Resiliant">
@@ -19,21 +23,20 @@ The `ds-traits` attribute represents the qualities of the owner. String attribut
 
 ## Usage
 
-1. To use this web component, import the module, then use JavaScript DOM methods:
+#### 1. To use this web component, import the module, then use JavaScript DOM methods:
 
 ```javascript
 import './ds-trait.comp.js'
 ```
 
-2. Or load the module and use the component declaratively in HTML:
+#### 2. Or load the module and use the component declaratively in HTML:
 
 ```html
 <script type="module" src="../components/ds-trait/ds-trait.comp.js"></script>
 ```
 
-Continue in HTML:
+###### Continue in HTML:
 
-`Note: "Use & # 1 3;" without spacing as delimiter between each word.`
 ```html
 <ds-trait
         ds-traits="Entrepreneurish&#13;Autonomous&#13;Creativity&#13;Resiliant">

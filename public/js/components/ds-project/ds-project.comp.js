@@ -132,6 +132,10 @@ customElements.define('ds-project',
                 this.#projectScreenshot = newValue
                 this.#setBackgroundImage()
             }
+
+            if (name === 'ds-project-description' && oldValue !== newValue) {
+                this.#projectDescription = newValue
+            }
         }
 
         /**
@@ -162,7 +166,12 @@ customElements.define('ds-project',
             this.#repoURLAnchorRef.href = this.#repoURL
         }
 
-       get projectInfo() {
+        /**
+         * Getter method that returns details about this web component (check attributes).
+         *
+         * @returns {object} - An object of details of an instance of this class.
+         */
+        get projectInfo() {
             return {
                 projectTitle: this.#projectTitle,
                 liveURL: this.#liveURL,
@@ -181,8 +190,7 @@ customElements.define('ds-project',
         #dispatchProjectInfoEvent() {
             const eventObject = new CustomEvent('ds-project-info', {
                 detail: {
-                    projectKey: this.getAttribute('data-key'),
-                    clicked: true,
+                    projectKey: this.getAttribute('data-key')
                 },
                 bubbles: true,
                 composed: true

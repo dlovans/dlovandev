@@ -5,21 +5,26 @@
 ## Attributes
 
 ### `ds-heading`
-The `ds-heading` attribute represents the title of the ds-persona component, a heading. String attribute. Defaults to "Resume".
+The `ds-heading` attribute represents the title of the ds-persona component, a heading. Options:
+- **Attribute Type:** `string`
+- **Optional:** `true`
+- **Defaults to:** `Resume`
 
 ### `ds-paragraphs`
-The `about-paragraphs` attribute represents the main text of the ds-persona component. Use `&#10;` as delimiter to separate into paragraph elements. String attribute.
+The `about-paragraphs` attribute represents the main text of the ds-persona component. Use `&#10;` as delimiter to separate into paragraph elements. Options:
+- **Attribute Type:** `string`
+- **Optional:** `true`
+- **Defaults to:** `Was it difficult to choose between web and mobile app development?`
 
 ### `ds-document`
-The `ds-document` attribute represents the relative path to a downloadable document. String attribute. Defaults to "../../documents/resume.docx".
+The `ds-document` attribute represents the relative path to a downloadable document. Options:
+- **Attribute Type:** `string`
+- **Optional:** `true`
+- **Defaults to:** `../../documents/resume.docx`
 
 ## Example
 
 ```html
-<ds-persona></ds-persona>
-
-OR
-
 <ds-persona
         ds-heading="Dev"
         ds-paragraphs="Hello world.&#10;Hello universe!"
@@ -29,19 +34,19 @@ OR
 
 ## Usage
 
-1. To use this web component, import the module, then use JavaScript DOM methods:
+#### 1. To use this web component, import the module, then use JavaScript DOM methods:
 
 ```javascript
 import './ds-persona.comp.js'
 ```
 
-2. Or load the module and use the component declaratively in HTML:
+#### 2. Or load the module and use the component declaratively in HTML:
 
 ```html
 <script type="module" src="../components/ds-persona/ds-persona.comp.js"></script>
 ```
 
-Continue in HTML:
+###### Continue in HTML:
 
 ```html
 <ds-persona></ds-persona>

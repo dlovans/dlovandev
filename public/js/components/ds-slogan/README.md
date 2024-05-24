@@ -5,10 +5,18 @@
 ## Attributes
 
 ### `ds-slogan`
-The `ds-slogan` attribute represents text to be displayed. String attribute. Optional. Defaults to "Transforming Ideas into Action - Let\'s Make a Change Together!".
+The `ds-slogan` attribute represents text to be displayed. Options:
+
+- **Attribute Type:** `string`
+- **Optional:** `true`
+- **Defaults to:** `Transforming Ideas into Action - Let's Make a Change Together!`
 
 ### `ds-button-text`
-The `ds-button-text` attribute represents the button text. String attribute. Optional. Defaults to "Contact Me!".
+The `ds-button-text` attribute represents the button text. Options:
+
+- **Attribute Type:** `string`
+- **Optional:** `true`
+- **Defaults to:** `Contact Me!`
 
 ## Example
 
@@ -22,23 +30,33 @@ The `ds-button-text` attribute represents the button text. String attribute. Opt
 
 ## Usage
 
-1. To use this web component, import the module, then use JavaScript DOM methods:
+#### 1. To use this web component, import the module, then use JavaScript DOM methods:
 
 ```javascript
 import './ds-slogan.comp.js'
 ```
 
-2. Or load the module and use the component declaratively in HTML:
+#### 2. Or load the module and use the component declaratively in HTML:
 
 ```html
 <script type="module" src="../components/ds-slogan/ds-slogan.comp.js"></script>
 ```
 
-Continue in HTML:
+###### Continue in HTML:
 
 ```html
 <ds-slogan></ds-slogan>
 ```
 
+## Custom Events
+### `ds-trigger-focus`
+The `ds-trigger-focus` custom event is dispatched when this custom element's button is clicked.
+- **Target:** `ds-app` web component.
+- **Communicates with:** `ds-contact` web component.
+- **Description:** Sets focus on one of the input fields of `ds-contact` web component..
+- **Bubbles:** true.
+- **Composed:** true
+- **Event Detail Object:** This event's detail object is empty.
+
 ## Styling
-The component uses the shadow DOM, so it can be styled using CSS variables. Shadow DOM children can be styled with `part` attribute.
+The component uses the shadow DOM, so it can be styled using CSS variables. Shadow DOM children can be styled with `part` attribute in global CSS files.
