@@ -71,7 +71,7 @@ The `ds-project-info` custom event is dispatched when the `More` button is click
 
 - **Target:** `ds-project-wrapper` web component.
 - **Communicates with:** `ds-project-wrapper` web component.
-- **Description:** This event is dispatched by `ds-project` web component in response to a click event on the `More` button of the shadow DOM. The target is `ds-project-wrapper` web component, a parent custom element. This event triggers the dispatch of `ds-expand-projects` event in the parent that has details about all child `ds-project`.
+- **Description:** This event is dispatched by `ds-project` web component in response to a click event on the `More` button of the shadow DOM. The target is `ds-project-wrapper` web component, a parent custom element. This event triggers the dispatch of `ds-expand-projects` event in the parent that has details about all child `ds-project`. The property in event detail object is used to determine which project is focused in `ds-modal`.
 - **Bubbles:** true.
 - **Composed:** true.
 - **Event Detail Object:** The event's detail object contains the following properties:
