@@ -36,7 +36,7 @@ import './ds-text.comp.js'
 ###### Import ds-svg-wrap web component to be able to add an SVG icon:
 
 ```javascript
-import './ds-svg-wrap.comp.js
+import './ds-svg-wrap.comp.js'
 ```
 
 #### 2. Or load the module and use the component declaratively in HTML:
