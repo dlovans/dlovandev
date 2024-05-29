@@ -1,6 +1,6 @@
  # &lt;ds-text&gt;
 
-`ds-text` is a web component that displays an SVG icon and some plain text.
+`ds-text` is a web component that displays text and SVGs.
 
 ## Attributes
 
