@@ -62,7 +62,12 @@ customElements.define('ds-portrait',
             }
         }
 
-
+        /**
+         * Sets the portrait image on the host.
+         */
+        #setPortrait() {
+            this.style.background = `url(${this.#imageSource})`
+        }
 
     }
 
