@@ -29,6 +29,9 @@ customElements.define('ds-portrait',
             // and append templates to its shadow root.
             this.attachShadow({ mode: 'open' })
             this.shadowRoot.append(styleTemplate.content.cloneNode(true))
+
+            // Assign default values.
+            this.#imageSource = '../../../img/portrait/llama.jpg'
         }
 
         /**
