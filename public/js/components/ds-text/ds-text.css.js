@@ -13,6 +13,7 @@ template.innerHTML = `
     :host {
       display: flex;
       align-items: center;
+      border-radius: 15px;
     }
 
     h2 {

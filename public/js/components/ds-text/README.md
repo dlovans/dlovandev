@@ -5,10 +5,17 @@
 ## Attributes
 
 ### `ds-text`
-The `ds-text` represents the professional titles of the user.
+The `ds-text` represents the title of the declared component.
 - **Attribute Type:** `string`
 - **Optional:** `true`
-- **Defaults to:** `Native iOS & Android Developer | Fullstack Web Developer`
+- **Defaults to:** `Fullstack Web Developer | Hobbyist iOS & Android Developer`
+
+### `ds-flex-is-column`
+The `ds-flex-is-column` represents the flex control of the component. If set, the host flex-direction is `reverse-column`.
+- **Attribute Type:** `boolean`
+- **Optional:** `true`
+- **Defaults to:** `false`
+
 
 
 ## Example
@@ -49,7 +56,7 @@ import './ds-svg-wrap.comp.js'
 
 ```html
 <ds-text
-  ds-text="Native iOS & Android Developer | Fullstack Web Developer"
+  ds-text="Fullstack Web Developer | Hobbyist iOS & Android Developer"
 >
   <ds-svg-wrap
     svg-source="./img/machinecode.svg" 
@@ -66,7 +73,7 @@ import './ds-svg-wrap.comp.js'
 
 ```html
 <ds-text
-  ds-text="Native iOS & Android Developer | Fullstack Web Developer"
+  ds-text="Fullstack Web Developer | Hobbyist iOS & Android Developer"
 >
 <ds-text>
 ```
