@@ -354,6 +354,6 @@ ds-project-wrapper:hover::-webkit-scrollbar-thumb {
 
 #portrait {
   grid-area: portrait;
-  background-color: aqua;
+  background-color: var(--primary-color);
   border-radius: 15px;
 }
