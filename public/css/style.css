@@ -337,9 +337,54 @@ ds-project-wrapper:hover::-webkit-scrollbar-thumb {
 }
 
 #persona::part(ds-text-title) {
-  margin-bottom: 10px;
-  font-size: 1.5rem;
-  align-self: flex-start;
+  display: none;
+}
+
+#persona .about-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+}
+
+.why-wrapper {
+  background: linear-gradient(200deg, rgba(201, 123, 213, 0.7), rgba(186, 104, 200, 0.7), rgba(103, 58, 183, 0.7));
+}
+
+.who-wrapper {
+  background: linear-gradient(200deg, rgba(239, 162, 73, 0.5), rgba(171, 113, 46, 0.5), rgba(61, 40, 16, 0.5));
+}
+
+.how-wrapper {
+  background: linear-gradient(200deg, rgba(224, 54, 54, 0.5), rgba(154, 37, 37, 0.5), rgba(61, 14, 14, 0.5));
+}
+
+.inner-wrapper {
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  height: 100%;
+}
+
+.inner-wrapper ds-svg-wrap {
+  margin: 5px 0;
+}
+
+.inner-wrapper h3 {
+  width: 100%;
+  font-size: 1.2rem;
+  background-color: var(--primary-color);
+  text-align: center;
+  padding: 5px 0;
+}
+
+.inner-wrapper p {
+  font-size: 0.9rem;
+  width: 90%;
+  text-align: center;
+  margin-top: 5px;
 }
 
 #persona .about-container p {
