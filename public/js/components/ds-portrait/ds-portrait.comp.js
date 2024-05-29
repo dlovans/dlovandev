@@ -57,9 +57,12 @@ customElements.define('ds-portrait',
          */
         attributeChangedCallback(name, oldValue, newValue) {
             if (name === 'ds-portrait-source' && oldValue !== newValue) {
+                this.#imageSource = newValue
                 this.#setPortrait()
             }
         }
+
+
 
     }
 
