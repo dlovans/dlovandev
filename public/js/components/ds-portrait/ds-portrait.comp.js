@@ -4,7 +4,6 @@
  */
 
 import { template as styleTemplate } from './ds-portrait.css.js'
-import {template as markupTemplate} from "../ds-app/ds-app.html.js";
 
 /**
  * Define custom element ds-portrait.
@@ -29,7 +28,7 @@ customElements.define('ds-portrait',
             // Attach shadow DOM to this custom element,
             // and append templates to its shadow root.
             this.attachShadow({ mode: 'open' })
-            this.shadowRoot.append(markupTemplate.content.cloneNode(true))
+            this.shadowRoot.append(styleTemplate.content.cloneNode(true))
         }
 
         /**
@@ -66,7 +65,7 @@ customElements.define('ds-portrait',
          * Sets the portrait image on the host.
          */
         #setPortrait() {
-            this.style.background = `url(${this.#imageSource})`
+            this.style.backgroundImage = `url(${this.#imageSource})`
         }
 
     }
