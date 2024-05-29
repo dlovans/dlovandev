@@ -73,4 +73,4 @@ import './ds-svg-wrap.comp.js'
 
 
 ## Styling
-The component uses the shadow DOM, so it can be styled using CSS variables.Shadow DOM children have part attributes to allow for responsive styling in global CSS files. The component has a `<slot>` object to allow for insertion of regular DOM objects (`ds-svg-wrap`) in the custom element.
+The component uses the shadow DOM, so it can be styled using CSS variables.Shadow DOM children have part attributes to allow for responsive styling in global CSS files. The component has a `<slot>` object to allow for insertion of light DOM objects.
