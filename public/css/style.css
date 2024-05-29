@@ -331,6 +331,21 @@ ds-project-wrapper:hover::-webkit-scrollbar-thumb {
   border: 4px solid #4FC3F7;
 }
 
+#persona {
+  grid-area: persona;
+  padding: 10px;
+}
+
+#persona::part(ds-text-title) {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  align-self: flex-start;
+}
+
+#persona .about-container p {
+  margin-bottom: 10px;
+}
+
 #cta {
   grid-area: cta;
   background-color: bisque;
