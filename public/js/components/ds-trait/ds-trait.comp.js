@@ -29,7 +29,7 @@ customElements.define('ds-trait',
       this.shadowRoot.append(styleTemplate.content.cloneNode(true))
 
       // Assign default values.
-      this.#traits = 'Entrepreneurish&#13;Autonomous&#13;Creativity&#13;Resiliant'
+      this.#traits = 'Entrepreneurish&#13;Autonomous&#13;Creative&#13;Resiliant'
     }
 
     /**
