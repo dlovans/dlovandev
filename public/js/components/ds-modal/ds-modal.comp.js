@@ -4,6 +4,7 @@
  */
 
 import { template as markupTemplate } from './ds-modal.html.js'
+import { template as styleTemplate } from './ds-modal.css.js'
 
 // Define custom element.
 customElements.define('ds-modal',
@@ -32,6 +33,7 @@ customElements.define('ds-modal',
             // and append templates to its shadow root.
             this.attachShadow({ mode: 'open' })
             this.shadowRoot.append(markupTemplate.content.cloneNode(true))
+            this.shadowRoot.append(styleTemplate.content.cloneNode(true))
 
             // Get references to shadow DOM children.
             this.#mainHeadingRef = this.shadowRoot.querySelector('.modal-title')
