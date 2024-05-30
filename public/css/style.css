@@ -391,12 +391,6 @@ ds-project-wrapper:hover::-webkit-scrollbar-thumb {
   margin-bottom: 10px;
 }
 
-#cta {
-  grid-area: cta;
-  background-color: bisque;
-  border-radius: 15px;
-}
-
 #portrait {
   grid-area: portrait;
   background-color: var(--primary-color);
