@@ -60,15 +60,17 @@ customElements.define('ds-app',
         }
 
         /**
-         * Relays the event data dispatched by ds-project-wrapper component.
+         * Relays the event data dispatched by ds-project-wrapper
+         * or ds-wrapper components.
          *
          * @event ds-modal-projects - Dispatches custom event.
          * @param {object} eventObj - The event object.
+         * @param {'ds-modal-projects' | 'ds-modal-techs'} eventName - Event name.
          */
-        #relayExpandProjectsEvent(eventObj) {
-            this.#modalComponentRef.dispatchEvent(new CustomEvent('ds-modal-projects', {
+        #relayExpandProjectsEvent(eventObj, eventName) {
+            this.#modalComponentRef.dispatchEvent(new CustomEvent(eventName, {
                 detail: {
-                    projectInfoCollection: eventObj.detail
+                    data: eventObj.detail
                 },
                 bubbles: true,
                 composed: true
