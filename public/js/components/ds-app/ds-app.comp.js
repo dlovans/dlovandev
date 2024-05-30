@@ -42,10 +42,10 @@ customElements.define('ds-app',
                 this.#triggerContactFocus()
             })
             this.addEventListener('ds-expand-techs', (event) => {
-                console.log(event.detail)
+                this.#relayExpandProjectsEvent(event, 'ds-modal-techs')
             })
             this.addEventListener('ds-expand-projects', (event) => {
-                this.#relayExpandProjectsEvent(event)
+                this.#relayExpandProjectsEvent(event, 'ds-modal-projects')
             })
         }
 
