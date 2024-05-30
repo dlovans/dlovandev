@@ -39,7 +39,7 @@ customElements.define('ds-app',
                 console.log(event.detail)
             })
             this.addEventListener('ds-expand-projects', (event) => {
-                console.log(event.detail)
+                this.#relayExpandProjectsEvent(event)
             })
         }
 
@@ -51,6 +51,21 @@ customElements.define('ds-app',
             if (this.#contactComponentRef) {
                 this.#contactComponentRef.setAttribute('ds-set-focus', '')
             }
+        }
+
+        /**
+         * Relays the event data dispatched by ds-project-wrapper component.
+         *
+         * @param {object} eventObj - The event object.
+         */
+        #relayExpandProjectsEvent(eventObj) {
+            this.dispatchEvent(new CustomEvent('ds-modal-projects', {
+                detail: {
+                    projectInfoCollection: eventObj.detail.projectInfoCollection
+                },
+                bubbles: true,
+                composed: true
+            }))
         }
     }
 )
