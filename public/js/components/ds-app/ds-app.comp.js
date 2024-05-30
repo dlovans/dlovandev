@@ -42,10 +42,10 @@ customElements.define('ds-app',
                 this.#triggerContactFocus()
             })
             this.addEventListener('ds-expand-techs', (event) => {
-                this.#relayExpandProjectsEvent(event, 'ds-modal-techs')
+                this.#relayExpandEvent(event, 'ds-modal-techs')
             })
             this.addEventListener('ds-expand-projects', (event) => {
-                this.#relayExpandProjectsEvent(event, 'ds-modal-projects')
+                this.#relayExpandEvent(event, 'ds-modal-projects')
             })
         }
 
@@ -67,7 +67,7 @@ customElements.define('ds-app',
          * @param {object} eventObj - The event object.
          * @param {'ds-modal-projects' | 'ds-modal-techs'} eventName - Event name.
          */
-        #relayExpandProjectsEvent(eventObj, eventName) {
+        #relayExpandEvent(eventObj, eventName) {
             this.#modalComponentRef.dispatchEvent(new CustomEvent(eventName, {
                 detail: {
                     data: eventObj.detail
