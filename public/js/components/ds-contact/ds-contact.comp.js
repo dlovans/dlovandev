@@ -6,6 +6,8 @@
 import { template as markupTemplate } from './ds-contact.html.js'
 import { template as styleTemplate } from './ds-contact.css.js'
 
+// TODO: Fix networking issue.
+
 /**
  * Define custom element ds-contact.
  */
