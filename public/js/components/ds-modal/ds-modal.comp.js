@@ -16,10 +16,12 @@ customElements.define('ds-modal',
         constructor() {
             super()
 
+            // Attach shadow DOM to this custom element.
             this.attachShadow({ mode: 'open' })
 
-            // Register event handler.
+            // Register event handlers.
             this.addEventListener('ds-modal-projects', (event) => this.#renderProjects(event))
+            this.addEventListener('ds-modal-techs', (event) => this.renderTechs(event))
         }
 
         #renderProjects(eventObj) {
