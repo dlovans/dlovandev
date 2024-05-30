@@ -71,9 +71,7 @@ customElements.define('ds-app',
             this.#modalComponentRef.dispatchEvent(new CustomEvent(eventName, {
                 detail: {
                     data: eventObj.detail
-                },
-                bubbles: true,
-                composed: true
+                }
             }))
         }
     }
