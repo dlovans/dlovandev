@@ -3,6 +3,8 @@
  * @module ds-modal
  */
 
+import { template as markupTemplate } from './ds-modal.html.js'
+
 // Define custom element.
 customElements.define('ds-modal',
     /**
@@ -16,8 +18,10 @@ customElements.define('ds-modal',
         constructor() {
             super()
 
-            // Attach shadow DOM to this custom element.
+            // Attach shadow DOM to this custom element,
+            // and append templates to its shadow root.
             this.attachShadow({ mode: 'open' })
+            this.shadowRoot.append(markupTemplate.content.cloneNode(true))
 
             // Register event handlers.
             this.addEventListener('ds-modal-projects', (event) => this.#renderProjects(event))
