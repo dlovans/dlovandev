@@ -20,6 +20,11 @@ customElements.define('ds-app',
         #contactComponentRef
 
         /**
+         * Reference to ds-modal custom element.
+         */
+        #modalComponentRef
+
+        /**
          * Creates an instance of this class.
          */
         constructor() {
@@ -31,6 +36,7 @@ customElements.define('ds-app',
 
             // Get reference.
             this.#contactComponentRef = this.querySelector('ds-contact') || this.shadowRoot.querySelector('ds-contact')
+            this.#modalComponentRef = this.querySelector('ds-modal') || this.shadowRoot.querySelector('ds-modal')
             // Register event listener.
             this.addEventListener('ds-trigger-focus', () => {
                 this.#triggerContactFocus()
@@ -59,9 +65,9 @@ customElements.define('ds-app',
          * @param {object} eventObj - The event object.
          */
         #relayExpandProjectsEvent(eventObj) {
-            this.dispatchEvent(new CustomEvent('ds-modal-projects', {
+            this.#modalComponentRef.dispatchEvent(new CustomEvent('ds-modal-projects', {
                 detail: {
-                    projectInfoCollection: eventObj.detail.projectInfoCollection
+                    projectInfoCollection: eventObj.detail
                 },
                 bubbles: true,
                 composed: true
