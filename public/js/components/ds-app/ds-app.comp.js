@@ -62,6 +62,7 @@ customElements.define('ds-app',
         /**
          * Relays the event data dispatched by ds-project-wrapper component.
          *
+         * @event ds-modal-projects - Dispatches custom event.
          * @param {object} eventObj - The event object.
          */
         #relayExpandProjectsEvent(eventObj) {
