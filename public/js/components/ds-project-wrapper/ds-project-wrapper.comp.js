@@ -85,11 +85,7 @@ customElements.define('ds-project-wrapper',
             // Get project info through ds-project getter method.
             for (const projectChild of Array.from(this.#allProjectsRef)) {
                 const projectInfo = projectChild.projectInfo
-                if (eventObj.detail.projectKey === projectInfo.projectKey) {
-                    projectInfo.clicked = true
-                } else {
-                    projectInfo.clicked = false
-                }
+                projectInfo.clicked = eventObj.detail.projectKey === projectInfo.projectKey
                 projectInfoCollection.push(projectInfo)
             }
             this.dispatchEvent(new CustomEvent('ds-expand-projects', {
