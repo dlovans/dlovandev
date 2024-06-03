@@ -58,7 +58,6 @@ template.innerHTML = `
             background-color: transparent;
             padding: 0;
             border: none;
-            vertical-align: center;
             margin-right: 1.1rem;
             color: #FFF;
         }
@@ -127,7 +126,7 @@ template.innerHTML = `
             position: absolute;
             width: 100%;
             height: 100%;
-            background-color: rgba(84,12,152,0.3);
+            background-color: transparent;
             z-index: 9;
         }
     </style>
