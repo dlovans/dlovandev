@@ -29,7 +29,7 @@ customElements.define('ds-trait',
       this.shadowRoot.append(styleTemplate.content.cloneNode(true))
 
       // Assign default values.
-      this.#traits = 'Entrepreneurish&#13;Autonomous&#13;Creative&#13;Resiliant'
+      this.#traits = 'Entrepreneurish|||Autonomous|||Creative|||Resiliant'
     }
 
     /**
@@ -69,7 +69,7 @@ customElements.define('ds-trait',
      */
     #render(traits) {
       // Create an array of traits where HTML entity for newline serves as delimiter.
-      const arrayOfTraits = traits.split('&#13;')
+      const arrayOfTraits = traits.split('|||')
 
       // Empty this custom element.
       while(this.firstChild) {

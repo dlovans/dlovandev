@@ -8,16 +8,15 @@
 The `ds-traits` attribute represents the qualities of the owner.
 - **Attribute Type:** `string`
 - **Optional:** `true`
-- **Defaults to:** `Entrepreneurish&#13;Autonomous&#13;Creativity&#13;Resiliant`
-- **Note:** Use `&#13;` as delimiter/newline <strong>between</strong> each word.
+- **Defaults to:** `Entrepreneurish|||Autonomous|||Creativity|||Resiliant`
+- **Note:** Use `|||` as delimiter/newline <strong>between</strong> each word.
 
 
 ## Example
 
-`Note: "&#13;" is not visible in Markdown Preview.`
 ```html
 <ds-trait
-    ds-traits="Entrepreneurish&#13;Autonomous&#13;Creativity&#13;Resiliant">
+    ds-traits="Entrepreneurish|||Autonomous|||Creativity|||Resiliant">
 </ds-trait>
 ```
 
@@ -39,7 +38,7 @@ import './ds-trait.comp.js'
 
 ```html
 <ds-trait
-        ds-traits="Entrepreneurish&#13;Autonomous&#13;Creativity&#13;Resiliant">
+        ds-traits="Entrepreneurish|||Autonomous|||Creativity|||Resiliant">
 </ds-trait>
 ```
 
