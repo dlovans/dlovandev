@@ -56,9 +56,7 @@ customElements.define('ds-modal',
             // this.addEventListener('ds-modal-techs', (event) => this.renderTechs(event))
 
             this.shadowRoot.addEventListener('click', (event) => {
-                console.log(event.target)
                 if (event.target === this.#overlayRef || event.target === this.#closeModalBtn) {
-                    console.log('hello')
                     this.classList.remove('toggle-projects-modal')
                 }
             })
