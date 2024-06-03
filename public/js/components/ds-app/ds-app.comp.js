@@ -70,7 +70,8 @@ customElements.define('ds-app',
         #relayExpandEvent(eventObj, eventName) {
             this.#modalComponentRef.dispatchEvent(new CustomEvent(eventName, {
                 detail: {
-                    data: eventObj.detail
+                    data: eventObj.detail,
+                    modalType: eventName === 'ds-modal-projects' ? 'Projects' : 'Technologies'
                 }
             }))
         }
