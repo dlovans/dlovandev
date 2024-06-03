@@ -20,7 +20,7 @@ template.innerHTML = `
             display: flex;
             justify-content: center;
             align-items: center;
-            transform: translateY(200%);
+            transform: translateY(150%);
             transition: all .5s ease-in;
         }
         
@@ -66,7 +66,7 @@ template.innerHTML = `
             cursor: pointer;
         }
         
-        .projects-view-container {
+        .view-container {
             width: 100%;
             height: 100%;
             display: none;
@@ -108,7 +108,9 @@ template.innerHTML = `
         .modal-project-image {
             grid-area: screenshot;
             background-size: contain;
+            background-repeat: no-repeat;
             border-radius: 10px;
+            width: 100%;
         }
         
         .modal-project-description-wrapper {
