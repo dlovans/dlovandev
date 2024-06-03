@@ -19,9 +19,9 @@ customElements.define('ds-modal',
         #mainHeadingRef
 
         /**
-         * Reference to the main content view container.
+         * Reference to the projects content view container.
          */
-        #mainContentRef
+        #projectsContentRef
 
         /**
          * Initializes an instance of this class.
@@ -37,7 +37,7 @@ customElements.define('ds-modal',
 
             // Get references to shadow DOM children.
             this.#mainHeadingRef = this.shadowRoot.querySelector('.modal-title')
-            this.#mainContentRef = this.shadowRoot.querySelector('.project-view-container')
+            this.#projectsContentRef = this.shadowRoot.querySelector('.projects-view-container')
 
             // Register event handlers.
             this.addEventListener('ds-modal-projects', (event) => this.#renderProjects(event))
@@ -51,15 +51,15 @@ customElements.define('ds-modal',
          */
         #renderProjects(eventObj) {
             const dataCollection = Array.from(eventObj.detail.data)
-            console.log(dataCollection)
 
-            this.#mainContentRef.innerHTML = ''
+            this.#projectsContentRef.innerHTML = ''
             this.#mainHeadingRef.textContent = ''
 
 
             for (const projectItem of dataCollection) {
-                const wrapper = document.createElement('div')
-                wrapper.classList.add('modal-project-wrapper')
+                const projectContentWrapper = document.createElement('div')
+                projectContentWrapper.classList.add('project-content-wrapper')
+                projectContentWrapper.setAttribute('data-key', projectItem.projectKey)
 
                 const radioButton = document.createElement('input')
                 radioButton.setAttribute('type', 'radio')
@@ -76,12 +76,18 @@ customElements.define('ds-modal',
                 projectImage.style.backgroundImage = `url(${projectItem.projectScreenshot})`
                 projectImage.classList.add('modal-project-image')
 
+                const linksWrapper = document.createElement('div')
+                linksWrapper.classList.add('modal-links-wrapper')
                 const projectRepoURL = document.createElement('a')
                 const projectLiveURL = document.createElement('a')
                 projectRepoURL.href = projectItem.repoURL
                 projectLiveURL.href = projectItem.liveURL
+                projectRepoURL.textContent = 'Repository'
+                projectLiveURL.textContent = 'Live Link'
+                linksWrapper.append(projectLiveURL, projectRepoURL)
 
-                const projectDescriptionCollection = projectItem.projectDescription.split('&#13')
+                const projectDescriptionCollection = projectItem.projectDescription.split('|||')
+                console.log(projectDescriptionCollection)
                 const projectDescriptionWrapper = document.createElement('div')
                 projectDescriptionWrapper.classList.add('modal-project-description-wrapper')
                 for (const paragraph of projectDescriptionCollection) {
@@ -90,10 +96,13 @@ customElements.define('ds-modal',
                     projectDescriptionWrapper.append(paragraphObject)
                 }
 
-                wrapper.append(projectHeader, projectImage, projectRepoURL, projectLiveURL, projectDescriptionWrapper)
+                projectContentWrapper.append(projectHeader, projectImage, linksWrapper, projectDescriptionWrapper)
 
-                this.#mainContentRef.append(wrapper)
+                this.#projectsContentRef.append(projectContentWrapper)
                 this.#mainHeadingRef.textContent = 'Projects'
+
+                this.#projectsContentRef.classList.add('display-view-container')
+                this.classList.add('toggle-projects-modal')
             }
         }
     }
