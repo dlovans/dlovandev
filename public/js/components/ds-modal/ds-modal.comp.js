@@ -24,6 +24,16 @@ customElements.define('ds-modal',
         #projectsContentRef
 
         /**
+         * Reference to the overlay span.
+         */
+        #overlayRef
+
+        /**
+         * Reference to the close button.
+         */
+        #closeModalBtn
+
+        /**
          * Initializes an instance of this class.
          */
         constructor() {
@@ -38,10 +48,20 @@ customElements.define('ds-modal',
             // Get references to shadow DOM children.
             this.#mainHeadingRef = this.shadowRoot.querySelector('.modal-title')
             this.#projectsContentRef = this.shadowRoot.querySelector('.projects-view-container')
+            this.#overlayRef = this.shadowRoot.querySelector('.invisible-overlay')
+            this.#closeModalBtn = this.shadowRoot.querySelector('#close-btn')
 
             // Register event handlers.
             this.addEventListener('ds-modal-projects', (event) => this.#renderProjects(event))
             // this.addEventListener('ds-modal-techs', (event) => this.renderTechs(event))
+
+            this.shadowRoot.addEventListener('click', (event) => {
+                console.log(event.target)
+                if (event.target === this.#overlayRef || event.target === this.#closeModalBtn) {
+                    console.log('hello')
+                    this.classList.remove('toggle-projects-modal')
+                }
+            })
         }
 
         /**
