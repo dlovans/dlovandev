@@ -21,7 +21,7 @@ customElements.define('ds-modal',
         /**
          * Reference to the projects content view container.
          */
-        #projectsContentRef
+        #mainContentRef
 
         /**
          * Reference to the overlay span.
@@ -47,12 +47,12 @@ customElements.define('ds-modal',
 
             // Get references to shadow DOM children.
             this.#mainHeadingRef = this.shadowRoot.querySelector('.modal-title')
-            this.#projectsContentRef = this.shadowRoot.querySelector('.projects-view-container')
+            this.#mainContentRef = this.shadowRoot.querySelector('.view-container')
             this.#overlayRef = this.shadowRoot.querySelector('.invisible-overlay')
             this.#closeModalBtn = this.shadowRoot.querySelector('#close-btn')
 
             // Register event handlers.
-            this.addEventListener('ds-modal-projects', (event) => this.#renderProjects(event))
+            this.addEventListener('ds-modal-projects', (event) => this.#renderModal(event))
             // this.addEventListener('ds-modal-techs', (event) => this.renderTechs(event))
 
             this.shadowRoot.addEventListener('click', (event) => {
@@ -63,28 +63,43 @@ customElements.define('ds-modal',
         }
 
         /**
-         * Renders each project item in the event detail object.
+         * Renders the modal box.
          *
-         * @param {object} eventObj - The event object with project details.
+         * @param {object} eventObj - The event object with details.
          */
-        #renderProjects(eventObj) {
+        #renderModal(eventObj) {
             const dataCollection = Array.from(eventObj.detail.data)
+            this.#mainContentRef.innerHTML = ''
+            this.#mainHeadingRef.textContent = eventObj.detail.modalType
 
-            this.#projectsContentRef.innerHTML = ''
-            this.#mainHeadingRef.textContent = ''
+            if (eventObj.detail.modalType === 'Projects') {
+                this.#mainContentRef.append(this.#renderProjects(dataCollection))
+            } else {
+                // this.#mainContentRef.append(this.#renderTechs(dataCollection))
+            }
+        }
 
+        /**
+         * Renders each project.
+         * @param data - The data from the projects event object.
+         *
+         * @returns {DocumentFragment} - Rendered content in document fragment.
+         */
+        #renderProjects(data) {
+            const fragment = document.createDocumentFragment()
 
-            for (const projectItem of dataCollection) {
-                const projectContentWrapper = document.createElement('div')
-                projectContentWrapper.classList.add('project-content-wrapper')
-                projectContentWrapper.setAttribute('data-key', projectItem.projectKey)
-
+            for (const projectItem of data) {
                 const radioButton = document.createElement('input')
                 radioButton.setAttribute('type', 'radio')
                 radioButton.setAttribute('value', projectItem.projectKey)
                 if (projectItem.clicked) {
                     radioButton.setAttribute('checked', '')
                 }
+
+                const projectContentWrapper = document.createElement('div')
+                projectContentWrapper.classList.add('project-content-wrapper')
+                projectContentWrapper.setAttribute('data-key', projectItem.projectKey)
+
 
                 const projectHeader = document.createElement('h3')
                 projectHeader.textContent = projectItem.projectTitle
@@ -105,7 +120,6 @@ customElements.define('ds-modal',
                 linksWrapper.append(projectLiveURL, projectRepoURL)
 
                 const projectDescriptionCollection = projectItem.projectDescription.split('|||')
-                console.log(projectDescriptionCollection)
                 const projectDescriptionWrapper = document.createElement('div')
                 projectDescriptionWrapper.classList.add('modal-project-description-wrapper')
                 for (const paragraph of projectDescriptionCollection) {
@@ -116,12 +130,15 @@ customElements.define('ds-modal',
 
                 projectContentWrapper.append(projectHeader, projectImage, linksWrapper, projectDescriptionWrapper)
 
-                this.#projectsContentRef.append(projectContentWrapper)
-                this.#mainHeadingRef.textContent = 'Projects'
+                fragment.append(projectContentWrapper)
 
-                this.#projectsContentRef.classList.add('display-view-container')
+                this.#mainContentRef.classList.add('display-view-container')
                 this.classList.add('toggle-projects-modal')
+
             }
+            this.#mainContentRef.classList.add('display-view-container')
+            this.classList.add('toggle-projects-modal')
+            return fragment
         }
     }
     )
