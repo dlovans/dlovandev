@@ -69,10 +69,6 @@ template.innerHTML = `
         .view-container {
             width: 100%;
             height: 100%;
-            display: none;
-        }
-        
-        .display-view-container {
             display: flex;
             overflow: scroll;
         }

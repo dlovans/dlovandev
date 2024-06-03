@@ -131,12 +131,8 @@ customElements.define('ds-modal',
                 projectContentWrapper.append(projectHeader, projectImage, linksWrapper, projectDescriptionWrapper)
 
                 fragment.append(projectContentWrapper)
-
-                this.#mainContentRef.classList.add('display-view-container')
-                this.classList.add('toggle-projects-modal')
-
             }
-            this.#mainContentRef.classList.add('display-view-container')
+
             this.classList.add('toggle-projects-modal')
             return fragment
         }
