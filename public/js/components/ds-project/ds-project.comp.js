@@ -102,7 +102,7 @@ customElements.define('ds-project',
          * @returns {string[]} - The attributes to be observed.
          */
         static get observedAttributes() {
-            return ['ds-project-title', 'ds-live-url', 'ds-repo-url', 'ds-project-screenshot']
+            return ['ds-project-title', 'ds-live-url', 'ds-repo-url', 'ds-project-screenshot', 'ds-project-description']
         }
 
         /**
