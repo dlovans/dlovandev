@@ -138,11 +138,16 @@ customElements.define('ds-modal',
             return fragment
         }
 
-
+        /**
+         * Renders each technology.
+         *
+         * @param data - The data from the techs event object.
+         * @returns {Promise<DocumentFragment>} - Resolves to document
+         * fragment with rendered content.
+         */
         async #renderTechs(data) {
             const fragment = document.createDocumentFragment()
 
-            console.log(data)
             for (const tech of data) {
                 const techContentWrapper = document.createElement('div')
                 techContentWrapper.classList.add('tech-content-wrapper')
@@ -155,11 +160,22 @@ customElements.define('ds-modal',
                 }
                 const svgContent = await getSVGFile.text()
                 svgWrap.innerHTML = svgContent
-                symbolWrapper.append(svgWrap)
-                techContentWrapper.append(symbolWrapper)
+
+                const logoTitle = document.createElement('h3')
+                logoTitle.textContent = tech.name
+                symbolWrapper.append(logoTitle, svgWrap)
+
+                const textWrapper = document.createElement('div')
+                textWrapper.classList.add('symbol-text-wrapper')
+                const paragraphs = tech.description.split('|||')
+                for (const paragraph of paragraphs) {
+                    const pObject = document.createElement('p')
+                    pObject.textContent = paragraph
+                    textWrapper.append(pObject)
+                }
 
 
-
+                techContentWrapper.append(symbolWrapper, textWrapper)
                 fragment.append(techContentWrapper)
             }
             this.classList.add('toggle-modal')
