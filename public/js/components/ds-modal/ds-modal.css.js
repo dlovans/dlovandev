@@ -22,6 +22,7 @@ template.innerHTML = `
             align-items: center;
             transform: translateY(150%);
             transition: all .5s ease-in;
+            z-index: 10;
         }
         
         :host(.toggle-modal) {
