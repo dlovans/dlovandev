@@ -73,8 +73,12 @@ customElements.define('ds-modal',
             this.#mainHeadingRef.textContent = eventObj.detail.modalType
 
             if (eventObj.detail.modalType === 'Projects') {
+                this.classList.remove('tech-type')
+                this.classList.add('project-type')
                 this.#mainContentRef.append(this.#renderProjects(dataCollection))
             } else {
+                this.classList.remove('project-type')
+                this.classList.add('tech-type')
                 const techModal = await this.#renderTechs(dataCollection)
                     this.#mainContentRef.append(techModal)
             }
