@@ -24,7 +24,7 @@ template.innerHTML = `
             transition: all .5s ease-in;
         }
         
-        :host(.toggle-projects-modal) {
+        :host(.toggle-modal) {
             transform: translateY(0%);
         }
         
@@ -117,6 +117,12 @@ template.innerHTML = `
         
         .modal-project-description-wrapper p {
             margin-bottom: 1.2rem;
+        }
+        
+        
+        .tech-content-wrapper svg {
+            height: 50px;
+            width: 50px;
         }
         
         
