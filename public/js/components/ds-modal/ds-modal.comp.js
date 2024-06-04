@@ -53,11 +53,11 @@ customElements.define('ds-modal',
 
             // Register event handlers.
             this.addEventListener('ds-modal-projects', (event) => this.#renderModal(event))
-            // this.addEventListener('ds-modal-techs', (event) => this.renderTechs(event))
+            this.addEventListener('ds-modal-techs', (event) => this.#renderModal(event))
 
             this.shadowRoot.addEventListener('click', (event) => {
                 if (event.target === this.#overlayRef || event.target === this.#closeModalBtn) {
-                    this.classList.remove('toggle-projects-modal')
+                    this.classList.remove('toggle-modal')
                 }
             })
         }
@@ -67,7 +67,7 @@ customElements.define('ds-modal',
          *
          * @param {object} eventObj - The event object with details.
          */
-        #renderModal(eventObj) {
+        async #renderModal(eventObj) {
             const dataCollection = Array.from(eventObj.detail.data)
             this.#mainContentRef.innerHTML = ''
             this.#mainHeadingRef.textContent = eventObj.detail.modalType
@@ -75,7 +75,8 @@ customElements.define('ds-modal',
             if (eventObj.detail.modalType === 'Projects') {
                 this.#mainContentRef.append(this.#renderProjects(dataCollection))
             } else {
-                // this.#mainContentRef.append(this.#renderTechs(dataCollection))
+                const techModal = await this.#renderTechs(dataCollection)
+                    this.#mainContentRef.append(techModal)
             }
         }
 
@@ -133,7 +134,35 @@ customElements.define('ds-modal',
                 fragment.append(projectContentWrapper)
             }
 
-            this.classList.add('toggle-projects-modal')
+            this.classList.add('toggle-modal')
+            return fragment
+        }
+
+
+        async #renderTechs(data) {
+            const fragment = document.createDocumentFragment()
+
+            console.log(data)
+            for (const tech of data) {
+                const techContentWrapper = document.createElement('div')
+                techContentWrapper.classList.add('tech-content-wrapper')
+
+                const symbolWrapper = document.createElement('div')
+                const svgWrap = document.createElement('div')
+                const getSVGFile = await fetch(tech.svgRelativePath)
+                if(!getSVGFile) {
+                    throw new Error(`Check SVG file source for ${tech.svgRelativePath}`)
+                }
+                const svgContent = await getSVGFile.text()
+                svgWrap.innerHTML = svgContent
+                symbolWrapper.append(svgWrap)
+                techContentWrapper.append(symbolWrapper)
+
+
+
+                fragment.append(techContentWrapper)
+            }
+            this.classList.add('toggle-modal')
             return fragment
         }
     }
