@@ -135,9 +135,7 @@ customElements.define('ds-wrapper',
 
         // Include composed property to allow propagation out of shadow DOM.
         const expandEvent = new CustomEvent('ds-expand-techs', {
-          detail: {
-            information: detailCollection
-          },
+          detail: detailCollection,
           bubbles: true,
           composed: true
         })
