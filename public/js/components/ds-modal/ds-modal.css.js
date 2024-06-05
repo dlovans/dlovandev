@@ -48,6 +48,7 @@ template.innerHTML = `
             flex-direction: row;
             justify-content: space-between;
             border-bottom: 1px solid #FFF;
+            margin-bottom: 20px;
         }
         
         .modal-title {
@@ -71,10 +72,16 @@ template.innerHTML = `
             width: 100%;
             height: 100%;
             display: flex;
-            overflow: scroll;
         }
         
+        .tech-type {
+            overflow-x: hidden;
+            overflow-y: scroll;
+            flex-direction: column;
+            padding: 0 20px;
+        }
         
+        /* Styling for Project type modal. */
         .project-content-wrapper {
             display: grid;
             grid-template-areas:
@@ -95,7 +102,6 @@ template.innerHTML = `
         
         .modal-project-title {
             grid-area: title;
-            margin: 10px 0;
         }
         
         .modal-links-wrapper {
@@ -121,7 +127,35 @@ template.innerHTML = `
         }
         
         
-        .tech-content-wrapper svg {
+        /* Styling for tech type modal. */
+        .tech-content-wrapper {
+            padding: 20px;
+            border: 1px solid #FFF;
+            margin: 20px 0;
+            border-radius: 15px;
+            display: flex;
+        }
+        
+        .symbol-icon-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 25%;
+        }
+        
+        .symbol-icon-wrapper h3 {
+            text-align: center;
+        }
+        
+        .symbol-text-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 75%;
+        }
+        
+        .symbol-icon-wrapper svg {
             height: 50px;
             width: 50px;
         }
