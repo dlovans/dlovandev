@@ -157,8 +157,8 @@ customElements.define('ds-modal',
          */
         async #renderTechs(data) {
             const fragment = document.createDocumentFragment()
-
-            for (const tech of data) {
+            try {
+                for (const tech of data) {
                 const techContentWrapper = document.createElement('div')
                 techContentWrapper.classList.add('tech-content-wrapper')
 
@@ -188,8 +188,11 @@ customElements.define('ds-modal',
                 techContentWrapper.append(symbolWrapper, textWrapper)
                 fragment.append(techContentWrapper)
             }
-            this.classList.add('toggle-modal')
-            return fragment
+                this.classList.add('toggle-modal')
+                return fragment
+            } catch (error) {
+                console.error(error.message)
+            }
         }
     }
     )
