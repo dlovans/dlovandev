@@ -39,6 +39,11 @@ customElements.define('ds-project',
         #projectScreenshot
 
         /**
+         * Used tech stack for the project.
+         */
+        #projectTechStack
+
+        /**
          * Reference to h3 object.
          */
         #projectTitleRef
@@ -76,6 +81,7 @@ customElements.define('ds-project',
             this.#liveURL = 'https://aquity.onrender.com/'
             this.#repoURL = 'https://github.com/dlovans/quant'
             this.#projectScreenshot = './../../../img/projects/aquity-screenshot.png'
+            this.#projectTechStack = 'icons8-swift.svg|||kotlin-2.svg'
 
             this.#projectTitleRef = this.shadowRoot.querySelector('.project-title')
             this.#liveURLAnchorRef = this.shadowRoot.querySelector('a:nth-of-type(1)')
@@ -102,7 +108,7 @@ customElements.define('ds-project',
          * @returns {string[]} - The attributes to be observed.
          */
         static get observedAttributes() {
-            return ['ds-project-title', 'ds-live-url', 'ds-repo-url', 'ds-project-screenshot', 'ds-project-description']
+            return ['ds-project-title', 'ds-live-url', 'ds-repo-url', 'ds-project-screenshot', 'ds-project-description', 'ds-project-tech-stack']
         }
 
         /**
@@ -135,6 +141,10 @@ customElements.define('ds-project',
 
             if (name === 'ds-project-description' && oldValue !== newValue) {
                 this.#projectDescription = newValue
+            }
+
+            if (name === 'ds-project-tech-stack' && oldValue !== newValue) {
+                this.#projectTechStack = newValue
             }
         }
 
@@ -179,6 +189,7 @@ customElements.define('ds-project',
                 projectDescription: this.#projectDescription,
                 projectScreenshot: this.#projectScreenshot,
                 projectKey: this.getAttribute('data-key'),
+                projectTechStack: this.#projectTechStack
             }
        }
 
