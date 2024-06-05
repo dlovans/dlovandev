@@ -31,7 +31,12 @@ customElements.define('ds-modal',
         /**
          * Reference to the close button.
          */
-        #closeModalBtn
+        #closeModalBtnRef
+
+        /**
+         * Reference to the view container.
+         */
+        #viewContainerRef
 
         /**
          * Initializes an instance of this class.
@@ -49,14 +54,15 @@ customElements.define('ds-modal',
             this.#mainHeadingRef = this.shadowRoot.querySelector('.modal-title')
             this.#mainContentRef = this.shadowRoot.querySelector('.view-container')
             this.#overlayRef = this.shadowRoot.querySelector('.invisible-overlay')
-            this.#closeModalBtn = this.shadowRoot.querySelector('#close-btn')
+            this.#closeModalBtnRef = this.shadowRoot.querySelector('#close-btn')
+            this.#viewContainerRef = this.shadowRoot.querySelector('.view-container')
 
             // Register event handlers.
             this.addEventListener('ds-modal-projects', (event) => this.#renderModal(event))
             this.addEventListener('ds-modal-techs', (event) => this.#renderModal(event))
 
             this.shadowRoot.addEventListener('click', (event) => {
-                if (event.target === this.#overlayRef || event.target === this.#closeModalBtn) {
+                if (event.target === this.#overlayRef || event.target === this.#closeModalBtnRef) {
                     this.classList.remove('toggle-modal')
                 }
             })
@@ -73,8 +79,12 @@ customElements.define('ds-modal',
             this.#mainHeadingRef.textContent = eventObj.detail.modalType
 
             if (eventObj.detail.modalType === 'Projects') {
+                this.#viewContainerRef.classList.remove('tech-type')
+                this.#viewContainerRef.classList.add('project-type')
                 this.#mainContentRef.append(this.#renderProjects(dataCollection))
             } else {
+                this.#viewContainerRef.classList.remove('project-type')
+                this.#viewContainerRef.classList.add('tech-type')
                 const techModal = await this.#renderTechs(dataCollection)
                     this.#mainContentRef.append(techModal)
             }
@@ -153,6 +163,7 @@ customElements.define('ds-modal',
                 techContentWrapper.classList.add('tech-content-wrapper')
 
                 const symbolWrapper = document.createElement('div')
+                symbolWrapper.classList.add('symbol-icon-wrapper')
                 const svgWrap = document.createElement('div')
                 const getSVGFile = await fetch(tech.svgRelativePath)
                 if(!getSVGFile) {
@@ -160,10 +171,9 @@ customElements.define('ds-modal',
                 }
                 const svgContent = await getSVGFile.text()
                 svgWrap.innerHTML = svgContent
-
                 const logoTitle = document.createElement('h3')
                 logoTitle.textContent = tech.name
-                symbolWrapper.append(logoTitle, svgWrap)
+                symbolWrapper.append(svgWrap, logoTitle)
 
                 const textWrapper = document.createElement('div')
                 textWrapper.classList.add('symbol-text-wrapper')
