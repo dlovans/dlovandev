@@ -32,7 +32,7 @@ The `ds-project-description` attribute represents the information regarding the 
 - **Attribute Type:** `string`
 - **Optional:** `true`
 - **Defaults to:** `Undefined not null.`
-- **Note:** Use `&#13` as delimiter/newline.
+- **Note:** Use `|||` as delimiter/newline.
 
 ## Example
 
