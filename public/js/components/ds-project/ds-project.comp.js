@@ -81,7 +81,7 @@ customElements.define('ds-project',
             this.#liveURL = 'https://aquity.onrender.com/'
             this.#repoURL = 'https://github.com/dlovans/quant'
             this.#projectScreenshot = './../../../img/projects/aquity-screenshot.png'
-            this.#projectTechStack = 'icons8-swift.svg|||kotlin-2.svg'
+            this.#projectTechStack = 'Swift_logo_color.svg|||kotlin-2.svg'
 
             this.#projectTitleRef = this.shadowRoot.querySelector('.project-title')
             this.#liveURLAnchorRef = this.shadowRoot.querySelector('a:nth-of-type(1)')
