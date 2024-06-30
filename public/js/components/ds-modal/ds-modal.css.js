@@ -72,6 +72,7 @@ template.innerHTML = `
             width: 100%;
             height: 100%;
             display: flex;
+            overflow: scroll;
         }
         
         .tech-type {
@@ -84,6 +85,7 @@ template.innerHTML = `
         /* Styling for Project type modal. */
         .project-content-wrapper {
             display: grid;
+            box-sizing: border-box;
             grid-template-areas:
             "title title title"
             "desc desc screenshot"
@@ -93,11 +95,11 @@ template.innerHTML = `
             "desc desc techs"
             ;
             grid-template-rows: min-content;
-            grid-template-columns: 0.9fr 0.9fr 1.3fr;
+            grid-template-columns: 1fr 1fr 1.2fr;
+            column-gap: 10px;
             width: 100%;
             flex-shrink: 0;
-            column-gap: 20px;
-            padding: 1.5rem;
+            padding: 20px;
         }
         
         .modal-project-title {
@@ -106,11 +108,26 @@ template.innerHTML = `
         
         .modal-links-wrapper {
             grid-area: links;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-links-wrapper a {
+            display: flex;
+            text-decoration: none;
+            background-color: #FFF;
+            justify-content: center;
+            padding: 10px 30px;
+            width: 70%;
+            margin-bottom: 15px;
+            border-radius: 10px;
         }
         
         .modal-project-image {
             grid-area: screenshot;
-            background-size: contain;
+            background-size: cover;
             background-repeat: no-repeat;
             border-radius: 10px;
             width: 100%;
@@ -130,10 +147,10 @@ template.innerHTML = `
         /* Styling for tech type modal. */
         .tech-content-wrapper {
             padding: 20px;
-            border: 1px solid #FFF;
             margin: 20px 0;
             border-radius: 15px;
             display: flex;
+            background: linear-gradient(45deg, #37474F, #546E7A, #78909C);
         }
         
         .symbol-icon-wrapper {
@@ -158,6 +175,30 @@ template.innerHTML = `
         .symbol-icon-wrapper svg {
             height: 50px;
             width: 50px;
+        }
+        
+        .tech-stack-wrapper {
+            grid-area: techs;
+        }
+        
+        .inner-tech-stack-wrapper {
+            display: grid;
+            grid-template-columns: repeat(8, min-content);
+            width: 100%;
+            height: min-content;
+            gap: 1%;
+            overflow: hidden;
+            padding: 10px;
+        }
+        
+        .inner-tech-stack-wrapper div {
+            width: 30px;
+            height: 30px;
+        }
+        
+        .tech-stack-wrapper svg {
+            height: 30px;
+            width: 30px;
         }
         
         

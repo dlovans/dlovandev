@@ -81,7 +81,8 @@ customElements.define('ds-modal',
             if (eventObj.detail.modalType === 'Projects') {
                 this.#viewContainerRef.classList.remove('tech-type')
                 this.#viewContainerRef.classList.add('project-type')
-                this.#mainContentRef.append(this.#renderProjects(dataCollection))
+                const projectModal = await this.#renderProjects(dataCollection)
+                this.#mainContentRef.append(projectModal)
             } else {
                 this.#viewContainerRef.classList.remove('project-type')
                 this.#viewContainerRef.classList.add('tech-type')
@@ -96,7 +97,7 @@ customElements.define('ds-modal',
          *
          * @returns {DocumentFragment} - Rendered content in document fragment.
          */
-        #renderProjects(data) {
+        async #renderProjects(data) {
             const fragment = document.createDocumentFragment()
 
             for (const projectItem of data) {
@@ -125,9 +126,12 @@ customElements.define('ds-modal',
                 const projectRepoURL = document.createElement('a')
                 const projectLiveURL = document.createElement('a')
                 projectRepoURL.href = projectItem.repoURL
+                projectRepoURL.setAttribute('target', '_blank')
                 projectLiveURL.href = projectItem.liveURL
-                projectRepoURL.textContent = 'Repository'
-                projectLiveURL.textContent = 'Live Link'
+                projectLiveURL.setAttribute('target', '_blank')
+                const linkSymbol = '\u{1F517}'
+                projectRepoURL.textContent = `Repository ${linkSymbol}`
+                projectLiveURL.textContent = `Live Demo ${linkSymbol}`
                 linksWrapper.append(projectLiveURL, projectRepoURL)
 
                 const projectDescriptionCollection = projectItem.projectDescription.split('|||')
@@ -139,7 +143,28 @@ customElements.define('ds-modal',
                     projectDescriptionWrapper.append(paragraphObject)
                 }
 
-                projectContentWrapper.append(projectHeader, projectImage, linksWrapper, projectDescriptionWrapper)
+                const techStackWrapper = document.createElement('div')
+                techStackWrapper.classList.add('tech-stack-wrapper')
+                const techStackTitle = document.createElement('h3')
+                techStackTitle.textContent = 'Project Tech Stack'
+                const innerTechStackWrapper = document.createElement('div')
+                innerTechStackWrapper.classList.add('inner-tech-stack-wrapper')
+                techStackWrapper.append(techStackTitle, innerTechStackWrapper)
+
+
+                const techStackCollection = projectItem.projectTechStack.split('|||')
+                for (const tech of techStackCollection) {
+                    const svgWrap = document.createElement('div')
+                    const getSVGFile = await fetch(`./../../../img/${tech}`)
+                    if(!getSVGFile) {
+                        throw new Error(`Check SVG file source for ${tech}`)
+                    }
+                    svgWrap.innerHTML = await getSVGFile.text()
+                    console.log(svgWrap)
+                    innerTechStackWrapper.append(svgWrap)
+                }
+
+                projectContentWrapper.append(projectHeader, projectImage, linksWrapper, projectDescriptionWrapper, techStackWrapper)
 
                 fragment.append(projectContentWrapper)
             }
@@ -169,8 +194,7 @@ customElements.define('ds-modal',
                 if(!getSVGFile) {
                     throw new Error(`Check SVG file source for ${tech.svgRelativePath}`)
                 }
-                const svgContent = await getSVGFile.text()
-                svgWrap.innerHTML = svgContent
+                svgWrap.innerHTML = await getSVGFile.text()
                 const logoTitle = document.createElement('h3')
                 logoTitle.textContent = tech.name
                 symbolWrapper.append(svgWrap, logoTitle)
