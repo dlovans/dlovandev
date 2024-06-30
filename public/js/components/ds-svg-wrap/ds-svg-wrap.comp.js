@@ -64,7 +64,7 @@ customElements.define('ds-svg-wrap',
       this.shadowRoot.append(styleTemplate.content.cloneNode(true))
 
       // Initialize svgSource field. Defaults to Swift SVG.
-      this.#svgSource = this.getAttribute('svg-source') || '../../img/icons8-swift.svg'
+      this.#svgSource = this.getAttribute('svg-source') || '../../img/Swift_logo_color.svg'
       // Default values and references.
       this.#divDimensions = 50
       this.#svgDimensions = 50
