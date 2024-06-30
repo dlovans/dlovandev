@@ -71,7 +71,6 @@ ds-persona {
 #grid-langs {
   grid-area: langs;
   position: relative;
-  overflow: unset;
   display: grid;
   grid-template-columns: repeat(5, auto);
   grid-auto-rows: min-content;
@@ -79,32 +78,11 @@ ds-persona {
   width: 100%;
   padding: 10px;
   height: 100%;
-}
-
-#grid-langs::before,
-#grid-langs::after {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  z-index: -1;
-  background: linear-gradient(var(--animate-border),
-      #A5D6A7,
-      #66BB6A,
-      #43A047,
-      #2E7D32);
-
-  animation: border-effect 10s linear infinite;
-  border-radius: inherit;
-}
-
-#grid-langs::after {
-  filter: blur(1rem);
 }
 
 #grid-tools {
   grid-area: tools;
   position: relative;
-  overflow: unset;
   display: grid;
   grid-template-columns: repeat(5, auto);
   grid-auto-rows: min-content;
@@ -112,25 +90,6 @@ ds-persona {
   width: 100%;
   padding: 10px;
   height: 100%;
-}
-
-#grid-tools::before,
-#grid-tools::after {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  z-index: -1;
-  background: linear-gradient(var(--animate-border),
-      #90CAF9,
-      #42A5F5,
-      #1E88E5,
-      #1565C0);
-  animation: border-effect 10s linear infinite;
-  border-radius: inherit;
-}
-
-#grid-tools::after {
-  filter: blur(1rem);
 }
 
 #langs,
