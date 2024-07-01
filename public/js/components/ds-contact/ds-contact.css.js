@@ -81,7 +81,7 @@ template.innerHTML = `
   }
 
   #submit:hover {
-    transform: scale(0.95);
+    transform: scale(0.99);
     border-color: green;
     cursor: pointer;
   }
