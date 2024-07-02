@@ -78,11 +78,10 @@ customElements.define('ds-svg-wrap',
      * Invoked after the custom element is inserted into the DOM.
      */
     async connectedCallback() {
+      this.#setDivDimensions(this.#divDimensions)
       await this.#insertSVGFile(this.#svgSource)
       this.#setSvgDimensions(this.#svgDimensions)
       this.#setBgColor(this.#bgColor)
-      this.#setDivDimensions(this.#divDimensions)
-      this.#setSvgDimensions(this.#svgDimensions)
     }
 
     /**
