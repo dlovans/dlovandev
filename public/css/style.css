@@ -136,6 +136,8 @@ body {
   grid-template-columns: repeat(5, auto);
   row-gap: 10px;
   padding: 1rem;
+  grid-auto-rows: min-content;
+
 }
 
 #portfolio {
@@ -407,6 +409,11 @@ ds-modal {
   html {
     font-size: 10px;
   }
+
+  #app {
+    width: 100%;
+    max-width: 470px;
+  }
 }
 @media only screen and (min-width: 420px) {
   html {
@@ -414,24 +421,210 @@ ds-modal {
   }
 }
 
-@media only screen and (min-width: 450px) {
+@media only screen and (min-width: 720px) {
+  html {
+    font-size: 14px;
+  }
+
   #app {
-    width: 470px;
+    max-width: 800px;
+    grid-auto-rows: auto;
+    grid-template-columns: 1.5fr 1fr;
+    grid-template-areas:
+        "titles titles"
+        "nameloc social"
+        "slogan portrait"
+        "trait portrait"
+        "portfolio portfolio"
+        "persona langs"
+        "persona tools"
+        "persona contact";
+
+    column-gap: 1rem;
+  }
+
+  #persona {
+    margin-bottom: unset;
+  }
+
+}
+
+@media only screen and (min-width: 1200px) {
+  #app {
+    max-width: 900px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "titles titles"
+      "trait nameloc"
+      "trait social"
+      "slogan portrait"
+      "portfolio portfolio"
+      "langs contact"
+      "tools contact"
+      "persona persona"
+  ;
+  }
+
+  #portrait {
+    height: 35svh;
+  }
+
+
+  #persona .about-container {
+    flex-direction: row;
+    margin-bottom: 2rem;
+  }
+
+  #persona .inner-wrapper {
+    width: 30%;
+  }
+
+  ds-trait::part(trait1) {
+    font-size: 2rem;
+  }
+
+  ds-trait::part(trait2) {
+    font-size: 1.5rem;
+  }
+
+  ds-trait::part(trait3) {
+    font-size: 2.5rem;
+  }
+
+  ds-trait::part(trait4) {
+    font-size: 2rem;
   }
 }
 
-@media only screen and (min-width: 720px) {
+@media only screen and (min-width: 1300px) {
   #app {
-    width: auto;
-    grid-auto-rows: auto;
-    grid-template-columns: 2fr 1fr;
+    max-width: 1800px;
+    grid-template-columns: minmax(40px, auto) repeat(3, 1fr) minmax(40px, auto);
     grid-template-areas:
-      "titles nameloc"
-      "slogan contact"
-      "portfolio portfolio"
-      "langs tools"
-      "contact social";
+            ". titles nameloc social ."
+            ". slogan portrait contact ."
+            ". langs tools trait ."
+            ". portfolio portfolio portfolio ."
+            ". persona persona persona ."
+  ;
+
+    margin: 20px 0;
   }
+
+  #slogan::part(ds-slogan-text) {
+    font-size: 2.8rem;
+    line-height: 3rem;
+  }
+
+  #portrait {
+    height: 100%;
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  body {
+    height: 100svh;
+  }
+
+  #app {
+    max-width: unset;
+    grid-template-rows: minmax(10px, 10px) 0.7fr 0.5fr repeat(2, 1fr) 1fr 0.7fr repeat(2, 1fr) 1.5fr minmax(10px, auto);
+    grid-template-columns: minmax(40px, auto) repeat(5, 1fr) minmax(40px, auto);
+    grid-template-areas:
+      ". . . . . . ."
+      ". slogan slogan slogan titles titles ."
+      ". slogan slogan slogan portrait nameloc ."
+      ". slogan slogan slogan portrait contact ."
+      ". slogan slogan slogan portrait contact ."
+      ". langs tools trait portrait contact ."
+      ". langs tools trait social contact ."
+      ". portfolio portfolio portfolio persona persona ."
+      ". portfolio portfolio portfolio persona persona ."
+      ". portfolio portfolio portfolio persona persona ."
+      ". . . . . . ."
+    ;
+    gap: 10px;
+    height: 100%;
+    position: relative;
+    margin: 0;
+  }
+
+  #wrap-info::part(ds-text-title) {
+    font-size: 1rem;
+  }
+
+  ds-trait {
+    margin: 0;
+  }
+
+  #portrait {
+    height: 100%;
+  }
+
+  #grid-langs, #grid-tools {
+    grid-auto-rows: min-content;
+    row-gap: 5%;
+    padding: 10px;
+  }
+
+  #slogan {
+    padding: 35px;
+  }
+
+  #slogan::part(ds-slogan-text) {
+    font-size: 3.5rem;
+    line-height: 3rem;
+  }
+
+  #slogan::part(ds-slogan-button) {
+    font-size: 2rem;
+    margin-top: 5px;
+  }
+
+  #developer-titles::part(ds-text-title) {
+    font-size: 1.2rem;
+  }
+
+  #wrap-info ::part(ds-text-title) {
+    font-size: 1rem;
+  }
+
+  #persona {
+    height: 100%;
+  }
+
+  #persona .about-container {
+    margin: 0;
+  }
+
+  #persona .inner-wrapper {
+    margin: 0;
+  }
+
+  #persona::part(ds-text-title) {
+    font-size: 2rem;
+    overflow: unset;
+    margin-bottom: 5px;
+  }
+
+  .inner-wrapper h3 {
+    font-size: 1.3rem;
+  }
+
+  #persona .inner-wrapper p {
+    font-size: 1.15rem;
+    margin-bottom: 0;
+    margin-top: 1px;
+  }
+
+  #portfolio {
+    height: unset;
+  }
+
+  #portfolio ::part(project-title) {
+    margin: 0;
+  }
+
 }
 
 
@@ -485,17 +678,6 @@ ds-modal {
 /*  width: 100%;*/
 /*  padding: 10px;*/
 /*  height: 100%;*/
-/*}*/
-
-/*#langs,*/
-/*#tools {*/
-/*  display: grid;*/
-/*  grid-template-columns: repeat(5, auto);*/
-/*  gap: 3%;*/
-/*  width: 100%;*/
-/*  height: min-content;*/
-/*  overflow: hidden;*/
-/*  padding: 10px;*/
 /*}*/
 
 /*#social {*/
