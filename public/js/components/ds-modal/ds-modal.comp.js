@@ -34,11 +34,6 @@ customElements.define('ds-modal',
         #closeModalBtnRef
 
         /**
-         * Reference to the view container.
-         */
-        #viewContainerRef
-
-        /**
          * Initializes an instance of this class.
          */
         constructor() {
@@ -55,7 +50,6 @@ customElements.define('ds-modal',
             this.#mainContentRef = this.shadowRoot.querySelector('.view-container')
             this.#overlayRef = this.shadowRoot.querySelector('.invisible-overlay')
             this.#closeModalBtnRef = this.shadowRoot.querySelector('#close-btn')
-            this.#viewContainerRef = this.shadowRoot.querySelector('.view-container')
 
             // Register event handlers.
             this.addEventListener('ds-modal-projects', (event) => this.#renderModal(event))
@@ -73,21 +67,19 @@ customElements.define('ds-modal',
          *
          * @param {object} eventObj - The event object with details.
          */
-        async #renderModal(eventObj) {
+        #renderModal(eventObj) {
             const dataCollection = Array.from(eventObj.detail.data)
             this.#mainContentRef.innerHTML = ''
             this.#mainHeadingRef.textContent = eventObj.detail.modalType
 
             if (eventObj.detail.modalType === 'Projects') {
-                this.#viewContainerRef.classList.remove('tech-type')
-                this.#viewContainerRef.classList.add('project-type')
-                const projectModal = await this.#renderProjects(dataCollection)
+                this.#mainContentRef.setAttribute('part', 'project-type')
+                const projectModal = this.#renderProjects(dataCollection)
                 this.#mainContentRef.append(projectModal)
             } else {
-                this.#viewContainerRef.classList.remove('project-type')
-                this.#viewContainerRef.classList.add('tech-type')
-                const techModal = await this.#renderTechs(dataCollection)
-                    this.#mainContentRef.append(techModal)
+                this.#mainContentRef.setAttribute('part', 'tech-type')
+                const techModal = this.#renderTechs(dataCollection)
+                this.#mainContentRef.append(techModal)
             }
         }
 
@@ -97,7 +89,7 @@ customElements.define('ds-modal',
          *
          * @returns {DocumentFragment} - Rendered content in document fragment.
          */
-        async #renderProjects(data) {
+        #renderProjects(data) {
             const fragment = document.createDocumentFragment()
 
             for (const projectItem of data) {
@@ -110,25 +102,30 @@ customElements.define('ds-modal',
 
                 const projectContentWrapper = document.createElement('div')
                 projectContentWrapper.classList.add('project-content-wrapper')
+                projectContentWrapper.setAttribute('part', 'project-content-wrapper')
                 projectContentWrapper.setAttribute('data-key', projectItem.projectKey)
 
 
                 const projectHeader = document.createElement('h3')
                 projectHeader.textContent = projectItem.projectTitle
                 projectHeader.classList.add('modal-project-title')
+                projectHeader.setAttribute('part', 'modal-project-title')
 
                 const projectImage = document.createElement('div')
                 projectImage.style.backgroundImage = `url(${projectItem.projectScreenshot})`
-                projectImage.classList.add('modal-project-image')
+                projectImage.setAttribute('part', 'modal-project-image')
 
                 const linksWrapper = document.createElement('div')
-                linksWrapper.classList.add('modal-links-wrapper')
+                linksWrapper.setAttribute('part', 'modal-links-wrapper')
                 const projectRepoURL = document.createElement('a')
                 const projectLiveURL = document.createElement('a')
                 projectRepoURL.href = projectItem.repoURL
                 projectRepoURL.setAttribute('target', '_blank')
+                projectRepoURL.setAttribute('part', 'project-urls')
                 projectLiveURL.href = projectItem.liveURL
                 projectLiveURL.setAttribute('target', '_blank')
+                projectLiveURL.setAttribute('part', 'project-urls')
+
                 const linkSymbol = '\u{1F517}'
                 projectRepoURL.textContent = `Repository ${linkSymbol}`
                 projectLiveURL.textContent = `Live Demo ${linkSymbol}`
@@ -136,7 +133,7 @@ customElements.define('ds-modal',
 
                 const projectDescriptionCollection = projectItem.projectDescription.split('|||')
                 const projectDescriptionWrapper = document.createElement('div')
-                projectDescriptionWrapper.classList.add('modal-project-description-wrapper')
+                projectDescriptionWrapper.setAttribute('part', 'modal-project-description-wrapper')
                 for (const paragraph of projectDescriptionCollection) {
                     const paragraphObject = document.createElement('p')
                     paragraphObject.textContent = paragraph
@@ -144,24 +141,25 @@ customElements.define('ds-modal',
                 }
 
                 const techStackWrapper = document.createElement('div')
-                techStackWrapper.classList.add('tech-stack-wrapper')
+                techStackWrapper.setAttribute('part', 'tech-stack-wrapper')
                 const techStackTitle = document.createElement('h3')
                 techStackTitle.textContent = 'Project Tech Stack'
                 const innerTechStackWrapper = document.createElement('div')
-                innerTechStackWrapper.classList.add('inner-tech-stack-wrapper')
+                innerTechStackWrapper.setAttribute('part', 'inner-tech-stack-wrapper')
                 techStackWrapper.append(techStackTitle, innerTechStackWrapper)
 
 
                 const techStackCollection = projectItem.projectTechStack.split('|||')
                 for (const tech of techStackCollection) {
-                    const svgWrap = document.createElement('div')
-                    const getSVGFile = await fetch(`./../../../img/${tech}`)
-                    if(!getSVGFile) {
-                        throw new Error(`Check SVG file source for ${tech}`)
-                    }
-                    svgWrap.innerHTML = await getSVGFile.text()
-                    console.log(svgWrap)
-                    innerTechStackWrapper.append(svgWrap)
+                    const svgWrapper = document.createElement('div')
+                    const svgImg = document.createElement('img')
+                    svgWrapper.setAttribute('part', 'img-wrapper-project')
+                    svgImg.setAttribute('part', 'svg-img-project')
+                    const relativeSvgPath = `./../../img/${tech}`
+                    svgImg.setAttribute('src', relativeSvgPath)
+                    svgWrapper.innerHTML = ''
+                    svgWrapper.append(svgImg)
+                    innerTechStackWrapper.append(svgWrapper)
                 }
 
                 projectContentWrapper.append(projectHeader, projectImage, linksWrapper, projectDescriptionWrapper, techStackWrapper)
@@ -177,33 +175,35 @@ customElements.define('ds-modal',
          * Renders each technology.
          *
          * @param data - The data from the techs event object.
-         * @returns {Promise<DocumentFragment>} - Resolves to document
+         * @returns {DocumentFragment} - Resolves to document
          * fragment with rendered content.
          */
-        async #renderTechs(data) {
+        #renderTechs(data) {
             const fragment = document.createDocumentFragment()
-            try {
-                for (const tech of data) {
+            for (const tech of data) {
                 const techContentWrapper = document.createElement('div')
-                techContentWrapper.classList.add('tech-content-wrapper')
+                techContentWrapper.setAttribute('part', 'tech-content-wrapper')
 
                 const symbolWrapper = document.createElement('div')
-                symbolWrapper.classList.add('symbol-icon-wrapper')
+                symbolWrapper.setAttribute('part', 'symbol-icon-wrapper')
                 const svgWrap = document.createElement('div')
-                const getSVGFile = await fetch(tech.svgRelativePath)
-                if(!getSVGFile) {
-                    throw new Error(`Check SVG file source for ${tech.svgRelativePath}`)
-                }
-                svgWrap.innerHTML = await getSVGFile.text()
+                const svgImg = document.createElement('img')
+                svgWrap.setAttribute('part', 'img-wrapper')
+                svgImg.setAttribute('part', 'svg-img')
+                svgImg.setAttribute('src', tech.svgRelativePath)
+                svgWrap.innerHTML = ''
+                svgWrap.append(svgImg)
                 const logoTitle = document.createElement('h3')
+                logoTitle.setAttribute('part', 'logo-title')
                 logoTitle.textContent = tech.name
                 symbolWrapper.append(svgWrap, logoTitle)
 
                 const textWrapper = document.createElement('div')
-                textWrapper.classList.add('symbol-text-wrapper')
+                textWrapper.setAttribute('part', 'symbol-text-wrapper')
                 const paragraphs = tech.description.split('|||')
                 for (const paragraph of paragraphs) {
                     const pObject = document.createElement('p')
+                    pObject.setAttribute('part', 'project-paragraph')
                     pObject.textContent = paragraph
                     textWrapper.append(pObject)
                 }
@@ -212,11 +212,8 @@ customElements.define('ds-modal',
                 techContentWrapper.append(symbolWrapper, textWrapper)
                 fragment.append(techContentWrapper)
             }
-                this.classList.add('toggle-modal')
-                return fragment
-            } catch (error) {
-                console.error(error.message)
-            }
+            this.classList.add('toggle-modal')
+            return fragment
         }
     }
-    )
+)
