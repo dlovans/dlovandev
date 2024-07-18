@@ -558,7 +558,7 @@ ds-modal::part(project-urls) {
 
 ds-modal::part(modal-project-image) {
   grid-area: screenshot;
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   border-radius: 10px;
   height: 100%;
