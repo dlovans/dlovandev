@@ -86,11 +86,8 @@ customElements.define('ds-wrapper',
      * @param {Boolean} isExpandable - Indicates if ds-wrapper is expandable.
      */
     #toggleExpandIconWrapper(isExpandable) {
-      if (isExpandable) {
-        this.#expandableHintWrapper.classList.remove('hidden')
-      } else {
-        this.#expandableHintWrapper.classList.add('hidden')
-      }
+      if (!isExpandable) return
+      this.#expandableHintWrapper.classList.remove('hidden')
     }
 
     /**
