@@ -10,7 +10,7 @@ template.innerHTML = `
             padding: 0;
         }
         
-        :host {
+        .projects {
             display: flex;
             flex-shrink: 0;
             justify-content: center;
