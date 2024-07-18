@@ -59,6 +59,7 @@ body {
         "persona";
   row-gap: 1rem;
   overflow: hidden;
+  position: relative;
 }
 
 #developer-titles {
@@ -121,6 +122,16 @@ body {
   float: right;
 }
 
+::part(ds-slogan-button):hover {
+  box-shadow:
+          0 0 0.2rem #FFF,
+          0 0 1rem #9d4edd,
+          0 0 1.5rem #9d4edd,
+          0 0 2.8rem #9d4edd,
+          inset 0 0 2.8rem #9d4edd;
+;
+}
+
 #grid-langs {
   grid-area: langs;
 }
@@ -137,7 +148,20 @@ body {
   row-gap: 10px;
   padding: 1rem;
   grid-auto-rows: min-content;
+}
 
+::part(resource),
+::part(expand-to-modal) {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  font-size: 1.4rem;
+  text-decoration: none;
+  background: linear-gradient(45deg, #ea698b, #c05299, #ac46a1, #973aa8, #6247aa);
+  border-radius: 15px;
+  margin: 5px 0;
+  padding: 10px 30px;
+  color: #FFF;
 }
 
 #portfolio {
@@ -152,6 +176,7 @@ body {
   scroll-behavior: smooth;
   gap: 15px;
   height: 500px;
+  scroll-snap-type: x mandatory;
 }
 
 ds-project-wrapper::-webkit-scrollbar {
@@ -182,6 +207,7 @@ ds-project-wrapper::-webkit-scrollbar-thumb {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  scroll-snap-align: center;
 }
 
 ::part(project-title) {
@@ -203,7 +229,7 @@ ds-project-wrapper::-webkit-scrollbar-thumb {
   height: 100%;
 }
 
-::part(resource),
+::part(live-demo-url),
 ::part(expand-to-modal) {
   display: flex;
   justify-content: center;
@@ -248,6 +274,17 @@ ds-contact {
   grid-area: contact;
   border-radius: 15px;
   padding: 1rem 0;
+  transition: box-shadow .5s ease-in-out;
+}
+
+ds-contact:hover,
+ds-contact:focus {
+  box-shadow:
+          0 0 0.2rem #FFF,
+          0 0 1rem #546E7A,
+          0 0 1.5rem #546E7A,
+          0 0 2.8rem #546E7A,
+          inset 0 0 2.8rem #546E7A;
 }
 
 ::part(contact-title) {
@@ -402,8 +439,211 @@ ds-text {
 }
 
 ds-modal {
-  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-100%);
+  transition: all .5s ease-in;
+  z-index: 10;
 }
+
+.toggle-modal {
+  transform: translateX(0%);
+}
+
+ds-modal::part(modal-container) {
+  position: relative;
+  width: 50%;
+  height: 70%;
+  background-color: #26373d;
+  z-index: 10;
+  border-radius: 15px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+
+ds-modal::part(navbar-control) {
+  grid-area: nav;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid #FFF;
+  margin-bottom: 20px;
+}
+
+ds-modal::part(modal-title) {
+  margin-left: 1.1rem;
+}
+
+ds-modal::part(close-btn) {
+  font-size: 1.5rem;
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  margin-right: 1.1rem;
+  color: #FFF;
+}
+
+ds-modal::part(close-btn):hover {
+  cursor: pointer;
+}
+
+ds-modal::part(project-type) {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  overflow: scroll;
+  scroll-snap-type: x mandatory;
+}
+
+ds-modal::part(tech-type) {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  flex-direction: column;
+  padding: 0 20px;
+}
+
+/* Styling for Project type modal. */
+ds-modal::part(project-content-wrapper) {
+  display: grid;
+  box-sizing: border-box;
+  grid-template-areas:
+            "title title title"
+            "desc desc screenshot"
+            "desc desc screenshot"
+            "desc desc links"
+            "desc desc techs"
+            "desc desc techs"
+;
+  grid-template-rows: min-content;
+  grid-template-columns: 1fr 1fr 1.2fr;
+  column-gap: 10px;
+  width: 100%;
+  flex-shrink: 0;
+  padding: 20px;
+  scroll-snap-align: center;
+}
+
+ds-modal::part(modal-project-title) {
+  grid-area: title;
+}
+
+ds-modal::part(modal-links-wrapper) {
+  grid-area: links;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+ds-modal::part(project-urls) {
+  display: flex;
+  text-decoration: none;
+  background-color: #FFF;
+  justify-content: center;
+  padding: 10px 30px;
+  width: 70%;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+
+ds-modal::part(modal-project-image) {
+  grid-area: screenshot;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 10px;
+  height: 100%;
+  width: 100%;
+}
+
+ds-modal::part(modal-project-description-wrapper) {
+  grid-area: desc;
+  display: flex;
+  flex-direction: column;
+}
+
+ds-modal::part(project-paragraph) {
+  margin-bottom: 1.2rem;
+}
+
+
+/* Styling for tech type modal. */
+ds-modal::part(tech-content-wrapper) {
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 15px;
+  display: flex;
+  background: linear-gradient(45deg, #37474F, #546E7A, #78909C);
+}
+
+ds-modal::part(symbol-icon-wrapper) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+}
+
+ds-modal::part(logo-title) {
+  text-align: center;
+}
+
+ds-modal::part(symbol-text-wrapper) {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 75%;
+}
+
+ds-modal::part(svg-img) {
+  height: 50px;
+  width: 50px;
+}
+
+ds-modal::part(tech-stack-wrapper) {
+  grid-area: techs;
+}
+
+ds-modal::part(inner-tech-stack-wrapper) {
+  display: grid;
+  grid-template-columns: repeat(8, min-content);
+  width: 100%;
+  height: min-content;
+  gap: 1%;
+  overflow: hidden;
+  padding: 10px;
+}
+
+ds-modal::part(img-wrapper-project) {
+  width: 30px;
+  height: 30px;
+}
+
+ds-modal::part(svg-img-project) {
+  height: 30px;
+  width: 30px;
+}
+
+
+ds-modal::part(invisible-overlay) {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  z-index: 9;
+}
+
+
 
 @media only screen and (min-width: 340px) {
   html {
@@ -429,7 +669,7 @@ ds-modal {
   #app {
     max-width: 800px;
     grid-auto-rows: auto;
-    grid-template-columns: 1.5fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-areas:
         "titles titles"
         "nameloc social"
@@ -524,10 +764,15 @@ ds-modal {
 @media only screen and (min-width: 1600px) {
   body {
     height: 100svh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   #app {
-    max-width: unset;
+    height: 100%;
+    max-height: 1000px;
+    max-width: 1800px;
     grid-template-rows: minmax(10px, 10px) 0.7fr 0.5fr repeat(2, 1fr) 1fr 0.7fr repeat(2, 1fr) 1.5fr minmax(10px, auto);
     grid-template-columns: minmax(40px, auto) repeat(5, 1fr) minmax(40px, auto);
     grid-template-areas:
@@ -627,308 +872,3 @@ ds-modal {
 
 }
 
-
-/*body {*/
-/*  height: 100svh;*/
-/*  overflow-y: hidden;*/
-/*}*/
-
-/*!* Replace with composing component. *!*/
-/*#app {*/
-/*  display: grid;*/
-/*  grid-template-rows: minmax(40px, auto) repeat(9, 1fr) minmax(40px, auto);*/
-/*  grid-template-columns: minmax(40px, auto) repeat(5, 1fr) minmax(40px, auto);*/
-/*  grid-template-areas:*/
-/*    ". . . . . . ."*/
-/*    ". slogan slogan slogan titles titles ."*/
-/*    ". slogan slogan slogan portrait nameloc ."*/
-/*    ". slogan slogan slogan portrait contact ."*/
-/*    ". slogan slogan slogan portrait contact ."*/
-/*    ". langs tools trait portrait contact ."*/
-/*    ". langs tools trait social contact ."*/
-/*    ". portfolio portfolio portfolio persona persona ."*/
-/*    ". portfolio portfolio portfolio persona persona ."*/
-/*    ". portfolio portfolio portfolio persona persona ."*/
-/*    ". . . . . . ."*/
-/*  ;*/
-/*  gap: 20px;*/
-/*  height: 100%;*/
-/*  position: relative;*/
-/*}*/
-
-/*#grid-langs {*/
-/*  grid-area: langs;*/
-/*  position: relative;*/
-/*  display: grid;*/
-/*  grid-template-columns: repeat(5, auto);*/
-/*  grid-auto-rows: min-content;*/
-/*  row-gap: 5%;*/
-/*  width: 100%;*/
-/*  padding: 10px;*/
-/*  height: 100%;*/
-/*}*/
-
-/*#grid-tools {*/
-/*  grid-area: tools;*/
-/*  position: relative;*/
-/*  display: grid;*/
-/*  grid-template-columns: repeat(5, auto);*/
-/*  grid-auto-rows: min-content;*/
-/*  row-gap: 5%;*/
-/*  width: 100%;*/
-/*  padding: 10px;*/
-/*  height: 100%;*/
-/*}*/
-
-/*#social {*/
-/*  grid-area: social;*/
-/*  display: grid;*/
-/*  grid-template-columns: repeat(4, auto);*/
-/*  width: 100%;*/
-/*  gap: 10%;*/
-/*  justify-content: center;*/
-/*}*/
-
-/*#social a {*/
-/*  display: flex;*/
-/*  justify-content: center;*/
-/*  align-items: center;*/
-/*  width: min-content;*/
-/*}*/
-
-/*ds-text {*/
-/*  background-color: var(--primary-color);*/
-/*}*/
-
-/*#developer-titles {*/
-/*  grid-area: titles;*/
-/*  border-radius: 15px;*/
-/*  padding-left: 12px;*/
-/*}*/
-
-/*#wrap-info {*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-/*  justify-content: space-evenly;*/
-/*  background-color: var(--primary-color);*/
-/*  grid-area: nameloc;*/
-/*  border-radius: 15px;*/
-/*}*/
-
-/*#wrap-info ds-text {*/
-/*  margin: 10px;*/
-/*}*/
-
-/*#wrap-info ds-text ds-svg-wrap {*/
-/*  margin-right: 5px;*/
-/*}*/
-
-/*ds-contact {*/
-/*  grid-area: contact;*/
-/*  border-radius: 15px;*/
-/*  transition: box-shadow .5s ease-in-out;*/
-/*}*/
-
-/*ds-contact:hover,*/
-/*ds-contact:focus {*/
-/*  box-shadow:*/
-/*    0 0 0.2rem #FFF,*/
-/*    0 0 1rem #546E7A,*/
-/*    0 0 1.5rem #546E7A,*/
-/*    0 0 2.8rem #546E7A,*/
-/*    inset 0 0 2.8rem #546E7A;*/
-/*}*/
-
-/*ds-trait {*/
-/*  grid-area: trait;*/
-/*  background-color: var(--primary-color);*/
-/*  padding: 10px;*/
-/*  display: grid;*/
-/*  grid-template-rows: 1fr min-content 1fr 1fr;*/
-/*  position: relative;*/
-/*}*/
-
-
-/*ds-trait::before,*/
-/*ds-trait::after {*/
-/*  content: "";*/
-/*  position: absolute;*/
-/*  inset: -2px;*/
-/*  z-index: -1;*/
-/*  background: linear-gradient(var(--animate-border),*/
-/*      #EF9A9A,*/
-/*      #EF5350,*/
-/*      #E53935,*/
-/*      #C62828);*/
-/*  animation: border-effect 10s linear infinite;*/
-/*  border-radius: inherit;*/
-/*}*/
-
-/*ds-trait::after {*/
-/*  filter: blur(1rem);*/
-/*}*/
-
-/*ds-trait::part(trait1) {*/
-/*  font-size: 1.8rem;*/
-/*  color: #ffcc9d;*/
-/*}*/
-
-/*ds-trait::part(trait2) {*/
-/*  font-size: 1.5rem;*/
-/*  color: #607D8B;*/
-/*}*/
-
-/*ds-trait::part(trait3) {*/
-/*  font-size: 2.2rem;*/
-/*  color: #F9A825;*/
-/*}*/
-
-/*ds-trait::part(trait4) {*/
-/*  font-size: 1.4rem;*/
-/*  color: #9c9c9c;*/
-/*}*/
-
-/*#slogan {*/
-/*  grid-area: slogan;*/
-/*  background-color: var(--primary-color);*/
-/*  border-radius: 15px;*/
-/*  padding: 40px;*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-/*  justify-content: center;*/
-/*  align-items: center;*/
-/*  width: 100%;*/
-/*  box-sizing: border-box;*/
-/*}*/
-
-/*::part(ds-slogan-text) {*/
-/*  font-size: 4rem;*/
-/*  width: 100%;*/
-/*  margin: 0;*/
-/*  padding: 0;*/
-/*}*/
-
-/*::part(ds-slogan-button) {*/
-/*  width: 200px;*/
-/*  height: 60px;*/
-/*  margin-top: 10px;*/
-/*  font-size: 1.5rem;*/
-/*  color: #FFF;*/
-/*  position: relative;*/
-/*  background: linear-gradient(45deg, #ea698b, #c05299, #ac46a1, #973aa8, #6247aa);*/
-/*  border: none;*/
-/*  border-radius: 10px;*/
-/*  cursor: pointer;*/
-/*  transition: box-shadow .3s ease;*/
-/*  float: right;*/
-/*}*/
-
-/*::part(ds-slogan-button):hover {*/
-/*  box-shadow:*/
-/*  0 0 0.2rem #FFF,*/
-/*  0 0 1rem #9d4edd,*/
-/*  0 0 1.5rem #9d4edd,*/
-/*  0 0 2.8rem #9d4edd,*/
-/*  inset 0 0 2.8rem #9d4edd;*/
-/*  ;*/
-/*}*/
-
-/*#portfolio {*/
-/*  grid-area: portfolio;*/
-/*  background-color: var(--primary-color);*/
-/*  border-radius: 15px;*/
-/*  padding: 10px 10px 0 10px;*/
-/*}*/
-
-
-/*ds-project-wrapper {*/
-/*}*/
-
-/*ds-project-wrapper::-webkit-scrollbar {*/
-/*  height: .8rem;*/
-/*}*/
-
-/*ds-project-wrapper::-webkit-scrollbar-track {*/
-/*  background: transparent;*/
-/*  border-radius: 10px;*/
-/*}*/
-
-/*ds-project-wrapper:hover::-webkit-scrollbar-track {*/
-/*  background: #B3E5FC;*/
-/*}*/
-
-/*ds-project-wrapper::-webkit-scrollbar-thumb {*/
-/*  background: transparent;*/
-/*  border-radius: 10px;*/
-/*}*/
-
-/*ds-project-wrapper:hover::-webkit-scrollbar-thumb {*/
-/*  background: #0288D1;*/
-/*  border: 4px solid #4FC3F7;*/
-/*}*/
-
-/*#persona {*/
-/*  grid-area: persona;*/
-/*  padding: 10px;*/
-/*}*/
-
-/*#persona::part(ds-text-title) {*/
-/*  display: none;*/
-/*}*/
-
-/*#persona .about-container {*/
-/*  display: flex;*/
-/*  justify-content: space-around;*/
-/*  width: 100%;*/
-/*  height: 100%;*/
-/*}*/
-
-/*.why-wrapper {*/
-/*  background: linear-gradient(200deg, rgba(201, 123, 213, 0.7), rgba(186, 104, 200, 0.7), rgba(103, 58, 183, 0.7));*/
-/*}*/
-
-/*.who-wrapper {*/
-/*  background: linear-gradient(200deg, rgba(239, 162, 73, 0.5), rgba(171, 113, 46, 0.5), rgba(61, 40, 16, 0.5));*/
-/*}*/
-
-/*.how-wrapper {*/
-/*  background: linear-gradient(200deg, rgba(224, 54, 54, 0.5), rgba(154, 37, 37, 0.5), rgba(61, 14, 14, 0.5));*/
-/*}*/
-
-/*.inner-wrapper {*/
-/*  border-radius: 15px;*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-/*  align-items: center;*/
-/*  width: 30%;*/
-/*  height: 100%;*/
-/*}*/
-
-/*.inner-wrapper ds-svg-wrap {*/
-/*  margin: 5px 0;*/
-/*}*/
-
-/*.inner-wrapper h3 {*/
-/*  width: 100%;*/
-/*  font-size: 1.2rem;*/
-/*  background-color: var(--primary-color);*/
-/*  text-align: center;*/
-/*  padding: 5px 0;*/
-/*}*/
-
-/*.inner-wrapper p {*/
-/*  font-size: 0.9rem;*/
-/*  width: 90%;*/
-/*  text-align: center;*/
-/*  margin-top: 5px;*/
-/*}*/
-
-/*#persona .about-container p {*/
-/*  margin-bottom: 10px;*/
-/*}*/
-
-/*#portrait {*/
-/*  grid-area: portrait;*/
-/*  background-color: var(--primary-color);*/
-/*  border-radius: 15px;*/
-/*}*/
